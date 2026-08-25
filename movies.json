@@ -1,4 +1,3 @@
-
 [
   {
     "id": 1,
@@ -145,39 +144,124 @@
     "addedAt": "2026-08-09T10:00:00"
   },
   {
-
-  "id": 13,
-  "title": "DHUANDHAR THE REVANGE",
-  "year": 2026,
-  "genre": "Action",
-  "poster": "POSTER/dhurandhar 2.jpg",
-  "link": "https://gofile.io/d/vnBAzvvO",
-  "addedAt": "2026-08-20T15:00:00"
+    "id": 13,
+    "title": "DHUANDHAR THE REVANGE",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/dhurandhar 2.jpg",
+    "link": "https://gofile.io/d/vnBAzvvO",
+    "addedAt": "2026-08-20T15:00:00"
   },
   {
-  "id": 14,
-  "title": "AWARAPAN 2",
-  "year": 2026,
-  "genre": "ROM-COM",
-  "poster": "POSTER/Awarapan.jpg",
-  "link": "https://youtu.be/6rvUyBiBtik?si=RGcFgTcFHcH20cFJ",
-  "photos": [
-    "POSTER/AWARAPAN-2.jpg"
-  ],
-  "addedAt": "2026-08-21T15:00:00"
- },
+    "id": 14,
+    "title": "AWARAPAN 2",
+    "year": 2026,
+    "genre": "ROM-COM",
+    "poster": "POSTER/Awarapan.jpg",
+    "link": "https://zealous-audi-rpedit-c2931070.koyeb.app/watch/405248/Awarapan.2.2026.720p.HDTC.Hindi-LiNE.x264.mkv?hash=AgADYy",
+    "photos": [
+      "POSTER/AWARAPAN-2.jpg"
+    ],
+    "addedAt": "2026-08-21T14:00:00"
+  },
   {
-  "id": 14,
-  "title": "LEO",
-  "year": 2026,
-  "genre": "Action",
-  "poster": "POSTER/LEO POSTER.jpg",
-  "link": "https://youtu.be/Po3jStA673E?si=_KvxUEc22BhDLQ6J",
-  "photos": [
-    "POSTER/LEO POSTER.jpg"
-  ],
-  "addedAt": "2026-08-21T15:00:00"
- }
+    "id": 15,
+    "title": "LEO",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/LEO POSTER.jpg",
+    "link": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/501392/Leo.Hindi.2023.1080p.NF.WEB-DL.DDP5.1.Atmos.DV.HDR.H.265.mkv?hash=AgAD1Q",
+    "photos": [
+      "POSTER/LEO POSTER.jpg"
+    ],
+    "addedAt": "2026-08-21T15:00:00"
+  },
+  {
+    "id": 16,
+    "title": "Lucky Baskhar",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/images.jpg",
+    "link": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/501828/Lucky.Baskhar.2024.720p.NF.WEB-DL.DUAL.DDP5.1.H.264-Extr.mkv?hash=AgADKh",
+    "photos": [
+      "POSTER/images1.jpg"
+    ],
+    "addedAt": "2026-08-22T15:00:00"
+  },
+  {
+    "id": 17,
+    "title": "The Greatest of All Time",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/MV5BYjc1NDJmMjAtMTJmYi00ZGJmLWFhZTItNThmOTQyMzU4MGM3XkEyXkFqcGc@._V1_.jpg",
+    "link": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/502220/GOAT_The_Greatest_of_All_Time_2024_720p_NF_WEB_DL_Hindi_AAC2_0_HEVC.mkv?hash=AgADRx",
+    "photos": [
+      "MV5BYjc1NDJmMjAtMTJmYi00ZGJmLWFhZTItNThmOTQyMzU4MGM3XkEyXkFqcGc@._V1_.jpg"
+    ],
+    "addedAt": "2026-08-22T15:00:00"
+  },
+  {
+    "id": 18,
+    "title": "Vishwanath & Sons ",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/Vishwanath Sons poster.jpg",
+    "link": "https://youtu.be/wjycKdvm8bE?si=QIwdrUjeGeMu03bu",
+    "photos": [
+      ""
+    ],
+    "addedAt": "2026-08-23T15:00:00"
+  },
+  {
+    "id": 19,
+    "title": "Saiyaara ",
+    "year": 2026,
+    "genre": "Romance/Drama",
+    "poster": "POSTER/saiyara.jpe",
+    "link": "https://zealous-audi-rpedit-c2931070.koyeb.app/watch/405338/Saiyaara.2025.DS4K.1080p.HEVC.Hindi.WEB-DL.5.1.ESub.x265-HDH.mkv?hash=AgADXx",
+    "photos": [
+      ""
+    ],
+    "addedAt": "2026-08-23T15:00:00"
+  },
+  {
+    "id": 20,
+    "title": "Shiddat ",
+    "year": 2026,
+    "genre": "Romance/Drama",
+    "poster": "POSTER/shiddat.jpe",
+    "link": "https://zealous-audi-rpedit-c2931070.koyeb.app/watch/405340/Shiddat_2021_1080p_Hindi_DS4K_WEB_DL_5_1_ESub_x264_HDHub4u_Ms.mkv?hash=AgADVR",
+    "photos": [
+      ""
+    ],
+    "addedAt": "2026-08-23T15:10:00"
+  },
+  {
+    "id": 21,
+    "title": "Dhurandhar",
+    "year": 2026,
+    "genre": "Action/spy",
+    "poster": "POSTER/download.webp",
+    "link": "https://zealous-audi-rpedit-c2931070.koyeb.app/watch/405653/Dhurandhar_2025_Raw_and_Undekha_720p_HEVC_Hindi_DS4K_WEB_DL_ESub.mkv?hash=AgAD1B",
+    "photos": [
+      ""
+    ],
+    "addedAt": "2026-08-23T19:10:00"
+  },
+  {
+    "site": "nightflix",
+    "title": "new movie",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "link": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-25T07:23:09.196Z",
+    "id": 22
+  }
 ]
-
-
