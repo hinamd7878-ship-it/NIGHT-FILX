@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a0f">
+<meta name="theme-color" content="#ffd6e7">
 
-<title>NIGHTFLIX — Movie Details</title>
+<title>K-Drama Hub — Drama Details</title>
 
 <style>
 
@@ -16,14 +17,16 @@
 }
 
 :root{
-  --bg:#07090d;
-  --panel:#10151e;
-  --panel2:#141a24;
-  --text:#f2f5f9;
-  --muted:#8994a6;
-  --line:#222b38;
-  --accent:#ff6847;
-  --accent2:#ff8a6d;
+  --bg:#fff7fb;
+  --panel:#ffffff;
+  --panel2:#fff0f6;
+  --text:#3b3040;
+  --muted:#8b7d8d;
+  --line:#f0dce7;
+  --pink:#ff7fa8;
+  --pink2:#ff9fc0;
+  --blue:#8ccfff;
+  --blue2:#b9e5ff;
 }
 
 html{
@@ -37,20 +40,22 @@ body{
 
   background:
     radial-gradient(
-      900px 520px at 50% -120px,
-      rgba(255,104,71,.11),
-      transparent 65%
-    ),
-    radial-gradient(
-      700px 500px at 100% 35%,
-      rgba(255,104,71,.035),
+      700px 450px at 0% 0%,
+      rgba(255,170,205,.35),
       transparent 70%
     ),
+
+    radial-gradient(
+      700px 450px at 100% 10%,
+      rgba(155,215,255,.30),
+      transparent 70%
+    ),
+
     linear-gradient(
       180deg,
-      #080a0f,
-      #090c12 50%,
-      #07090d
+      #fff9fc,
+      #f9fbff 50%,
+      #fff7fb
     );
 }
 
@@ -66,9 +71,7 @@ a{
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   position:sticky;
@@ -80,10 +83,14 @@ header{
   display:flex;
   align-items:center;
 
-  background:rgba(7,9,13,.78);
+  background:rgba(255,255,255,.82);
+
   backdrop-filter:blur(18px);
 
-  border-bottom:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,150,190,.20);
+
+  box-shadow:
+    0 5px 25px rgba(255,130,175,.08);
 }
 
 .nav{
@@ -96,33 +103,39 @@ header{
   font-size:24px;
   font-weight:950;
   letter-spacing:1.5px;
+  color:#403441;
 }
 
 .logo span{
-  color:var(--accent);
+  color:var(--pink);
 }
 
 .back{
-  border:1px solid #293241;
-  background:#10151e;
-  color:#d9dfe8;
+  border:1px solid #f0d4e1;
+
+  background:#fff;
+
+  color:#6b5b69;
 
   padding:10px 15px;
-  border-radius:9px;
+
+  border-radius:12px;
 
   cursor:pointer;
+
   font-weight:700;
+
+  transition:.2s;
 }
 
 .back:hover{
-  background:#171e28;
-  border-color:#465267;
+  background:#fff2f7;
+  border-color:#ffabc8;
+  transform:translateY(-1px);
 }
 
 
-/* =========================
-   MOVIE HERO
-========================= */
+/* MOVIE PAGE */
 
 .movie-page{
   padding:45px 0 70px;
@@ -130,42 +143,56 @@ header{
 
 .movie-layout{
   display:grid;
+
   grid-template-columns:300px 1fr;
 
   gap:35px;
+
   align-items:start;
 }
 
+
+/* POSTER */
+
 .poster-box{
-  border-radius:14px;
+  border-radius:18px;
+
   overflow:hidden;
 
-  border:1px solid #252f3c;
-  background:#111720;
+  border:1px solid #f1dce6;
 
-  box-shadow:0 20px 50px rgba(0,0,0,.4);
+  background:#fff;
+
+  box-shadow:
+    0 20px 50px rgba(177,100,140,.15);
 }
 
 .poster-box img{
   display:block;
 
   width:100%;
+
   aspect-ratio:2/3;
 
   object-fit:cover;
 }
+
+
+/* DETAILS */
 
 .details{
   padding-top:5px;
 }
 
 .kicker{
-  color:var(--accent);
+  color:var(--pink);
 
   font-size:12px;
+
   font-weight:800;
 
   letter-spacing:2px;
+
   text-transform:uppercase;
 
   margin-bottom:12px;
@@ -173,15 +200,19 @@ header{
 
 h1{
   font-size:clamp(32px,5vw,56px);
+
   line-height:1.05;
 
   margin-bottom:15px;
+
+  color:#3e3340;
 }
 
 .description{
   color:var(--muted);
 
   line-height:1.7;
+
   font-size:14px;
 
   max-width:700px;
@@ -189,8 +220,12 @@ h1{
   margin-bottom:20px;
 }
 
+
+/* META */
+
 .meta{
   display:flex;
+
   gap:9px;
 
   flex-wrap:wrap;
@@ -201,149 +236,150 @@ h1{
 .tag{
   padding:8px 12px;
 
-  border-radius:8px;
+  border-radius:10px;
 
-  background:#111720;
-  border:1px solid #293241;
+  background:#fff;
 
-  color:#cdd4df;
+  border:1px solid #efdce6;
+
+  color:#746573;
 
   font-size:12px;
+
+  box-shadow:0 3px 10px rgba(180,120,150,.06);
 }
 
 
-/* =========================
-   DOWNLOAD BOX
-========================= */
+/* EPISODE BOX */
 
 .download-box{
+
   margin-top:20px;
 
   padding:22px;
 
-  border-radius:14px;
+  border-radius:18px;
 
-  border:1px solid #293241;
+  border:1px solid #f0d9e4;
 
   background:
     linear-gradient(
       145deg,
-      rgba(20,26,36,.95),
-      rgba(12,16,23,.95)
+      rgba(255,255,255,.98),
+      rgba(255,245,250,.95)
     );
 
-  max-width:650px;
+  max-width:700px;
+
+  box-shadow:
+    0 10px 35px rgba(190,120,155,.08);
 }
 
 .download-box h2{
   font-size:20px;
+
   margin-bottom:7px;
+
+  color:#493744;
 }
 
-.download-box p{
+.download-box > p{
   color:var(--muted);
 
   font-size:12px;
 
-  margin-bottom:17px;
+  margin-bottom:20px;
 }
 
 
-/* MOVIE BUTTON */
+/* EPISODES */
 
-.download-btn{
-  display:inline-flex;
+.episodes{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.episode{
+  display:flex;
 
   align-items:center;
-  justify-content:center;
 
-  gap:8px;
+  justify-content:space-between;
 
-  background:var(--accent);
-  color:white;
+  gap:15px;
 
-  padding:13px 20px;
+  padding:13px 14px;
 
-  border-radius:10px;
+  border-radius:12px;
 
-  font-size:14px;
-  font-weight:800;
+  background:#fff;
+
+  border:1px solid #f0dce6;
 
   transition:.2s;
 }
 
-.download-btn:hover{
-  background:var(--accent2);
-  transform:translateY(-2px);
+.episode:hover{
+  border-color:#ffb4ce;
+
+  background:#fff9fc;
+
+  transform:translateY(-1px);
 }
 
+.episode-number{
+  font-size:14px;
 
-/* =========================
-   AD BUTTON
-========================= */
+  font-weight:800;
 
-.ad-area{
-  margin-top:16px;
-  padding-top:16px;
-
-  border-top:1px solid #293241;
+  color:#594652;
 }
 
-.ad-label{
-  display:block;
-
-  color:#687486;
-
-  font-size:10px;
-  letter-spacing:1px;
-
-  text-transform:uppercase;
-
-  margin-bottom:8px;
-}
-
-.ad-btn{
+.episode-btn{
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
-  gap:8px;
+  gap:7px;
 
-  background:#202938;
+  background:var(--pink);
 
-  color:#dce2ea;
+  color:white;
 
-  border:1px solid #354154;
-
-  padding:11px 16px;
+  padding:9px 14px;
 
   border-radius:9px;
 
   font-size:12px;
-  font-weight:700;
+
+  font-weight:800;
 
   transition:.2s;
+
+  white-space:nowrap;
 }
 
-.ad-btn:hover{
-  background:#293344;
-  border-color:#4b586c;
+.episode-btn:hover{
+  background:#ff6f9c;
+
   transform:translateY(-1px);
 }
 
+.episode-unavailable{
+  color:#aaa0a8;
 
-/* NO LINK */
+  font-size:12px;
 
-.no-link{
-  color:#ff8b75;
-  font-size:13px;
+  font-weight:700;
 }
 
 
-/* =========================
-   PHOTOS
-========================= */
+/* PHOTOS */
 
 .photos-section{
   margin-top:55px;
@@ -351,7 +387,10 @@ h1{
 
 .photos-section h2{
   font-size:24px;
+
   margin-bottom:18px;
+
+  color:#433540;
 }
 
 .photos{
@@ -369,17 +408,18 @@ h1{
 
   object-fit:cover;
 
-  border-radius:10px;
+  border-radius:12px;
 
-  border:1px solid #252f3c;
+  border:1px solid #efdce6;
 
-  background:#111720;
+  background:#fff;
+
+  box-shadow:
+    0 6px 20px rgba(180,120,150,.08);
 }
 
 
-/* =========================
-   ERROR
-========================= */
+/* ERROR */
 
 .error{
   text-align:center;
@@ -397,15 +437,34 @@ h1{
   margin:12px 0 25px;
 }
 
+.error-btn{
+  display:inline-flex;
 
-/* =========================
-   MOBILE
-========================= */
+  align-items:center;
+
+  justify-content:center;
+
+  background:var(--pink);
+
+  color:white;
+
+  padding:13px 20px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+  font-weight:800;
+}
+
+
+/* MOBILE */
 
 @media(max-width:800px){
 
   .movie-layout{
     grid-template-columns:210px 1fr;
+
     gap:22px;
   }
 
@@ -419,6 +478,8 @@ h1{
 
 }
 
+
+/* SMALL MOBILE */
 
 @media(max-width:600px){
 
@@ -440,6 +501,7 @@ h1{
 
   .poster-box{
     width:min(260px,100%);
+
     margin:auto;
   }
 
@@ -455,23 +517,36 @@ h1{
     padding:18px;
   }
 
-  .download-btn{
-    width:100%;
+  .episode{
+    padding:12px;
   }
 
-  .ad-btn{
-    width:100%;
+  .episode-btn{
+    padding:9px 11px;
   }
 
   .photos{
     grid-template-columns:1fr 1fr;
+
     gap:8px;
   }
 
 }
 
 
+/* VERY SMALL MOBILE */
+
 @media(max-width:350px){
+
+  .episode{
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+  .episode-btn{
+    width:100%;
+  }
 
   .photos{
     grid-template-columns:1fr;
@@ -486,19 +561,18 @@ h1{
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
 
   <div class="container nav">
 
     <a class="logo" href="index.html">
-      NIGHT<span>FLIX</span>
+      K-<span>DRAMA HUB</span>
     </a>
 
-    <button class="back" onclick="history.back()">
+    <button
+      class="back"
+      onclick="history.back()"
+    >
       ← Back
     </button>
 
@@ -506,11 +580,6 @@ h1{
 
 </header>
 
-
-
-<!-- =========================
-     MOVIE CONTENT
-========================= -->
 
 <main class="movie-page">
 
@@ -521,15 +590,6 @@ h1{
   </div>
 
 </main>
-<script>
-  atOptions = {
-    'key' : 'dbee75deb5be0fe1a81caafba887d892',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };
-
 
 
 
@@ -541,24 +601,7 @@ const content =
   document.getElementById("movieContent");
 
 
-/* =========================
-   AD LINK
-========================= */
-
-/*
-   YAHAN APNI AD LINK RAKHNA.
-
-   Agar baad mein ad network ki
-   nayi link mile to sirf is URL ko
-   change karna hai.
-*/
-
-
-
-
-/* =========================
-   HTML SAFE
-========================= */
+/* HTML SAFE */
 
 function escapeHtml(value){
 
@@ -566,34 +609,29 @@ function escapeHtml(value){
     /[&<>"']/g,
 
     c => ({
-
       "&":"&amp;",
       "<":"&lt;",
       ">":"&gt;",
       '"':"&quot;",
       "'":"&#039;"
-
     }[c])
-
   );
 
 }
 
 
-/* =========================
-   GET MOVIE ID
-========================= */
+/* GET MOVIE ID FROM URL */
 
 const params =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
 
 const movieId =
   params.get("id");
 
 
-/* =========================
-   LOAD MOVIES
-========================= */
+/* LOAD MOVIES */
 
 async function loadMovie(){
 
@@ -641,7 +679,7 @@ async function loadMovie(){
     if(!movie){
 
       showError(
-        "Movie not found"
+        "Drama not found"
       );
 
       return;
@@ -657,7 +695,7 @@ async function loadMovie(){
     console.error(error);
 
     showError(
-      "Movie data could not be loaded"
+      "Drama data could not be loaded"
     );
 
   }
@@ -665,9 +703,8 @@ async function loadMovie(){
 }
 
 
-/* =========================
-   SHOW MOVIE
-========================= */
+
+/* SHOW MOVIE */
 
 function showMovie(movie){
 
@@ -677,9 +714,118 @@ function showMovie(movie){
       : [];
 
 
-  document.title =
-    `${movie.title || "Movie"} — NIGHTFLIX`;
+  const episodes =
+    Array.isArray(movie.episodes)
+      ? movie.episodes
+      : [];
 
+
+  document.title =
+    `${movie.title || "Drama"} — K-Drama Hub`;
+
+
+
+  /*
+    CREATE EPISODE LIST
+  */
+
+  let episodeHTML = "";
+
+
+  if(episodes.length){
+
+    episodeHTML =
+      episodes
+        .map((item,index) => {
+
+          const episodeNumber =
+            item.episode ??
+            index + 1;
+
+
+          const link =
+            typeof item.link === "string"
+              ? item.link.trim()
+              : "";
+
+
+          if(link){
+
+            return `
+
+              <div class="episode">
+
+                <div class="episode-number">
+                  Episode ${escapeHtml(
+                    episodeNumber
+                  )}
+                </div>
+
+
+                <a
+                  class="episode-btn"
+                  href="${escapeHtml(link)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ▶ Open / Download
+                </a>
+
+              </div>
+
+            `;
+
+          }
+
+
+          return `
+
+            <div class="episode">
+
+              <div class="episode-number">
+                Episode ${escapeHtml(
+                  episodeNumber
+                )}
+              </div>
+
+
+              <div class="episode-unavailable">
+                Not Available
+              </div>
+
+            </div>
+
+          `;
+
+        })
+        .join("");
+
+
+  }else{
+
+    episodeHTML = `
+
+      <div class="episode">
+
+        <div class="episode-number">
+          Episodes
+        </div>
+
+        <div class="episode-unavailable">
+          Episodes not added yet
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+
+  /*
+    MOVIE PAGE
+  */
 
   content.innerHTML = `
 
@@ -691,19 +837,17 @@ function showMovie(movie){
       <div class="poster-box">
 
         <img
-
           src="${escapeHtml(
             movie.poster || ""
           )}"
 
           alt="${escapeHtml(
-            movie.title || "Movie"
+            movie.title || "Drama"
           )}"
 
           onerror="
             this.style.opacity='.25'
           "
-
         >
 
       </div>
@@ -716,213 +860,159 @@ function showMovie(movie){
 
 
         <div class="kicker">
-          NIGHTFLIX MOVIE
+          K-DRAMA HUB
         </div>
 
 
         <h1>
           ${escapeHtml(
             movie.title ||
-            "Untitled"
+            "Untitled Drama"
           )}
         </h1>
 
 
 
+        <!-- META -->
+
         <div class="meta">
 
-
           <span class="tag">
-
             ${escapeHtml(
-              movie.year ||
-              "N/A"
+              movie.year || "N/A"
             )}
-
           </span>
 
 
           <span class="tag">
-
             ${escapeHtml(
-              movie.genre ||
-              "Movie"
+              movie.type || "Drama"
             )}
-
           </span>
 
+
+          <span class="tag">
+            ${escapeHtml(
+              movie.genre || "Drama"
+            )}
+          </span>
+
+
+          ${
+            movie.rating
+              ? `
+
+                <span class="tag">
+                  ⭐ ${escapeHtml(
+                    movie.rating
+                  )}
+                </span>
+
+              `
+              : ""
+          }
+
+
+          ${
+            movie.status
+              ? `
+
+                <span class="tag">
+                  ${escapeHtml(
+                    movie.status
+                  )}
+                </span>
+
+              `
+              : ""
+          }
 
         </div>
 
 
 
+        <!-- DESCRIPTION -->
+
         <p class="description">
 
           ${escapeHtml(
             movie.description ||
-            "Movie details and viewing information."
+            "Drama details and episode information."
           )}
 
         </p>
 
-         
 
 
-        <!-- =========================
-             DOWNLOAD / MOVIE LINK
-        ========================== -->
+        <!-- EPISODES -->
 
         <div class="download-box">
 
-
           <h2>
-            Watch / Download
+            Episodes
           </h2>
 
-
           <p>
-            Click the button below to continue
-            to the available movie link.
+            Select an episode to open or download it.
           </p>
 
 
+          <div class="episodes">
 
-          ${
-            movie.link &&
-            movie.link.trim()
-
-            ?
-
-            `
-
-            <a
-
-              class="download-btn"
-
-              href="${escapeHtml(
-                movie.link
-              )}"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-            >
-
-              ▶ Open Movie Link
-
-            </a>
-
-            `
-
-            :
-
-            `
-
-            <div class="no-link">
-
-              Movie link is not available yet.
-
-            </div>
-
-            `
-          }
-           <a href="https://www.effectivecpmnetwork.com/uba18vk6?key=c846c2999eebcea25272c166511c9755"
-           target="_blank"
-           rel="noopener noreferrer"
-            class="download-btn">
-            Download
-           </a>
-
-
-          <!-- =========================
-               AD LINK
-          ========================== -->
-
-          <div class="ad-area">
-
-            <span class="ad-label">
-              Advertisement
-            </span>
-
-
-            <a
-
-              class="ad-btn"
-
-              href="${AD_LINK}"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-            >
-
-              ◈ Sponsored
-
-            </a>
+            ${episodeHTML}
 
           </div>
-
 
         </div>
 
 
       </div>
 
-
     </div>
 
 
 
-    <!-- =========================
-         MOVIE PHOTOS
-    ========================== -->
+    <!-- PHOTOS -->
 
     ${
       photos.length
-
       ?
 
       `
 
-      <section class="photos-section">
+        <section class="photos-section">
+
+          <h2>
+            Drama Photos
+          </h2>
 
 
-        <h2>
-          Movie Photos
-        </h2>
+          <div class="photos">
 
+            ${photos
+              .map(photo => `
 
-        <div class="photos">
+                <img
+                  src="${escapeHtml(photo)}"
 
+                  alt="${escapeHtml(
+                    movie.title ||
+                    "Drama"
+                  )} photo"
 
-          ${photos.map(
-            photo => `
+                  loading="lazy"
 
-              <img
+                  onerror="
+                    this.style.opacity='.25'
+                  "
+                >
 
-                src="${escapeHtml(
-                  photo
-                )}"
+              `)
+              .join("")}
 
-                alt="${escapeHtml(
-                  movie.title ||
-                  "Movie"
-                )} photo"
+          </div>
 
-                loading="lazy"
-
-              >
-
-            `
-          ).join("")}
-
-
-        </div>
-
-
-      </section>
+        </section>
 
       `
 
@@ -937,9 +1027,8 @@ function showMovie(movie){
 }
 
 
-/* =========================
-   ERROR PAGE
-========================= */
+
+/* ERROR PAGE */
 
 function showError(message){
 
@@ -947,33 +1036,22 @@ function showError(message){
 
     <div class="error">
 
-
       <h1>
-        Oops!
+        Oops! 💗
       </h1>
 
 
       <p>
-
-        ${escapeHtml(
-          message
-        )}
-
+        ${escapeHtml(message)}
       </p>
 
 
       <a
-
-        class="download-btn"
-
+        class="error-btn"
         href="index.html"
-
       >
-
-        ← Back to Movies
-
+        ← Back to Dramas
       </a>
-
 
     </div>
 
@@ -982,23 +1060,13 @@ function showError(message){
 }
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 loadMovie();
 
 </script>
-<script>
-  atOptions = {
-    'key' : '7af3d92c8bbc4b620bf9ef04b0c5100c',
-    'format' : 'iframe',
-    'height' : 60,
-    'width' : 468,
-    'params' : {}
-  };
-
 
 
 </body>
 </html>
+
