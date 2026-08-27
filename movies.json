@@ -281,5 +281,22 @@
     "isNew": false,
     "addedAt": "2026-08-26T07:23:09.196Z",
     "id": 23
+  },
+   {
+    "site": "nightflix",
+    "title": "The Fantastic Four",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/India's Got Latent Season .jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "link": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-27T07:23:09.196Z",
+    "id": 24
   }
 ]
