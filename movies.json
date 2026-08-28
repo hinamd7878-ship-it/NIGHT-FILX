@@ -435,7 +435,25 @@
     "episodes": [],
     "popular": false,
     "isNew": false,
-    "addedAt": "2026-08-29T07:23:09.196Z"
+    "addedAt": "2026-08-28T07:23:09.196Z"
+  },
+   {
+    "site": "nightflix",
+    "id": 28,
+    "title": "Cocktail 2",
+    "year": 2028,
+    "genre": "Romance/Drama",
+    "rating": 9.2,
+    "poster": "POSTER/",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T07:23:09.196Z"
   }
 
 ]
