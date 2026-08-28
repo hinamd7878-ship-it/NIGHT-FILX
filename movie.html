@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080a0f">
@@ -11,23 +12,42 @@
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
+
+/* =========================
+   VARIABLES
+========================= */
+
 :root{
   --bg:#07090d;
   --panel:#10151e;
   --panel2:#141a24;
+
   --text:#f2f5f9;
   --muted:#8994a6;
+
   --line:#222b38;
+
   --accent:#ff6847;
   --accent2:#ff8a6d;
-  --green:#20c77a;
+
+  --watch:#20c77a;
+  --watch2:#2ee18e;
 }
+
+
+/* =========================
+   BODY
+========================= */
 
 html{
   scroll-behavior:smooth;
@@ -35,7 +55,9 @@ html{
 
 body{
   font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+
   color:var(--text);
+
   min-height:100vh;
 
   background:
@@ -44,11 +66,13 @@ body{
       rgba(255,104,71,.11),
       transparent 65%
     ),
+
     radial-gradient(
       700px 500px at 100% 35%,
       rgba(255,104,71,.035),
       transparent 70%
     ),
+
     linear-gradient(
       180deg,
       #080a0f,
@@ -57,14 +81,18 @@ body{
     );
 }
 
+
 a{
   text-decoration:none;
   color:inherit;
 }
 
+
 .container{
   width:min(1200px,100%);
+
   margin:auto;
+
   padding:0 20px;
 }
 
@@ -75,116 +103,159 @@ a{
 
 header{
   position:sticky;
+
   top:0;
+
   z-index:100;
 
   height:70px;
 
   display:flex;
+
   align-items:center;
 
   background:rgba(7,9,13,.78);
+
   backdrop-filter:blur(18px);
 
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
+
 .nav{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 }
 
+
 .logo{
   font-size:24px;
+
   font-weight:950;
+
   letter-spacing:1.5px;
 }
+
 
 .logo span{
   color:var(--accent);
 }
 
+
 .back{
   border:1px solid #293241;
+
   background:#10151e;
+
   color:#d9dfe8;
 
   padding:10px 15px;
+
   border-radius:9px;
 
   cursor:pointer;
+
   font-weight:700;
 }
 
+
 .back:hover{
   background:#171e28;
+
   border-color:#465267;
 }
 
 
 /* =========================
-   MOVIE HERO
+   MOVIE PAGE
 ========================= */
 
 .movie-page{
   padding:45px 0 70px;
 }
 
+
 .movie-layout{
   display:grid;
+
   grid-template-columns:300px 1fr;
 
   gap:35px;
+
   align-items:start;
 }
 
+
+/* =========================
+   POSTER
+========================= */
+
 .poster-box{
   border-radius:14px;
+
   overflow:hidden;
 
   border:1px solid #252f3c;
+
   background:#111720;
 
-  box-shadow:0 20px 50px rgba(0,0,0,.4);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.4);
 }
+
 
 .poster-box img{
   display:block;
 
   width:100%;
+
   aspect-ratio:2/3;
 
   object-fit:cover;
 }
 
+
+/* =========================
+   DETAILS
+========================= */
+
 .details{
   padding-top:5px;
 }
+
 
 .kicker{
   color:var(--accent);
 
   font-size:12px;
+
   font-weight:800;
 
   letter-spacing:2px;
+
   text-transform:uppercase;
 
   margin-bottom:12px;
 }
 
+
 h1{
   font-size:clamp(32px,5vw,56px);
+
   line-height:1.05;
 
   margin-bottom:15px;
 }
 
+
 .description{
   color:var(--muted);
 
   line-height:1.7;
+
   font-size:14px;
 
   max-width:700px;
@@ -192,8 +263,14 @@ h1{
   margin-bottom:20px;
 }
 
+
+/* =========================
+   META
+========================= */
+
 .meta{
   display:flex;
+
   gap:9px;
 
   flex-wrap:wrap;
@@ -201,12 +278,14 @@ h1{
   margin-bottom:28px;
 }
 
+
 .tag{
   padding:8px 12px;
 
   border-radius:8px;
 
   background:#111720;
+
   border:1px solid #293241;
 
   color:#cdd4df;
@@ -238,10 +317,13 @@ h1{
   max-width:750px;
 }
 
+
 .download-box h2{
   font-size:20px;
+
   margin-bottom:7px;
 }
+
 
 .download-box p{
   color:var(--muted);
@@ -253,14 +335,17 @@ h1{
 
 
 /* =========================
-   BUTTONS
+   MOVIE BUTTONS
 ========================= */
 
 .movie-actions{
   display:flex;
+
   flex-wrap:wrap;
+
   gap:10px;
 }
+
 
 .watch-btn,
 .download-btn{
@@ -268,6 +353,7 @@ h1{
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
   gap:8px;
@@ -279,28 +365,33 @@ h1{
   border-radius:10px;
 
   font-size:14px;
+
   font-weight:800;
 
   transition:.2s;
-
-  border:none;
 }
+
 
 .watch-btn{
-  background:#20c77a;
+  background:var(--watch);
 }
 
+
 .watch-btn:hover{
-  background:#2ee18e;
+  background:var(--watch2);
+
   transform:translateY(-2px);
 }
+
 
 .download-btn{
   background:var(--accent);
 }
 
+
 .download-btn:hover{
   background:var(--accent2);
+
   transform:translateY(-2px);
 }
 
@@ -313,22 +404,32 @@ h1{
   margin-top:55px;
 }
 
+
 .episodes-section h2{
   font-size:24px;
+
   margin-bottom:18px;
 }
 
+
 .episode-list{
   display:flex;
+
   flex-direction:column;
+
   gap:12px;
+
   max-width:850px;
 }
 
+
 .episode-card{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:20px;
 
   padding:16px;
@@ -338,52 +439,96 @@ h1{
   border:1px solid #293241;
 
   border-radius:12px;
+
+  transition:.2s;
 }
+
+
+.episode-card:hover{
+  border-color:#3a4658;
+
+  background:#131a24;
+}
+
 
 .episode-info{
   min-width:0;
 }
 
+
 .episode-number{
   color:var(--accent);
 
   font-size:12px;
+
   font-weight:800;
 
   margin-bottom:5px;
 }
 
+
 .episode-title{
   font-size:15px;
+
   font-weight:700;
 
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
+
 .episode-actions{
   display:flex;
+
   gap:8px;
+
   flex-shrink:0;
 }
 
+
 .episode-actions a{
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
   padding:9px 13px;
+
   border-radius:8px;
 
   font-size:12px;
+
   font-weight:800;
+
+  transition:.2s;
 }
 
+
 .episode-watch{
-  background:#20c77a;
+  background:var(--watch);
+
   color:white;
 }
+
+
+.episode-watch:hover{
+  background:var(--watch2);
+}
+
 
 .episode-download{
   background:var(--accent);
+
   color:white;
+}
+
+
+.episode-download:hover{
+  background:var(--accent2);
 }
 
 
@@ -393,6 +538,7 @@ h1{
 
 .no-link{
   color:#ff8b75;
+
   font-size:13px;
 }
 
@@ -405,10 +551,13 @@ h1{
   margin-top:55px;
 }
 
+
 .photos-section h2{
   font-size:24px;
+
   margin-bottom:18px;
 }
+
 
 .photos{
   display:grid;
@@ -417,6 +566,7 @@ h1{
 
   gap:12px;
 }
+
 
 .photos img{
   width:100%;
@@ -443,9 +593,11 @@ h1{
   padding:100px 20px;
 }
 
+
 .error h1{
   font-size:35px;
 }
+
 
 .error p{
   color:var(--muted);
@@ -455,27 +607,32 @@ h1{
 
 
 /* =========================
-   MOBILE
+   TABLET
 ========================= */
 
 @media(max-width:800px){
 
   .movie-layout{
     grid-template-columns:210px 1fr;
+
     gap:22px;
   }
+
 
   h1{
     font-size:34px;
   }
 
+
   .photos{
     grid-template-columns:repeat(2,1fr);
   }
 
+
   .episode-card{
     align-items:flex-start;
   }
+
 
   .episode-actions{
     flex-direction:column;
@@ -483,6 +640,10 @@ h1{
 
 }
 
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
@@ -490,71 +651,95 @@ h1{
     height:62px;
   }
 
+
   .logo{
     font-size:20px;
   }
+
 
   .movie-page{
     padding-top:25px;
   }
 
+
   .movie-layout{
     grid-template-columns:1fr;
   }
 
+
   .poster-box{
     width:min(260px,100%);
+
     margin:auto;
   }
+
 
   .details{
     text-align:left;
   }
 
+
   h1{
     font-size:32px;
   }
+
 
   .download-box{
     padding:18px;
   }
 
+
   .movie-actions{
     flex-direction:column;
   }
+
 
   .watch-btn,
   .download-btn{
     width:100%;
   }
 
+
   .photos{
     grid-template-columns:1fr 1fr;
+
     gap:8px;
   }
 
+
   .episode-card{
     flex-direction:column;
+
     align-items:stretch;
   }
 
+
   .episode-actions{
     flex-direction:row;
+
+    width:100%;
   }
+
 
   .episode-actions a{
     flex:1;
+
     text-align:center;
   }
 
 }
 
 
+/* =========================
+   SMALL MOBILE
+========================= */
+
 @media(max-width:350px){
 
   .photos{
     grid-template-columns:1fr;
   }
+
 
   .episode-actions{
     flex-direction:column;
@@ -563,6 +748,7 @@ h1{
 }
 
 </style>
+
 </head>
 
 
@@ -581,8 +767,14 @@ h1{
       NIGHT<span>FLIX</span>
     </a>
 
-    <button class="back" onclick="history.back()">
+
+    <button
+      class="back"
+      onclick="history.back()"
+    >
+
       ← Back
+
     </button>
 
   </div>
@@ -607,8 +799,12 @@ h1{
 
 
 
-
 <script>
+
+
+/* =========================
+   GLOBAL
+========================= */
 
 let movies = [];
 
@@ -641,7 +837,7 @@ function escapeHtml(value){
 
 
 /* =========================
-   VALID LINK
+   CHECK LINK
 ========================= */
 
 function hasLink(link){
@@ -659,7 +855,10 @@ function hasLink(link){
 ========================= */
 
 const params =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
+
 
 const movieId =
   params.get("id");
@@ -730,6 +929,7 @@ async function loadMovie(){
 
     console.error(error);
 
+
     showError(
       "Movie data could not be loaded"
     );
@@ -745,25 +945,55 @@ async function loadMovie(){
 
 function createMovieButtons(movie){
 
+  /*
+    NEW FORMAT:
+
+    "watch": "WATCH LINK",
+    "download": "DOWNLOAD LINK"
+
+    OLD FORMAT:
+
+    "link": "LINK"
+
+    Old link will be treated
+    as Download.
+  */
+
+
   const watch =
-    movie.watch || movie.watchLink || "";
+    movie.watch ||
+    movie.watchLink ||
+    "";
+
 
   const download =
-    movie.download || movie.downloadLink || movie.link || "";
+    movie.download ||
+    movie.downloadLink ||
+    movie.link ||
+    "";
 
 
   let buttons = "";
 
+
+  /* WATCH */
 
   if(hasLink(watch)){
 
     buttons += `
 
       <a
+
         class="watch-btn"
-        href="${escapeHtml(watch)}"
+
+        href="${escapeHtml(
+          watch
+        )}"
+
         target="_blank"
+
         rel="noopener noreferrer"
+
       >
 
         ▶ Watch
@@ -775,15 +1005,24 @@ function createMovieButtons(movie){
   }
 
 
+  /* DOWNLOAD */
+
   if(hasLink(download)){
 
     buttons += `
 
       <a
+
         class="download-btn"
-        href="${escapeHtml(download)}"
+
+        href="${escapeHtml(
+          download
+        )}"
+
         target="_blank"
+
         rel="noopener noreferrer"
+
       >
 
         ↓ Download
@@ -794,6 +1033,8 @@ function createMovieButtons(movie){
 
   }
 
+
+  /* NO LINKS */
 
   if(!buttons){
 
@@ -834,24 +1075,35 @@ function createEpisodeButtons(episode){
     episode.watchLink ||
     "";
 
+
   const download =
     episode.download ||
     episode.downloadLink ||
+    episode.link ||
     "";
 
 
   let buttons = "";
 
 
+  /* WATCH */
+
   if(hasLink(watch)){
 
     buttons += `
 
       <a
+
         class="episode-watch"
-        href="${escapeHtml(watch)}"
+
+        href="${escapeHtml(
+          watch
+        )}"
+
         target="_blank"
+
         rel="noopener noreferrer"
+
       >
 
         ▶ Watch
@@ -863,15 +1115,24 @@ function createEpisodeButtons(episode){
   }
 
 
+  /* DOWNLOAD */
+
   if(hasLink(download)){
 
     buttons += `
 
       <a
+
         class="episode-download"
-        href="${escapeHtml(download)}"
+
+        href="${escapeHtml(
+          download
+        )}"
+
         target="_blank"
+
         rel="noopener noreferrer"
+
       >
 
         ↓ Download
@@ -888,7 +1149,9 @@ function createEpisodeButtons(episode){
     buttons = `
 
       <span class="no-link">
+
         Links unavailable
+
       </span>
 
     `;
@@ -902,13 +1165,15 @@ function createEpisodeButtons(episode){
 
 
 /* =========================
-   EPISODES HTML
+   EPISODES
 ========================= */
 
 function createEpisodes(movie){
 
-  if(!Array.isArray(movie.episodes) ||
-     movie.episodes.length === 0){
+  if(
+    !Array.isArray(movie.episodes) ||
+    movie.episodes.length === 0
+  ){
 
     return "";
 
@@ -919,18 +1184,24 @@ function createEpisodes(movie){
 
     <section class="episodes-section">
 
+
       <h2>
         Episodes
       </h2>
 
+
       <div class="episode-list">
 
+
         ${movie.episodes.map(
+
           (episode,index) => `
 
             <div class="episode-card">
 
+
               <div class="episode-info">
+
 
                 <div class="episode-number">
 
@@ -943,6 +1214,7 @@ function createEpisodes(movie){
 
                 </div>
 
+
                 <div class="episode-title">
 
                   ${escapeHtml(
@@ -951,6 +1223,7 @@ function createEpisodes(movie){
                   )}
 
                 </div>
+
 
               </div>
 
@@ -963,12 +1236,16 @@ function createEpisodes(movie){
 
               </div>
 
+
             </div>
 
           `
+
         ).join("")}
 
+
       </div>
+
 
     </section>
 
@@ -978,7 +1255,7 @@ function createEpisodes(movie){
 
 
 /* =========================
-   SHOW MOVIE
+   SHOW MOVIE / SERIES
 ========================= */
 
 function showMovie(movie){
@@ -994,25 +1271,59 @@ function showMovie(movie){
 
 
   /*
-    Detect content type.
+    IMPORTANT:
 
-    Later movies.json will contain:
+    Your JSON uses:
 
-    type: "movie"
+    contentType: "movie"
 
     OR
 
-    type: "series"
-
+    contentType: "webseries"
   */
 
+
+  const contentType =
+    String(
+      movie.contentType || "movie"
+    ).toLowerCase();
+
+
   const isSeries =
-    String(movie.type || "")
-      .toLowerCase() === "series" ||
-    Array.isArray(movie.episodes);
+    contentType === "webseries" ||
+    contentType === "web-series" ||
+    contentType === "series" ||
+    contentType === "tv" ||
+    Array.isArray(movie.episodes) &&
+    movie.episodes.length > 0;
+
+
+  /* =========================
+     TYPE TEXT
+  ========================= */
+
+  const typeText =
+    isSeries
+      ? "NIGHTFLIX WEB SERIES"
+      : "NIGHTFLIX MOVIE";
+
+
+  /* =========================
+     EPISODE COUNT
+  ========================= */
+
+  const episodeCount =
+    Array.isArray(movie.episodes)
+      ? movie.episodes.length
+      : 0;
 
 
   content.innerHTML = `
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
 
     <div class="movie-layout">
 
@@ -1020,6 +1331,7 @@ function showMovie(movie){
       <!-- POSTER -->
 
       <div class="poster-box">
+
 
         <img
 
@@ -1037,6 +1349,7 @@ function showMovie(movie){
 
         >
 
+
       </div>
 
 
@@ -1048,11 +1361,7 @@ function showMovie(movie){
 
         <div class="kicker">
 
-          ${
-            isSeries
-              ? "NIGHTFLIX WEB SERIES"
-              : "NIGHTFLIX MOVIE"
-          }
+          ${typeText}
 
         </div>
 
@@ -1067,6 +1376,8 @@ function showMovie(movie){
         </h1>
 
 
+
+        <!-- META -->
 
         <div class="meta">
 
@@ -1085,28 +1396,53 @@ function showMovie(movie){
 
             ${escapeHtml(
               movie.genre ||
-              (isSeries
-                ? "Web Series"
-                : "Movie")
+              (
+                isSeries
+                  ? "Web Series"
+                  : "Movie"
+              )
             )}
 
           </span>
 
 
           ${
-            isSeries &&
-            Array.isArray(movie.episodes)
+            isSeries && episodeCount > 0
 
             ?
 
             `
 
-            <span class="tag">
+              <span class="tag">
 
-              ${movie.episodes.length}
-              Episodes
+                ${episodeCount}
+                Episodes
 
-            </span>
+              </span>
+
+            `
+
+            :
+
+            ""
+
+          }
+
+
+          ${
+            movie.status
+
+            ?
+
+            `
+
+              <span class="tag">
+
+                ${escapeHtml(
+                  movie.status
+                )}
+
+              </span>
 
             `
 
@@ -1121,6 +1457,8 @@ function showMovie(movie){
 
 
 
+        <!-- DESCRIPTION -->
+
         <p class="description">
 
           ${escapeHtml(
@@ -1133,8 +1471,8 @@ function showMovie(movie){
 
 
         <!-- =========================
-             MOVIE WATCH / DOWNLOAD
-        ========================== -->
+             MOVIE BUTTONS
+        ========================= -->
 
         ${
           !isSeries
@@ -1143,19 +1481,27 @@ function showMovie(movie){
 
           `
 
-          <div class="download-box">
+            <div class="download-box">
 
-            <h2>
-              Watch / Download
-            </h2>
 
-            <p>
-              Choose an option below.
-            </p>
+              <h2>
 
-            ${createMovieButtons(movie)}
+                Watch / Download
 
-          </div>
+              </h2>
+
+
+              <p>
+
+                Choose an option below.
+
+              </p>
+
+
+              ${createMovieButtons(movie)}
+
+
+            </div>
 
           `
 
@@ -1174,65 +1520,86 @@ function showMovie(movie){
 
 
     <!-- =========================
-         WEB SERIES EPISODES
-    ========================== -->
+         SERIES EPISODES
+    ========================= -->
 
     ${
       isSeries
+
         ? createEpisodes(movie)
+
         : ""
     }
 
 
 
     <!-- =========================
-         MOVIE PHOTOS
-    ========================== -->
+         PHOTOS
+    ========================= -->
 
     ${
-      photos.length
+      photos.length > 0
 
       ?
 
       `
 
-      <section class="photos-section">
+        <section class="photos-section">
 
 
-        <h2>
-          Movie Photos
-        </h2>
+          <h2>
+
+            Movie Photos
+
+          </h2>
 
 
-        <div class="photos">
+          <div class="photos">
 
 
-          ${photos.map(
-            photo => `
+            ${photos.map(
 
-              <img
+              photo => `
 
-                src="${escapeHtml(
-                  photo
-                )}"
+                ${
+                  hasLink(photo)
 
-                alt="${escapeHtml(
-                  movie.title ||
-                  "Movie"
-                )} photo"
+                  ?
 
-                loading="lazy"
+                  `
 
-              >
+                    <img
 
-            `
-          ).join("")}
+                      src="${escapeHtml(
+                        photo
+                      )}"
+
+                      alt="${escapeHtml(
+                        movie.title ||
+                        "Movie"
+                      )} photo"
+
+                      loading="lazy"
+
+                    >
+
+                  `
+
+                  :
+
+                  ""
+
+                }
+
+              `
+
+            ).join("")}
 
 
-        </div>
+          </div>
 
 
-      </section>
+        </section>
 
       `
 
@@ -1259,7 +1626,9 @@ function showError(message){
 
 
       <h1>
+
         Oops!
+
       </h1>
 
 
@@ -1300,6 +1669,11 @@ loadMovie();
 
 </script>
 
+
+
+<!-- =========================
+     ADS
+========================= -->
 
 <script type="text/javascript">
 
