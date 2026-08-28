@@ -1037,11 +1037,25 @@ footer{
 
   .search-wrap{
     display:none;
+    position:absolute;
+    top:68px;
+    left:15px;
+    right:15px;
+    z-index:200;
+  }
+
+  .search-wrap.mobile-open{
+    display:block;
+  }
+
+  .search-wrap input{
+    width:100%;
   }
 
   .nav-right{
     gap:7px;
   }
+
 
   .hero p{
     font-size:13px;
@@ -2878,17 +2892,24 @@ document
 ========================= */
 
 document
-  .getElementById(
-    "topSearch"
-  )
+  .getElementById("topSearch")
   .onclick = () => {
 
-    search.style.display =
-      "block";
+    const searchWrap =
+      document.querySelector(".search-wrap");
 
-    search.focus();
+    searchWrap.classList.toggle("mobile-open");
+
+    if(
+      searchWrap.classList.contains("mobile-open")
+    ){
+
+      search.focus();
+
+    }
 
   };
+
 
 
 /* =========================
