@@ -299,6 +299,23 @@
     "addedAt": "2026-08-27T07:23:09.196Z",
     "id": 24
   },
+   {
+    "site": "nightflix",
+    "title": "Bandar",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "link": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T07:23:08.196Z",
+    "id": 26
+  }
   {
     "site": "nightflix",
     "title": "alpha",
