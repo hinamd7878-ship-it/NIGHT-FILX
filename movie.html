@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080a0f">
+
 <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 
 <title>NIGHTFLIX — Movie Details</title>
@@ -25,6 +26,7 @@
   --line:#222b38;
   --accent:#ff6847;
   --accent2:#ff8a6d;
+  --green:#20c77a;
 }
 
 html{
@@ -214,7 +216,7 @@ h1{
 
 
 /* =========================
-   DOWNLOAD BOX
+   WATCH / DOWNLOAD BOX
 ========================= */
 
 .download-box{
@@ -233,7 +235,7 @@ h1{
       rgba(12,16,23,.95)
     );
 
-  max-width:650px;
+  max-width:750px;
 }
 
 .download-box h2{
@@ -250,9 +252,19 @@ h1{
 }
 
 
-/* MOVIE BUTTON */
+/* =========================
+   BUTTONS
+========================= */
 
+.movie-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.watch-btn,
 .download-btn{
+
   display:inline-flex;
 
   align-items:center;
@@ -260,7 +272,6 @@ h1{
 
   gap:8px;
 
-  background:var(--accent);
   color:white;
 
   padding:13px 20px;
@@ -271,6 +282,21 @@ h1{
   font-weight:800;
 
   transition:.2s;
+
+  border:none;
+}
+
+.watch-btn{
+  background:#20c77a;
+}
+
+.watch-btn:hover{
+  background:#2ee18e;
+  transform:translateY(-2px);
+}
+
+.download-btn{
+  background:var(--accent);
 }
 
 .download-btn:hover{
@@ -279,10 +305,91 @@ h1{
 }
 
 
+/* =========================
+   EPISODES
+========================= */
 
+.episodes-section{
+  margin-top:55px;
 }
 
-/* NO LINK */
+.episodes-section h2{
+  font-size:24px;
+  margin-bottom:18px;
+}
+
+.episode-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:850px;
+}
+
+.episode-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+
+  padding:16px;
+
+  background:#10151e;
+
+  border:1px solid #293241;
+
+  border-radius:12px;
+}
+
+.episode-info{
+  min-width:0;
+}
+
+.episode-number{
+  color:var(--accent);
+
+  font-size:12px;
+  font-weight:800;
+
+  margin-bottom:5px;
+}
+
+.episode-title{
+  font-size:15px;
+  font-weight:700;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.episode-actions{
+  display:flex;
+  gap:8px;
+  flex-shrink:0;
+}
+
+.episode-actions a{
+  padding:9px 13px;
+  border-radius:8px;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.episode-watch{
+  background:#20c77a;
+  color:white;
+}
+
+.episode-download{
+  background:var(--accent);
+  color:white;
+}
+
+
+/* =========================
+   NO LINK
+========================= */
 
 .no-link{
   color:#ff8b75;
@@ -366,6 +473,14 @@ h1{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .episode-card{
+    align-items:flex-start;
+  }
+
+  .episode-actions{
+    flex-direction:column;
+  }
+
 }
 
 
@@ -404,17 +519,32 @@ h1{
     padding:18px;
   }
 
-  .download-btn{
-    width:100%;
+  .movie-actions{
+    flex-direction:column;
   }
 
-  .ad-btn{
+  .watch-btn,
+  .download-btn{
     width:100%;
   }
 
   .photos{
     grid-template-columns:1fr 1fr;
     gap:8px;
+  }
+
+  .episode-card{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .episode-actions{
+    flex-direction:row;
+  }
+
+  .episode-actions a{
+    flex:1;
+    text-align:center;
   }
 
 }
@@ -424,6 +554,10 @@ h1{
 
   .photos{
     grid-template-columns:1fr;
+  }
+
+  .episode-actions{
+    flex-direction:column;
   }
 
 }
@@ -482,9 +616,6 @@ const content =
   document.getElementById("movieContent");
 
 
-
-
-
 /* =========================
    HTML SAFE
 ========================= */
@@ -504,6 +635,20 @@ function escapeHtml(value){
 
     }[c])
 
+  );
+
+}
+
+
+/* =========================
+   VALID LINK
+========================= */
+
+function hasLink(link){
+
+  return (
+    typeof link === "string" &&
+    link.trim() !== ""
   );
 
 }
@@ -595,6 +740,244 @@ async function loadMovie(){
 
 
 /* =========================
+   MOVIE BUTTONS
+========================= */
+
+function createMovieButtons(movie){
+
+  const watch =
+    movie.watch || movie.watchLink || "";
+
+  const download =
+    movie.download || movie.downloadLink || movie.link || "";
+
+
+  let buttons = "";
+
+
+  if(hasLink(watch)){
+
+    buttons += `
+
+      <a
+        class="watch-btn"
+        href="${escapeHtml(watch)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        ▶ Watch
+
+      </a>
+
+    `;
+
+  }
+
+
+  if(hasLink(download)){
+
+    buttons += `
+
+      <a
+        class="download-btn"
+        href="${escapeHtml(download)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        ↓ Download
+
+      </a>
+
+    `;
+
+  }
+
+
+  if(!buttons){
+
+    return `
+
+      <div class="no-link">
+
+        Movie links are not available yet.
+
+      </div>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div class="movie-actions">
+
+      ${buttons}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   EPISODE BUTTONS
+========================= */
+
+function createEpisodeButtons(episode){
+
+  const watch =
+    episode.watch ||
+    episode.watchLink ||
+    "";
+
+  const download =
+    episode.download ||
+    episode.downloadLink ||
+    "";
+
+
+  let buttons = "";
+
+
+  if(hasLink(watch)){
+
+    buttons += `
+
+      <a
+        class="episode-watch"
+        href="${escapeHtml(watch)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        ▶ Watch
+
+      </a>
+
+    `;
+
+  }
+
+
+  if(hasLink(download)){
+
+    buttons += `
+
+      <a
+        class="episode-download"
+        href="${escapeHtml(download)}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        ↓ Download
+
+      </a>
+
+    `;
+
+  }
+
+
+  if(!buttons){
+
+    buttons = `
+
+      <span class="no-link">
+        Links unavailable
+      </span>
+
+    `;
+
+  }
+
+
+  return buttons;
+
+}
+
+
+/* =========================
+   EPISODES HTML
+========================= */
+
+function createEpisodes(movie){
+
+  if(!Array.isArray(movie.episodes) ||
+     movie.episodes.length === 0){
+
+    return "";
+
+  }
+
+
+  return `
+
+    <section class="episodes-section">
+
+      <h2>
+        Episodes
+      </h2>
+
+      <div class="episode-list">
+
+        ${movie.episodes.map(
+          (episode,index) => `
+
+            <div class="episode-card">
+
+              <div class="episode-info">
+
+                <div class="episode-number">
+
+                  Episode ${
+                    escapeHtml(
+                      episode.episode ||
+                      index + 1
+                    )
+                  }
+
+                </div>
+
+                <div class="episode-title">
+
+                  ${escapeHtml(
+                    episode.title ||
+                    `Episode ${index + 1}`
+                  )}
+
+                </div>
+
+              </div>
+
+
+              <div class="episode-actions">
+
+                ${createEpisodeButtons(
+                  episode
+                )}
+
+              </div>
+
+            </div>
+
+          `
+        ).join("")}
+
+      </div>
+
+    </section>
+
+  `;
+
+}
+
+
+/* =========================
    SHOW MOVIE
 ========================= */
 
@@ -608,6 +991,25 @@ function showMovie(movie){
 
   document.title =
     `${movie.title || "Movie"} — NIGHTFLIX`;
+
+
+  /*
+    Detect content type.
+
+    Later movies.json will contain:
+
+    type: "movie"
+
+    OR
+
+    type: "series"
+
+  */
+
+  const isSeries =
+    String(movie.type || "")
+      .toLowerCase() === "series" ||
+    Array.isArray(movie.episodes);
 
 
   content.innerHTML = `
@@ -645,15 +1047,23 @@ function showMovie(movie){
 
 
         <div class="kicker">
-          NIGHTFLIX MOVIE
+
+          ${
+            isSeries
+              ? "NIGHTFLIX WEB SERIES"
+              : "NIGHTFLIX MOVIE"
+          }
+
         </div>
 
 
         <h1>
+
           ${escapeHtml(
             movie.title ||
             "Untitled"
           )}
+
         </h1>
 
 
@@ -675,10 +1085,36 @@ function showMovie(movie){
 
             ${escapeHtml(
               movie.genre ||
-              "Movie"
+              (isSeries
+                ? "Web Series"
+                : "Movie")
             )}
 
           </span>
+
+
+          ${
+            isSeries &&
+            Array.isArray(movie.episodes)
+
+            ?
+
+            `
+
+            <span class="tag">
+
+              ${movie.episodes.length}
+              Episodes
+
+            </span>
+
+            `
+
+            :
+
+            ""
+
+          }
 
 
         </div>
@@ -694,79 +1130,58 @@ function showMovie(movie){
 
         </p>
 
-         
 
 
         <!-- =========================
-             DOWNLOAD / MOVIE LINK
+             MOVIE WATCH / DOWNLOAD
         ========================== -->
 
-        <div class="download-box">
+        ${
+          !isSeries
 
+          ?
 
-          <h2>
-            Watch / Download
-          </h2>
+          `
 
+          <div class="download-box">
 
-          <p>
-            Click the button below to continue
-            to the available movie link.
-          </p>
+            <h2>
+              Watch / Download
+            </h2>
 
+            <p>
+              Choose an option below.
+            </p>
 
+            ${createMovieButtons(movie)}
 
-          ${
-            movie.link &&
-            movie.link.trim()
+          </div>
 
-            ?
+          `
 
-            `
+          :
 
-            <a
+          ""
 
-              class="download-btn"
-
-              href="${escapeHtml(
-                movie.link
-              )}"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-            >
-
-              ▶ Open Movie Link
-
-            </a>
-
-            `
-
-            :
-
-            `
-
-            <div class="no-link">
-
-              Movie link is not available yet.
-
-            </div>
-
-            `
-          }
-           
-        
-
-
-        </div>
+        }
 
 
       </div>
 
 
     </div>
+
+
+
+    <!-- =========================
+         WEB SERIES EPISODES
+    ========================== -->
+
+    ${
+      isSeries
+        ? createEpisodes(movie)
+        : ""
+    }
 
 
 
@@ -884,15 +1299,23 @@ function showError(message){
 loadMovie();
 
 </script>
+
+
 <script type="text/javascript">
-    aclib.runAutoTag({
-        zoneId: 'utva3b2xep',
-    });
+
+aclib.runAutoTag({
+  zoneId: 'utva3b2xep',
+});
+
 </script>
+
+
 <script type="text/javascript">
-    aclib.runInterstitial({
-        zoneId: '12047466',
-    });
+
+aclib.runInterstitial({
+  zoneId: '12047466',
+});
+
 </script>
 
 
