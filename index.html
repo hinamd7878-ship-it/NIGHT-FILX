@@ -1,23 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="CCoJP4FWElxGBWK9azSeBtF_Ws8LFeZ2oqlML6c3O-k" />
+
+<meta name="google-site-verification" content="CCoJP4FWElxGBWK9azSeBtF_Ws8LFeZ2oqlML6c3O-k">
+
 <meta name="theme-color" content="#080a0f">
+
 <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 
-<title>NIGHT-FLIX – K-Drama & Korean Drama</title>
+<title>NIGHTFLIX — Movies & Web Series</title>
 
 <meta name="description"
-      content="Discover Korean dramas, drama information, episodes and latest updates on NIGHT-FLIX.">
+      content="Discover movies and web series, details, episodes and latest updates on NIGHTFLIX.">
 
 <meta name="robots" content="index, follow">
 
-<title>NIGHTFLIX — Movie Collection</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -45,29 +48,33 @@ html{
 body{
   font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--text);
+
   background:
     radial-gradient(
       900px 520px at 50% -120px,
-      rgba(255,43,43,.11)
+      rgba(255,43,43,.11),
       transparent 65%
     ),
+
     radial-gradient(
       700px 500px at 100% 35%,
-      rgba(255,43,43,.035)
-
+      rgba(255,43,43,.035),
       transparent 70%
     ),
+
     radial-gradient(
       700px 500px at 0% 70%,
       rgba(110,120,140,.028),
       transparent 70%
     ),
+
     linear-gradient(
       180deg,
       #080a0f 0%,
       #090c12 45%,
       #07090d 100%
     );
+
   background-attachment:fixed;
   min-height:100vh;
   overflow-x:hidden;
@@ -80,17 +87,21 @@ body::before{
   pointer-events:none;
   z-index:-1;
   opacity:.16;
+
   background-image:
     linear-gradient(
       rgba(255,255,255,.014) 1px,
       transparent 1px
     ),
+
     linear-gradient(
       90deg,
       rgba(255,255,255,.011) 1px,
       transparent 1px
     );
+
   background-size:56px 56px;
+
   mask-image:
     linear-gradient(
       to bottom,
@@ -110,12 +121,14 @@ body::after{
   pointer-events:none;
   z-index:-1;
   border-radius:50%;
+
   background:
     radial-gradient(
       circle,
       rgba(255,43,43,.045),
       transparent 68%
     );
+
   filter:blur(18px);
 }
 
@@ -141,22 +154,30 @@ a{
   padding-right:24px;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header{
   position:sticky;
   top:0;
   z-index:100;
+
   background:rgba(7,9,13,.72);
+
   backdrop-filter:blur(18px) saturate(120%);
   -webkit-backdrop-filter:blur(18px) saturate(120%);
+
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .nav{
   height:72px;
+
   display:flex;
   align-items:center;
+
   gap:24px;
 }
 
@@ -174,7 +195,9 @@ header{
 .navlinks{
   display:flex;
   gap:22px;
+
   color:#aab3c2;
+
   font-size:14px;
   font-weight:600;
 }
@@ -190,8 +213,10 @@ header{
 
 .nav-right{
   margin-left:auto;
+
   display:flex;
   align-items:center;
+
   gap:10px;
 }
 
@@ -201,25 +226,38 @@ header{
 
 .search-wrap input{
   width:265px;
+
   background:#10151e;
+
   border:1px solid #273140;
+
   color:#fff;
+
   outline:0;
+
   border-radius:11px;
+
   padding:11px 40px 11px 13px;
+
   transition:.2s;
 }
 
 .search-wrap input:focus{
   border-color:#4a566a;
-  box-shadow:0 0 0 3px rgba(255,255,255,.03);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,255,255,.03);
 }
 
 .search-icon{
   position:absolute;
+
   right:12px;
   top:50%;
+
   transform:translateY(-50%);
+
   color:#7f8999;
 }
 
@@ -227,12 +265,18 @@ header{
 .menu-btn{
   width:40px;
   height:40px;
+
   border:1px solid #293241;
+
   border-radius:10px;
+
   background:#10151e;
+
   color:#cdd4df;
+
   display:grid;
   place-items:center;
+
   transition:.2s;
 }
 
@@ -247,7 +291,10 @@ header{
   display:none;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
   padding-top:34px;
@@ -257,24 +304,34 @@ header{
 .hero-grid{
   display:grid;
   grid-template-columns:1fr;
+
   gap:20px;
+
   align-items:end;
 }
 
 .kicker{
   color:var(--accent);
+
   font-size:12px;
+
   font-weight:800;
+
   letter-spacing:2px;
+
   text-transform:uppercase;
+
   margin-bottom:12px;
 }
 
 .hero h1{
   font-size:clamp(28px,4vw,48px);
+
   line-height:1.04;
+
   letter-spacing:-1.5px;
-  max-width:650px;
+
+  max-width:700px;
 }
 
 .hero h1 span{
@@ -283,25 +340,36 @@ header{
 
 .hero p{
   color:var(--muted);
+
   line-height:1.5;
-  max-width:620px;
+
+  max-width:650px;
+
   margin-top:10px;
+
   font-size:13px;
 }
 
 .hero-actions{
   display:flex;
+
   gap:8px;
+
   flex-wrap:wrap;
+
   margin-top:16px;
 }
 
 .primary,
 .secondary{
   border-radius:10px;
+
   padding:11px 16px;
+
   border:1px solid transparent;
+
   font-weight:700;
+
   transition:.2s;
 }
 
@@ -317,7 +385,9 @@ header{
 
 .secondary{
   background:#111720;
+
   border-color:#293342;
+
   color:#d9dfe8;
 }
 
@@ -325,21 +395,32 @@ header{
   background:#171e28;
 }
 
-/* FILTERS */
+
+/* =========================
+   FILTERS
+========================= */
 
 .toolbar{
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
   flex-wrap:wrap;
+
   margin:18px 0;
 }
 
 .chips{
   display:flex;
+
   gap:8px;
+
   overflow:auto;
+
   scrollbar-width:none;
+
   flex:1;
 }
 
@@ -349,12 +430,19 @@ header{
 
 .chip{
   white-space:nowrap;
+
   border:1px solid #273140;
+
   background:#10151e;
+
   color:#aeb7c5;
+
   border-radius:999px;
+
   padding:8px 13px;
+
   font-size:12px;
+
   transition:.2s;
 }
 
@@ -365,26 +453,40 @@ header{
 
 .chip.active{
   background:#e9edf3;
+
   color:#0b0e13;
+
   border-color:#e9edf3;
+
   font-weight:800;
 }
 
 .sort{
   background:#10151e;
+
   border:1px solid #293241;
+
   color:#cdd4df;
+
   border-radius:9px;
+
   padding:9px 11px;
+
   outline:0;
 }
 
-/* MOVIES */
+
+/* =========================
+   SECTION HEADER
+========================= */
 
 .section-head{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   margin:8px 0 14px;
 }
 
@@ -397,45 +499,73 @@ header{
   color:var(--muted);
 }
 
+
+/* =========================
+   MOVIE GRID
+========================= */
+
 .grid{
   display:grid;
-  grid-template-columns:repeat(7,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(7,minmax(0,1fr));
+
   gap:12px;
 }
 
 .movie{
   background:rgba(14,17,23,.72);
+
   border:1px solid #1e2733;
+
   border-radius:11px;
+
   overflow:hidden;
+
   transition:
     transform .22s,
     border-color .22s,
     box-shadow .22s;
+
   min-width:0;
+
   cursor:pointer;
 }
 
 .movie:hover{
   transform:translateY(-5px);
-  border-color:rgba(255,43,43,.22);
+
+  border-color:
+    rgba(255,43,43,.22);
+
   box-shadow:
     0 16px 38px rgba(0,0,0,.34),
     0 0 24px rgba(255,43,43,.045);
 }
 
+
+/* =========================
+   POSTER
+========================= */
+
 .poster{
   position:relative;
+
   aspect-ratio:2/3;
+
   background:#151b24;
+
   overflow:hidden;
 }
 
 .poster img{
   display:block;
+
   width:100%;
   height:100%;
+
   object-fit:cover;
+
   transition:transform .35s;
 }
 
@@ -445,63 +575,114 @@ header{
 
 .overlay{
   position:absolute;
+
   inset:0;
+
   background:
     linear-gradient(
       180deg,
-      transparent 45%,
-      rgba(0,0,0,.72)
+      transparent 40%,
+      rgba(0,0,0,.78)
     );
+
   pointer-events:none;
 }
 
+
+/* =========================
+   BADGES
+========================= */
+
 .badges{
   position:absolute;
+
   top:9px;
   left:9px;
   right:9px;
+
   display:flex;
+
   justify-content:space-between;
+
+  align-items:flex-start;
+
   gap:5px;
 }
 
 .badge{
   background:rgba(0,0,0,.72);
+
   backdrop-filter:blur(6px);
+
   padding:5px 7px;
+
   border-radius:5px;
+
   font-size:9px;
+
   font-weight:800;
+
+  color:#fff;
 }
+
+.type-badge{
+  background:rgba(229,9,20,.88);
+
+  color:#fff;
+}
+
+
+/* =========================
+   PLAY
+========================= */
 
 .play{
   position:absolute;
+
   left:50%;
   top:50%;
+
   transform:
     translate(-50%,-50%)
     scale(.8);
+
   width:48px;
   height:48px;
+
   border-radius:50%;
+
   background:var(--accent);
+
   display:grid;
+
   place-items:center;
+
   color:#fff;
+
   opacity:0;
+
   transition:.22s;
-  box-shadow:0 8px 25px rgba(0,0,0,.45);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.45);
 }
 
 .movie:hover .play{
   opacity:1;
+
   transform:
     translate(-50%,-50%)
     scale(1);
 }
 
+
+/* =========================
+   INFO
+========================= */
+
 .info{
   padding:11px 11px 13px;
+
   background:
     linear-gradient(
       180deg,
@@ -512,152 +693,242 @@ header{
 
 .title{
   font-size:13px;
+
   font-weight:800;
+
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
 .meta{
   display:flex;
+
   align-items:center;
+
   gap:6px;
+
   color:var(--muted);
+
   font-size:10px;
+
   margin-top:7px;
 }
 
+
+/* =========================
+   EMPTY
+========================= */
+
 .empty{
   display:none;
+
   text-align:center;
+
   padding:60px;
+
   color:var(--muted);
+
   border:1px dashed #293241;
+
   border-radius:12px;
 }
 
-/* PAGINATION */
+
+/* =========================
+   PAGINATION
+========================= */
 
 .pagination{
   display:flex;
+
   justify-content:center;
+
   align-items:center;
+
   gap:7px;
+
   flex-wrap:wrap;
+
   margin:24px 0 4px;
 }
 
 .page-btn{
   min-width:38px;
+
   height:38px;
+
   padding:0 10px;
+
   border-radius:9px;
+
   border:1px solid #293241;
+
   background:#10151e;
+
   color:#aeb7c5;
+
   transition:.2s;
+
   font-size:12px;
+
   font-weight:700;
 }
 
 .page-btn:hover{
   border-color:#465267;
+
   color:#fff;
+
   background:#171e28;
 }
 
 .page-btn.active{
   background:#e9edf3;
+
   color:#0b0e13;
+
   border-color:#e9edf3;
 }
 
 .page-btn:disabled{
   opacity:.4;
+
   cursor:not-allowed;
 }
 
 .page-dots{
   color:#697486;
+
   padding:0 2px;
+
   font-size:12px;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   margin-top:60px;
+
   border-top:1px solid var(--line);
+
   padding:28px 24px;
+
   color:#697486;
+
   text-align:center;
+
   font-size:11px;
+
   line-height:1.7;
 }
 
 .social-links{
   display:flex;
+
   justify-content:center;
+
   align-items:center;
+
   gap:10px;
+
   margin-top:16px;
 }
 
 .social-link{
   width:42px;
   height:42px;
+
   border:1px solid #293241;
+
   border-radius:11px;
+
   background:#10151e;
+
   color:#aeb7c5;
+
   display:grid;
+
   place-items:center;
+
   transition:.2s;
 }
 
 .social-link:hover{
   color:#fff;
+
   border-color:#465267;
+
   background:#151b25;
+
   transform:translateY(-2px);
 }
 
 .social-link svg{
   width:19px;
   height:19px;
+
   fill:currentColor;
 }
 
-/* TOAST */
+
+/* =========================
+   TOAST
+========================= */
 
 .toast{
   position:fixed;
+
   left:50%;
+
   bottom:25px;
-  transform:translate(-50%,20px);
+
+  transform:
+    translate(-50%,20px);
+
   opacity:0;
+
   z-index:300;
+
   background:#161d27;
+
   border:1px solid #344052;
+
   color:#e9edf5;
+
   padding:12px 16px;
+
   border-radius:10px;
+
   font-size:12px;
+
   transition:.25s;
+
   pointer-events:none;
 }
 
 .toast.show{
   opacity:1;
-  transform:translate(-50%,0);
+
+  transform:
+    translate(-50%,0);
 }
 
-/* RESPONSIVE */
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1200px){
 
   .grid{
-    grid-template-columns:repeat(6,minmax(0,1fr));
+    grid-template-columns:
+      repeat(6,minmax(0,1fr));
   }
 
 }
@@ -665,7 +936,8 @@ footer{
 @media(max-width:1000px){
 
   .grid{
-    grid-template-columns:repeat(5,minmax(0,1fr));
+    grid-template-columns:
+      repeat(5,minmax(0,1fr));
   }
 
 }
@@ -687,16 +959,26 @@ footer{
 
   .navlinks{
     display:none;
+
     position:absolute;
+
     left:12px;
     right:12px;
+
     top:68px;
+
     background:#10151e;
+
     border:1px solid #293241;
+
     border-radius:12px;
+
     padding:8px;
+
     flex-direction:column;
+
     gap:0;
+
     box-shadow:var(--shadow);
   }
 
@@ -706,6 +988,7 @@ footer{
 
   .navlinks a{
     padding:12px;
+
     border-radius:8px;
   }
 
@@ -730,7 +1013,9 @@ footer{
   }
 
   .grid{
-    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-template-columns:
+      repeat(4,minmax(0,1fr));
+
     gap:9px;
   }
 
@@ -768,7 +1053,9 @@ footer{
   }
 
   .grid{
-    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+
     gap:8px;
   }
 
@@ -798,10 +1085,18 @@ footer{
   }
 
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -815,9 +1110,11 @@ footer{
       ☰
     </button>
 
+
     <a class="logo" href="#home">
       NIGHT<span>FLIX</span>
     </a>
+
 
     <nav class="navlinks" id="navlinks">
 
@@ -826,7 +1123,7 @@ footer{
       </a>
 
       <a href="#movies">
-        Movies
+        Movies & Series
       </a>
 
       <a href="#genres">
@@ -839,6 +1136,7 @@ footer{
 
     </nav>
 
+
     <div class="nav-right">
 
       <div class="search-wrap">
@@ -846,8 +1144,8 @@ footer{
         <input
           id="search"
           type="search"
-          placeholder="Search movies..."
-          aria-label="Search movies"
+          placeholder="Search movies & series..."
+          aria-label="Search movies and web series"
         >
 
         <span class="search-icon">
@@ -855,6 +1153,7 @@ footer{
         </span>
 
       </div>
+
 
       <button
         class="icon-btn"
@@ -871,25 +1170,40 @@ footer{
 </header>
 
 
-<section class="hero container" id="home">
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+  class="hero container"
+  id="home"
+>
 
   <div class="hero-grid">
 
     <div>
 
       <div class="kicker">
-        Curated movie library
+        Movies & Web Series
       </div>
 
+
       <h1>
-        Movies for your
+
+        Movies & series for your
         <span>night.</span>
+
       </h1>
 
+
       <p>
-        A professional, clean movie collection UI built for
-        comfortable viewing on mobile, tablet and PC.
+
+        Explore movies and web series with
+        episode-by-episode watch and download
+        options, designed for mobile, tablet and PC.
+
       </p>
+
 
       <div class="hero-actions">
 
@@ -899,6 +1213,7 @@ footer{
         >
           Browse Collection ↓
         </button>
+
 
         <button
           class="secondary"
@@ -916,19 +1231,31 @@ footer{
 </section>
 
 
-<main class="container" id="movies">
+<!-- =========================
+     MAIN
+========================= -->
 
-  <div class="toolbar" id="genres">
+<main
+  class="container"
+  id="movies"
+>
+
+
+  <div
+    class="toolbar"
+    id="genres"
+  >
 
     <div
       class="chips"
       id="chips"
     ></div>
 
+
     <select
       class="sort"
       id="sort"
-      aria-label="Sort movies"
+      aria-label="Sort movies and series"
     >
 
       <option value="new">
@@ -955,8 +1282,9 @@ footer{
   <div class="section-head">
 
     <h2>
-      Movie Collection
+      Movies & Web Series
     </h2>
+
 
     <span
       class="count"
@@ -978,18 +1306,22 @@ footer{
     class="empty"
     id="empty"
   >
-    No movies found.
+    No movies or web series found.
   </div>
 
 
   <div
     class="pagination"
     id="pagination"
-    aria-label="Movie pages"
+    aria-label="Movie and series pages"
   ></div>
 
 </main>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="about">
 
@@ -999,8 +1331,12 @@ footer{
 
   <br>
 
-  A responsive movie catalog template.
+  Movies & Web Series Collection.
+
+  <br>
+
   Publish only content and links you have permission to use.
+
 
   <div
     class="social-links"
@@ -1038,7 +1374,7 @@ footer{
         aria-hidden="true"
       >
 
-        <path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5-6 3.5Z"/>
+        <path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5 6-3.5-6-3.5v7Z"/>
 
       </svg>
 
@@ -1079,6 +1415,10 @@ footer{
 "use strict";
 
 
+/* =========================
+   VARIABLES
+========================= */
+
 let movies = [];
 
 const grid =
@@ -1111,6 +1451,7 @@ const menuBtn =
 const navlinks =
   document.getElementById("navlinks");
 
+
 const PER_PAGE = 10;
 
 let activeGenre = "All";
@@ -1118,6 +1459,9 @@ let activeGenre = "All";
 let currentPage = 1;
 
 
+/* =========================
+   TOAST
+========================= */
 
 function showToast(text){
 
@@ -1128,21 +1472,26 @@ function showToast(text){
   clearTimeout(showToast.timer);
 
   showToast.timer =
-    setTimeout(() => {
-
-      toast.classList.remove("show");
-
-    },2300);
+    setTimeout(
+      () => {
+        toast.classList.remove("show");
+      },
+      2300
+    );
 
 }
 
 
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHtml(value){
 
   return String(value ?? "")
     .replace(
       /[&<>"']/g,
+
       function(char){
 
         return {
@@ -1159,13 +1508,18 @@ function escapeHtml(value){
 }
 
 
-
+/* =========================
+   LEVENSHTEIN
+========================= */
 
 function levenshtein(a,b){
 
-  a = a.toLowerCase();
+  a =
+    a.toLowerCase();
 
-  b = b.toLowerCase();
+  b =
+    b.toLowerCase();
+
 
   const previous =
     Array.from(
@@ -1173,21 +1527,40 @@ function levenshtein(a,b){
       (_,i) => i
     );
 
-  for(let i=1;i<=a.length;i++){
+
+  for(
+    let i=1;
+    i<=a.length;
+    i++
+  ){
 
     const current = [i];
 
-    for(let j=1;j<=b.length;j++){
+
+    for(
+      let j=1;
+      j<=b.length;
+      j++
+    ){
 
       current[j] =
         Math.min(
+
           current[j-1] + 1,
+
           previous[j] + 1,
+
           previous[j-1] +
-          (a[i-1] === b[j-1] ? 0 : 1)
+          (
+            a[i-1] === b[j-1]
+              ? 0
+              : 1
+          )
+
         );
 
     }
+
 
     for(
       let j=0;
@@ -1195,18 +1568,22 @@ function levenshtein(a,b){
       j++
     ){
 
-      previous[j] = current[j];
+      previous[j] =
+        current[j];
 
     }
 
   }
+
 
   return previous[b.length];
 
 }
 
 
-
+/* =========================
+   SEARCH SCORE
+========================= */
 
 function searchScore(movie,query){
 
@@ -1214,34 +1591,70 @@ function searchScore(movie,query){
     return 0;
   }
 
+
   const title =
-    String(movie.title || "")
-      .toLowerCase();
+    String(
+      movie.title || ""
+    ).toLowerCase();
+
+
+  const type =
+    String(
+      movie.contentType || ""
+    ).toLowerCase();
+
+
+  const genre =
+    String(
+      movie.genre || ""
+    ).toLowerCase();
+
 
   const q =
     query
       .toLowerCase()
       .trim();
 
+
   if(title === q){
     return 100;
   }
+
 
   if(title.includes(q)){
     return 92;
   }
 
+
+  if(type.includes(q)){
+    return 75;
+  }
+
+
+  if(genre.includes(q)){
+    return 70;
+  }
+
+
   const words =
     title.split(/\s+/);
 
+
   const qWords =
-    q.split(/\s+/)
+    q
+      .split(/\s+/)
       .filter(Boolean);
+
 
   let best = 0;
 
+
   const wholeDistance =
-    levenshtein(title,q);
+    levenshtein(
+      title,
+      q
+    );
+
 
   const wholeMax =
     Math.max(
@@ -1249,16 +1662,22 @@ function searchScore(movie,query){
       q.length
     );
 
+
   if(wholeMax){
 
     best =
       Math.max(
         best,
+
         100 -
-        (wholeDistance / wholeMax) * 100
+        (
+          wholeDistance /
+          wholeMax
+        ) * 100
       );
 
   }
+
 
   for(const qw of qWords){
 
@@ -1270,12 +1689,20 @@ function searchScore(movie,query){
       ){
 
         best =
-          Math.max(best,88);
+          Math.max(
+            best,
+            88
+          );
 
       }
 
+
       const distance =
-        levenshtein(qw,w);
+        levenshtein(
+          qw,
+          w
+        );
+
 
       const max =
         Math.max(
@@ -1283,13 +1710,20 @@ function searchScore(movie,query){
           w.length
         );
 
+
       if(max >= 3){
 
         best =
           Math.max(
+
             best,
+
             100 -
-            (distance / max) * 100
+            (
+              distance /
+              max
+            ) * 100
+
           );
 
       }
@@ -1298,47 +1732,72 @@ function searchScore(movie,query){
 
   }
 
+
   return best;
 
 }
 
 
-
+/* =========================
+   GET GENRES
+========================= */
 
 function getGenres(){
 
   return [
     "All",
+
     ...new Set(
+
       movies
-        .map(movie => movie.genre)
+        .map(
+          movie =>
+            movie.genre
+        )
         .filter(Boolean)
+
     )
+
   ];
 
 }
 
 
+/* =========================
+   RENDER GENRE CHIPS
+========================= */
 
 function renderChips(){
 
   chips.innerHTML =
+
     getGenres()
       .map(
+
         genre => `
 
           <button
+
             class="chip ${
               genre === activeGenre
                 ? "active"
                 : ""
             }"
-            data-genre="${escapeHtml(genre)}"
+
+            data-genre="${escapeHtml(
+              genre
+            )}"
+
           >
-            ${escapeHtml(genre)}
+
+            ${escapeHtml(
+              genre
+            )}
+
           </button>
 
         `
+
       )
       .join("");
 
@@ -1365,10 +1824,15 @@ function renderChips(){
 }
 
 
+/* =========================
+   FILTER MOVIES + SERIES
+========================= */
 
 function getFilteredMovies(){
 
-  let list = [...movies];
+  let list =
+    [...movies];
+
 
   const q =
     search.value
@@ -1381,19 +1845,30 @@ function getFilteredMovies(){
   if(q){
 
     list =
+
       list
+
         .map(movie => ({
+
           ...movie,
+
           __score:
-            searchScore(movie,q)
+            searchScore(
+              movie,
+              q
+            )
+
         }))
+
         .filter(
           movie =>
             movie.__score >= 55
         )
+
         .sort(
           (a,b) =>
-            b.__score - a.__score
+            b.__score -
+            a.__score
         );
 
   }
@@ -1401,12 +1876,15 @@ function getFilteredMovies(){
 
   /* GENRE */
 
-  if(activeGenre !== "All"){
+  if(
+    activeGenre !== "All"
+  ){
 
     list =
       list.filter(
         movie =>
-          movie.genre === activeGenre
+          movie.genre ===
+          activeGenre
       );
 
   }
@@ -1416,7 +1894,9 @@ function getFilteredMovies(){
 
   if(!q){
 
-    if(sort.value === "new"){
+    if(
+      sort.value === "new"
+    ){
 
       list.sort(
         (a,b) => {
@@ -1426,10 +1906,12 @@ function getFilteredMovies(){
               a.addedAt || 0
             ).getTime();
 
+
           const dateB =
             new Date(
               b.addedAt || 0
             ).getTime();
+
 
           return dateB - dateA;
 
@@ -1439,7 +1921,9 @@ function getFilteredMovies(){
     }
 
 
-    if(sort.value === "old"){
+    if(
+      sort.value === "old"
+    ){
 
       list.sort(
         (a,b) => {
@@ -1449,10 +1933,12 @@ function getFilteredMovies(){
               a.addedAt || 0
             ).getTime();
 
+
           const dateB =
             new Date(
               b.addedAt || 0
             ).getTime();
+
 
           return dateA - dateB;
 
@@ -1462,40 +1948,62 @@ function getFilteredMovies(){
     }
 
 
-    if(sort.value === "az"){
+    if(
+      sort.value === "az"
+    ){
 
       list.sort(
+
         (a,b) =>
-          String(a.title || "")
-            .localeCompare(
-              String(b.title || "")
+          String(
+            a.title || ""
+          )
+          .localeCompare(
+            String(
+              b.title || ""
             )
+          )
+
       );
 
     }
 
 
-    if(sort.value === "za"){
+    if(
+      sort.value === "za"
+    ){
 
       list.sort(
+
         (a,b) =>
-          String(b.title || "")
-            .localeCompare(
-              String(a.title || "")
+          String(
+            b.title || ""
+          )
+          .localeCompare(
+            String(
+              a.title || ""
             )
+          )
+
       );
 
     }
 
   }
 
+
   return list;
 
 }
 
 
+/* =========================
+   PAGINATION
+========================= */
 
-function renderPagination(totalPages){
+function renderPagination(
+  totalPages
+){
 
   if(totalPages <= 1){
 
@@ -1509,16 +2017,26 @@ function renderPagination(totalPages){
   const items = [];
 
 
-  /* PREVIOUS */
-
   items.push(`
 
     <button
+
       class="page-btn"
-      ${currentPage === 1 ? "disabled" : ""}
-      data-page="${currentPage - 1}"
+
+      ${
+        currentPage === 1
+          ? "disabled"
+          : ""
+      }
+
+      data-page="${
+        currentPage - 1
+      }"
+
     >
+
       ‹ Prev
+
     </button>
 
   `);
@@ -1543,11 +2061,17 @@ function renderPagination(totalPages){
 
     pages.push(1);
 
-    if(currentPage > 4){
 
-      pages.push("dots-left");
+    if(
+      currentPage > 4
+    ){
+
+      pages.push(
+        "dots-left"
+      );
 
     }
+
 
     const from =
       Math.max(
@@ -1555,11 +2079,13 @@ function renderPagination(totalPages){
         currentPage - 1
       );
 
+
     const to =
       Math.min(
         totalPages - 1,
         currentPage + 1
       );
+
 
     for(
       let i=from;
@@ -1571,28 +2097,41 @@ function renderPagination(totalPages){
 
     }
 
+
     if(
       currentPage <
       totalPages - 3
     ){
 
-      pages.push("dots-right");
+      pages.push(
+        "dots-right"
+      );
 
     }
 
-    pages.push(totalPages);
+
+    pages.push(
+      totalPages
+    );
 
   }
 
 
   pages.forEach(page => {
 
-    if(typeof page === "string"){
+    if(
+      typeof page ===
+      "string"
+    ){
 
       items.push(`
-        <span class="page-dots">
+
+        <span
+          class="page-dots"
+        >
           …
         </span>
+
       `);
 
     }else{
@@ -1600,14 +2139,19 @@ function renderPagination(totalPages){
       items.push(`
 
         <button
+
           class="page-btn ${
             page === currentPage
               ? "active"
               : ""
           }"
+
           data-page="${page}"
+
         >
+
           ${page}
+
         </button>
 
       `);
@@ -1617,20 +2161,27 @@ function renderPagination(totalPages){
   });
 
 
-  /* NEXT */
-
   items.push(`
 
     <button
+
       class="page-btn"
+
       ${
-        currentPage === totalPages
+        currentPage ===
+        totalPages
           ? "disabled"
           : ""
       }
-      data-page="${currentPage + 1}"
+
+      data-page="${
+        currentPage + 1
+      }"
+
     >
+
       Next ›
+
     </button>
 
   `);
@@ -1641,7 +2192,9 @@ function renderPagination(totalPages){
 
 
   pagination
-    .querySelectorAll("[data-page]")
+    .querySelectorAll(
+      "[data-page]"
+    )
     .forEach(button => {
 
       button.onclick = () => {
@@ -1651,20 +2204,30 @@ function renderPagination(totalPages){
             button.dataset.page
           );
 
+
         if(
           page >= 1 &&
           page <= totalPages
         ){
 
-          currentPage = page;
+          currentPage =
+            page;
 
           render();
 
+
           document
-            .getElementById("movies")
+            .getElementById(
+              "movies"
+            )
             .scrollIntoView({
-              behavior:"smooth",
-              block:"start"
+
+              behavior:
+                "smooth",
+
+              block:
+                "start"
+
             });
 
         }
@@ -1676,6 +2239,9 @@ function renderPagination(totalPages){
 }
 
 
+/* =========================
+   RENDER CARDS
+========================= */
 
 function render(){
 
@@ -1685,22 +2251,32 @@ function render(){
 
   const totalPages =
     Math.max(
+
       1,
+
       Math.ceil(
-        filtered.length / PER_PAGE
+        filtered.length /
+        PER_PAGE
       )
+
     );
 
 
-  if(currentPage > totalPages){
+  if(
+    currentPage >
+    totalPages
+  ){
 
-    currentPage = totalPages;
+    currentPage =
+      totalPages;
 
   }
 
 
   const start =
-    (currentPage - 1) *
+    (
+      currentPage - 1
+    ) *
     PER_PAGE;
 
 
@@ -1711,102 +2287,271 @@ function render(){
     );
 
 
-  /* NO MOVIES */
+  /* =========================
+     NO RESULTS
+  ========================== */
 
-  if(list.length === 0){
+  if(
+    list.length === 0
+  ){
 
     grid.innerHTML = "";
 
   }else{
 
     grid.innerHTML =
+
       list
-        .map(movie => `
+        .map(
 
-          <article
-            class="movie"
-            tabindex="0"
-            data-movie-id="${escapeHtml(movie.id)}"
-          >
+          movie => {
 
-            <div class="poster">
+            const type =
+              String(
+                movie.contentType ||
+                "movie"
+              ).toLowerCase();
 
-              <img
-                src="${escapeHtml(movie.poster || "")}"
-                alt="${escapeHtml(movie.title || "Movie")} poster"
-                loading="lazy"
-                onerror="
-                  this.style.opacity='.25'
-                "
+
+            const isSeries =
+              type ===
+              "webseries" ||
+              type ===
+              "web-series" ||
+              type ===
+              "series";
+
+
+            const typeText =
+              isSeries
+                ? "WEB SERIES"
+                : "MOVIE";
+
+
+            const episodeCount =
+              Array.isArray(
+                movie.episodes
+              )
+                ? movie.episodes.length
+                : 0;
+
+
+            return `
+
+              <article
+
+                class="movie"
+
+                tabindex="0"
+
+                data-movie-id="${
+                  escapeHtml(
+                    movie.id
+                  )
+                }"
+
               >
 
-              <div class="overlay"></div>
 
-              <div class="badges">
-
-                <span class="badge">
-                  ${escapeHtml(movie.year || "")}
-                </span>
-
-              </div>
-
-              <div class="play">
-                ▶
-              </div>
-
-            </div>
+                <div
+                  class="poster"
+                >
 
 
-            <div class="info">
+                  <img
 
-              <div
-                class="title"
-                title="${escapeHtml(movie.title || "")}"
-              >
-                ${escapeHtml(
-                  movie.title ||
-                  "Untitled"
-                )}
-              </div>
+                    src="${
+                      escapeHtml(
+                        movie.poster ||
+                        ""
+                      )
+                    }"
 
-              <div class="meta">
+                    alt="${
+                      escapeHtml(
+                        movie.title ||
+                        "Movie"
+                      )
+                    } poster"
 
-                <span>
-                  ${escapeHtml(
-                    movie.genre ||
-                    "Movie"
-                  )}
-                </span>
+                    loading="lazy"
 
-              </div>
+                    onerror="
+                      this.style.opacity='.25'
+                    "
 
-            </div>
+                  >
 
-          </article>
 
-        `)
+                  <div
+                    class="overlay"
+                  ></div>
+
+
+                  <div
+                    class="badges"
+                  >
+
+
+                    <span
+                      class="badge"
+                    >
+
+                      ${
+                        escapeHtml(
+                          movie.year ||
+                          ""
+                        )
+                      }
+
+                    </span>
+
+
+                    <span
+                      class="badge type-badge"
+                    >
+
+                      ${
+                        typeText
+                      }
+
+                    </span>
+
+
+                  </div>
+
+
+                  <div
+                    class="play"
+                  >
+
+                    ▶
+
+                  </div>
+
+
+                </div>
+
+
+                <div
+                  class="info"
+                >
+
+
+                  <div
+
+                    class="title"
+
+                    title="${
+                      escapeHtml(
+                        movie.title ||
+                        ""
+                      )
+                    }"
+
+                  >
+
+                    ${
+                      escapeHtml(
+                        movie.title ||
+                        "Untitled"
+                      )
+                    }
+
+                  </div>
+
+
+                  <div
+                    class="meta"
+                  >
+
+                    <span>
+
+                      ${
+                        escapeHtml(
+                          movie.genre ||
+                          "Movie"
+                        )
+                      }
+
+                    </span>
+
+
+                    ${
+                      isSeries &&
+                      episodeCount > 0
+
+                      ?
+
+                      `
+
+                      <span>
+                        •
+                      </span>
+
+                      <span>
+                        ${
+                          episodeCount
+                        }
+                        Episodes
+                      </span>
+
+                      `
+
+                      :
+
+                      ""
+
+                    }
+
+                  </div>
+
+
+                </div>
+
+
+              </article>
+
+            `;
+
+          }
+
+        )
         .join("");
 
   }
 
 
-  /* COUNT */
+  /* =========================
+     COUNT
+  ========================== */
 
   count.textContent =
+
     search.value.trim()
-      ? `${filtered.length} matching title${
-          filtered.length === 1
-            ? ""
-            : "s"
-        }`
-      : `${filtered.length} title${
-          filtered.length === 1
-            ? ""
-            : "s"
-        }`;
+
+      ?
+
+      `${filtered.length}
+       matching title${
+         filtered.length === 1
+           ? ""
+           : "s"
+       }`
+
+      :
+
+      `${filtered.length}
+       title${
+         filtered.length === 1
+           ? ""
+           : "s"
+       }`;
 
 
-  /* EMPTY */
+  /* =========================
+     EMPTY
+  ========================== */
 
   empty.style.display =
     filtered.length
@@ -1814,90 +2559,122 @@ function render(){
       : "block";
 
 
-  /* PAGINATION */
+  /* =========================
+     PAGINATION
+  ========================== */
 
-  renderPagination(totalPages);
+  renderPagination(
+    totalPages
+  );
+
+
+  /* =========================
+     CARD CLICK
+  ========================== */
 
   grid
-    .querySelectorAll(".movie")
-    .forEach((card,index) => {
+    .querySelectorAll(
+      ".movie"
+    )
+    .forEach(
+      (card,index) => {
 
-      const movie =
-        list[index];
-
-
-      const openMovie = () => {
-
-        if(
-          !movie ||
-          movie.id === undefined ||
-          movie.id === null ||
-          String(movie.id).trim() === ""
-        ){
-
-          showToast(
-            "Movie ID not found in movies.json"
-          );
-
-          console.error(
-            "Movie ID missing:",
-            movie
-          );
-
-          return;
-
-        }
+        const movie =
+          list[index];
 
 
-        const id =
-          encodeURIComponent(
-            String(movie.id)
-          );
+        const openMovie =
+          () => {
+
+            if(
+
+              !movie ||
+
+              movie.id ===
+                undefined ||
+
+              movie.id ===
+                null ||
+
+              String(
+                movie.id
+              ).trim() === ""
+
+            ){
+
+              showToast(
+                "Movie/Series ID not found in movies.json"
+              );
+
+              console.error(
+                "ID missing:",
+                movie
+              );
+
+              return;
+
+            }
 
 
-        window.location.href =
-          `movie.html?id=${id}`;
-
-      };
-
-
-      card.addEventListener(
-        "click",
-        openMovie
-      );
+            const id =
+              encodeURIComponent(
+                String(
+                  movie.id
+                )
+              );
 
 
-      card.addEventListener(
-        "keydown",
-        event => {
+            window.location.href =
+              `movie.html?id=${id}`;
 
-          if(
-            event.key === "Enter" ||
-            event.key === " "
-          ){
+          };
 
-            event.preventDefault();
 
-            openMovie();
+        card.addEventListener(
+          "click",
+          openMovie
+        );
+
+
+        card.addEventListener(
+          "keydown",
+          event => {
+
+            if(
+
+              event.key ===
+                "Enter" ||
+
+              event.key ===
+                " "
+
+            ){
+
+              event.preventDefault();
+
+              openMovie();
+
+            }
 
           }
+        );
 
-        }
-      );
-
-    });
+      }
+    );
 
 }
 
 
-
+/* =========================
+   LOAD MOVIES.JSON
+========================= */
 
 async function loadMovies(){
 
   try{
 
     showToast(
-      "Loading movies..."
+      "Loading movies & series..."
     );
 
 
@@ -1910,7 +2687,9 @@ async function loadMovies(){
       );
 
 
-    if(!response.ok){
+    if(
+      !response.ok
+    ){
 
       throw new Error(
         `HTTP ${response.status}`
@@ -1923,7 +2702,9 @@ async function loadMovies(){
       await response.json();
 
 
-    if(!Array.isArray(data)){
+    if(
+      !Array.isArray(data)
+    ){
 
       throw new Error(
         "movies.json must contain an array"
@@ -1932,24 +2713,38 @@ async function loadMovies(){
     }
 
 
-    movies = data;
+    movies =
+      data;
 
 
-    /* CHECK IDS */
+    /* =========================
+       CHECK IDS
+    ========================== */
 
     const missingIds =
       movies.filter(
+
         movie =>
-          movie.id === undefined ||
-          movie.id === null ||
-          String(movie.id).trim() === ""
+
+          movie.id ===
+            undefined ||
+
+          movie.id ===
+            null ||
+
+          String(
+            movie.id
+          ).trim() === ""
+
       );
 
 
-    if(missingIds.length > 0){
+    if(
+      missingIds.length > 0
+    ){
 
       console.warn(
-        "Some movies are missing IDs:",
+        "Some items are missing IDs:",
         missingIds
       );
 
@@ -1971,6 +2766,7 @@ async function loadMovies(){
 
     movies = [];
 
+
     renderChips();
 
     render();
@@ -1979,8 +2775,10 @@ async function loadMovies(){
     empty.style.display =
       "block";
 
+
     empty.textContent =
       "movies.json could not be loaded. Make sure movies.json is next to index.html.";
+
 
     showToast(
       "movies.json could not be loaded."
@@ -1991,6 +2789,9 @@ async function loadMovies(){
 }
 
 
+/* =========================
+   SEARCH
+========================= */
 
 search.addEventListener(
   "input",
@@ -2004,6 +2805,9 @@ search.addEventListener(
 );
 
 
+/* =========================
+   SORT
+========================= */
 
 sort.addEventListener(
   "change",
@@ -2017,18 +2821,26 @@ sort.addEventListener(
 );
 
 
+/* =========================
+   CLEAR SEARCH
+========================= */
 
 document
-  .getElementById("clearBtn")
+  .getElementById(
+    "clearBtn"
+  )
   .onclick = () => {
 
     search.value = "";
 
-    activeGenre = "All";
+    activeGenre =
+      "All";
 
-    sort.value = "new";
+    sort.value =
+      "new";
 
-    currentPage = 1;
+    currentPage =
+      1;
 
     renderChips();
 
@@ -2037,34 +2849,51 @@ document
   };
 
 
+/* =========================
+   BROWSE
+========================= */
 
 document
-  .getElementById("browseBtn")
+  .getElementById(
+    "browseBtn"
+  )
   .onclick = () => {
 
     document
-      .getElementById("movies")
+      .getElementById(
+        "movies"
+      )
       .scrollIntoView({
-        behavior:"smooth"
+
+        behavior:
+          "smooth"
+
       });
 
   };
 
 
-
+/* =========================
+   TOP SEARCH
+========================= */
 
 document
-  .getElementById("topSearch")
+  .getElementById(
+    "topSearch"
+  )
   .onclick = () => {
 
-    search.style.display = "block";
+    search.style.display =
+      "block";
 
     search.focus();
 
   };
 
 
-
+/* =========================
+   MOBILE MENU
+========================= */
 
 menuBtn.onclick = () => {
 
@@ -2075,41 +2904,51 @@ menuBtn.onclick = () => {
 };
 
 
-
 document
-  .querySelectorAll(".navlinks a")
-  .forEach(link => {
+  .querySelectorAll(
+    ".navlinks a"
+  )
+  .forEach(
+    link => {
 
-    link.onclick = () => {
+      link.onclick = () => {
 
-      navlinks.classList.remove(
-        "open"
-      );
+        navlinks.classList.remove(
+          "open"
+        );
 
-    };
+      };
 
-  });
+    }
+  );
 
 
+/* =========================
+   START
+========================= */
 
 loadMovies();
 
 </script>
 
-<div class="pagination" id="pagination"></div>
+
 <script type="text/javascript">
-    aclib.runAutoTag({
-        zoneId: 'ouymgplgjb',
-    });
-</script>
-<script type="text/javascript">
-    aclib.runPop({
-        zoneId: '12047414',
-    });
+
+aclib.runAutoTag({
+  zoneId: 'ouymgplgjb',
+});
+
 </script>
 
+
+<script type="text/javascript">
+
+aclib.runPop({
+  zoneId: '12047414',
+});
+
+</script>
 
 
 </body>
 </html>
-
