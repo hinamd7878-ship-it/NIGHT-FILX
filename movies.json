@@ -418,6 +418,24 @@
     "popular": false,
     "isNew": false,
     "addedAt": "2026-08-28T07:23:09.196Z"
+  },
+   {
+    "site": "nightflix",
+    "id": 25,
+    "title": "Hridayam",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/Hridayam.jpeg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T07:23:09.196Z"
   }
 
 ]
