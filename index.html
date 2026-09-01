@@ -920,42 +920,70 @@ footer{
 }
 
 
+/* =========================
+   MOVIE TICKER
+========================= */
 
 .movie-ticker{
   width:100%;
   overflow:hidden;
+
   border-bottom:1px solid rgba(255,255,255,.06);
+
   background:#05070b;
+
+  cursor:grab;
+
+  user-select:none;
+  -webkit-user-select:none;
+
+  touch-action:pan-y;
 }
+
+.movie-ticker.dragging{
+  cursor:grabbing;
+}
+
 .ticker-track{
   display:flex;
+
   width:max-content;
+
   gap:10px;
+
   padding:8px 0;
-  animation:nightflixTicker 42s linear infinite;
+
+  will-change:transform;
 }
+
 .ticker-item{
   width:78px;
   height:112px;
+
   flex:0 0 auto;
+
   border-radius:8px;
+
   overflow:hidden;
+
   border:1px solid #202938;
+
   background:#111720;
-  box-shadow:0 5px 16px rgba(0,0,0,.28);
+
+  box-shadow:
+    0 5px 16px rgba(0,0,0,.28);
 }
+
 .ticker-item img{
   width:100%;
   height:100%;
+
   object-fit:cover;
+
   display:block;
-}
-@keyframes nightflixTicker{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-.movie-ticker:hover .ticker-track{
-  animation-play-state:paused;
+
+  pointer-events:none;
+
 }
 .request-link{
   color:#aab3c2;
@@ -2638,11 +2666,27 @@ function render(){
    MOVIE TICKER
 ========================= */
 
+/* =========================
+   MOVIE TICKER
+========================= */
+
+let tickerX = 0;
+let tickerSpeed = 0.35;
+
+let tickerAnimation = null;
+
+let tickerDragging = false;
+
+let tickerStartX = 0;
+let tickerStartPosition = 0;
+
+
 function renderTicker(){
 
   if(!movieTicker){
     return;
   }
+
 
   const latest =
     [...movies]
@@ -2657,6 +2701,7 @@ function renderTicker(){
       )
       .slice(0,20);
 
+
   const items =
     [...latest,...latest]
       .map(movie => `
@@ -2666,17 +2711,216 @@ function renderTicker(){
           href="movie.html?id=${encodeURIComponent(String(movie.id))}"
           title="${escapeHtml(movie.title || "")}"
         >
+
           <img
             src="${escapeHtml(movie.poster || "")}"
             alt="${escapeHtml(movie.title || "Movie")}"
             loading="lazy"
           >
+
         </a>
 
       `)
       .join("");
 
+
   movieTicker.innerHTML = items;
+
+
+  startTickerMovement();
+
+  enableTickerDrag();
+
+}
+
+
+/* =========================
+   AUTOMATIC MOVEMENT
+========================= */
+
+function startTickerMovement(){
+
+  if(tickerAnimation){
+
+    cancelAnimationFrame(
+      tickerAnimation
+    );
+
+  }
+
+
+  function move(){
+
+    if(!tickerDragging){
+
+      tickerX -= tickerSpeed;
+
+      const track =
+        document.getElementById(
+          "movieTicker"
+        );
+
+
+      if(track){
+
+        const halfWidth =
+          track.scrollWidth / 2;
+
+
+        if(
+          Math.abs(tickerX) >=
+          halfWidth
+        ){
+
+          tickerX = 0;
+
+        }
+
+
+        track.style.transform =
+          `translateX(${tickerX}px)`;
+
+      }
+
+    }
+
+
+    tickerAnimation =
+      requestAnimationFrame(move);
+
+  }
+
+
+  move();
+
+}
+
+
+/* =========================
+   MANUAL DRAG / SWIPE
+========================= */
+
+function enableTickerDrag(){
+
+  const ticker =
+    document.querySelector(
+      ".movie-ticker"
+    );
+
+  const track =
+    document.getElementById(
+      "movieTicker"
+    );
+
+
+  if(!ticker || !track){
+    return;
+  }
+
+
+  ticker.onpointerdown =
+    function(event){
+
+      tickerDragging = true;
+
+      tickerStartX =
+        event.clientX;
+
+      tickerStartPosition =
+        tickerX;
+
+
+      ticker.classList.add(
+        "dragging"
+      );
+
+
+      ticker.setPointerCapture(
+        event.pointerId
+      );
+
+    };
+
+
+  ticker.onpointermove =
+    function(event){
+
+      if(!tickerDragging){
+        return;
+      }
+
+
+      const movement =
+        event.clientX -
+        tickerStartX;
+
+
+      tickerX =
+        tickerStartPosition +
+        movement;
+
+
+      const halfWidth =
+        track.scrollWidth / 2;
+
+
+      if(
+        tickerX > 0
+      ){
+
+        tickerX =
+          -halfWidth;
+
+      }
+
+
+      if(
+        tickerX < -halfWidth
+      ){
+
+        tickerX =
+          0;
+
+      }
+
+
+      track.style.transform =
+        `translateX(${tickerX}px)`;
+
+    };
+
+
+  ticker.onpointerup =
+    function(event){
+
+      tickerDragging = false;
+
+      ticker.classList.remove(
+        "dragging"
+      );
+
+
+      try{
+
+        ticker.releasePointerCapture(
+          event.pointerId
+        );
+
+      }catch(error){}
+
+    };
+
+
+  ticker.onpointercancel =
+    function(){
+
+      tickerDragging = false;
+
+      ticker.classList.remove(
+        "dragging"
+      );
+
+    };
 
 }
 
