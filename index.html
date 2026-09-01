@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="google-site-verification" content="CCoJP4FWElxGBWK9azSeBtF_Ws8LFeZ2oqlML6c3O-k">
+
 
 <meta name="theme-color" content="#080a0f">
 
@@ -1187,63 +1187,6 @@ footer{
 <!-- =========================
      HERO
 ========================= -->
-
-<section
-  class="hero container"
-  id="home"
->
-
-  <div class="hero-grid">
-
-    <div>
-
-      <div class="kicker">
-        Movies & Web Series
-      </div>
-
-
-      <h1>
-
-        Movies & series for your
-        <span>night.</span>
-
-      </h1>
-
-
-      <p>
-
-        Explore movies and web series with
-        episode-by-episode watch and download
-        options, designed for mobile, tablet and PC.
-
-      </p>
-
-
-      <div class="hero-actions">
-
-        <button
-          class="primary"
-          id="browseBtn"
-        >
-          Browse Collection ↓
-        </button>
-
-
-        <button
-          class="secondary"
-          id="clearBtn"
-        >
-          Clear Search
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
 
 <!-- =========================
      MAIN
@@ -2833,58 +2776,6 @@ sort.addEventListener(
 
   }
 );
-
-
-/* =========================
-   CLEAR SEARCH
-========================= */
-
-document
-  .getElementById(
-    "clearBtn"
-  )
-  .onclick = () => {
-
-    search.value = "";
-
-    activeGenre =
-      "All";
-
-    sort.value =
-      "new";
-
-    currentPage =
-      1;
-
-    renderChips();
-
-    render();
-
-  };
-
-
-/* =========================
-   BROWSE
-========================= */
-
-document
-  .getElementById(
-    "browseBtn"
-  )
-  .onclick = () => {
-
-    document
-      .getElementById(
-        "movies"
-      )
-      .scrollIntoView({
-
-        behavior:
-          "smooth"
-
-      });
-
-  };
 
 
 /* =========================
