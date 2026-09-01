@@ -481,6 +481,24 @@
     "popular": false,
     "isNew": false,
     "addedAt": "2026-08-31T07:23:09.196Z"
+  },
+    {
+    "site": "nightflix",
+    "id": 30,
+    "title": "Spider-Man: Brand New Day (2026) ",
+    "year": 2028,
+    "genre": "Action | Adventure | Fantasy | Sci-Fi",
+    "rating": 9.2,
+    "poster": "POSTER/",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-09-1T07:23:09.196Z"
   }
 
 ]
