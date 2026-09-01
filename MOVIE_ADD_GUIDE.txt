@@ -1,0 +1,31 @@
+NIGHTFLIX - QUICK MOVIE ADD GUIDE
+
+1. Make a folder:
+   MOVIE_ASSETS/Movie Name/
+
+2. Put the poster directly inside that folder:
+   MOVIE_ASSETS/Movie Name/poster.jpg
+
+3. Put screenshots here (optional):
+   MOVIE_ASSETS/Movie Name/screenshots/01.jpg
+   MOVIE_ASSETS/Movie Name/screenshots/02.jpg
+   etc.
+
+4. Double-click ADD_MOVIE.bat
+
+5. Enter title, year, genre, type and links.
+   You do NOT need to type poster/screenshot filenames.
+
+6. The script automatically:
+   - copies the poster into POSTER/
+   - copies all screenshots
+   - adds their paths to movies.json
+   - gives the movie the next ID
+   - sets addedAt automatically
+
+7. Upload the changed project to GitHub.
+
+IMPORTANT:
+A static GitHub Pages website cannot directly write a user's uploaded files into
+your GitHub repository. This local importer is the safe way to automate your
+poster + screenshots workflow without manually entering every filename.

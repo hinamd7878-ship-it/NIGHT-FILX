@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://himanshunamdev-hub.github.io/NIGHT-FLIX/sitemap.xml

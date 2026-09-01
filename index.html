@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+<meta name="google-site-verification" content="CCoJP4FWElxGBWK9azSeBtF_Ws8LFeZ2oqlML6c3O-k">
 
 <meta name="theme-color" content="#080a0f">
 
@@ -920,6 +920,50 @@ footer{
 }
 
 
+
+.movie-ticker{
+  width:100%;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:#05070b;
+}
+.ticker-track{
+  display:flex;
+  width:max-content;
+  gap:10px;
+  padding:8px 0;
+  animation:nightflixTicker 42s linear infinite;
+}
+.ticker-item{
+  width:78px;
+  height:112px;
+  flex:0 0 auto;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid #202938;
+  background:#111720;
+  box-shadow:0 5px 16px rgba(0,0,0,.28);
+}
+.ticker-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+@keyframes nightflixTicker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.movie-ticker:hover .ticker-track{
+  animation-play-state:paused;
+}
+.request-link{
+  color:#aab3c2;
+}
+.request-link:hover{
+  color:#fff;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -1148,6 +1192,10 @@ footer{
         About
       </a>
 
+      <a class="request-link" href="movie-request.html">
+        Movie Request
+      </a>
+
     </nav>
 
 
@@ -1182,6 +1230,19 @@ footer{
   </div>
 
 </header>
+
+
+
+<main
+  class="container"
+  id="movies"
+>
+
+
+
+<section class="movie-ticker" aria-label="Latest movies">
+  <div class="ticker-track" id="movieTicker"></div>
+</section>
 
 
 <!-- =========================
@@ -1409,7 +1470,13 @@ const navlinks =
   document.getElementById("navlinks");
 
 
-const PER_PAGE = 10;
+
+const movieTicker =
+  document.getElementById("movieTicker");
+
+
+const PER_PAGE = 20;
+
 
 let activeGenre = "All";
 
@@ -1700,23 +1767,14 @@ function searchScore(movie,query){
 ========================= */
 
 function getGenres(){
-
   return [
     "All",
-
-    ...new Set(
-
-      movies
-        .map(
-          movie =>
-            movie.genre
-        )
-        .filter(Boolean)
-
-    )
-
+    "Movie",
+    "Web Series",
+    "TV Show",
+    "Hollywood",
+    "18+"
   ];
-
 }
 
 
@@ -1726,64 +1784,86 @@ function getGenres(){
 
 function renderChips(){
 
-  chips.innerHTML =
+  const categories = [
+    "All",
+    "Movie",
+    "Web Series",
+    "TV Show",
+    "Hollywood",
+    "18+"
+  ];
 
-    getGenres()
-      .map(
+  chips.innerHTML = categories.map(category => `
+    <button
+      class="chip ${category === activeGenre ? "active" : ""}"
+      data-category="${escapeHtml(category)}"
+    >
+      ${escapeHtml(category)}
+    </button>
+  `).join("");
 
-        genre => `
-
-          <button
-
-            class="chip ${
-              genre === activeGenre
-                ? "active"
-                : ""
-            }"
-
-            data-genre="${escapeHtml(
-              genre
-            )}"
-
-          >
-
-            ${escapeHtml(
-              genre
-            )}
-
-          </button>
-
-        `
-
-      )
-      .join("");
-
-
-  chips
-    .querySelectorAll(".chip")
-    .forEach(button => {
-
-      button.onclick = () => {
-
-        activeGenre =
-          button.dataset.genre;
-
-        currentPage = 1;
-
-        renderChips();
-
-        render();
-
-      };
-
-    });
+  chips.querySelectorAll(".chip").forEach(button => {
+    button.onclick = () => {
+      activeGenre = button.dataset.category;
+      currentPage = 1;
+      renderChips();
+      render();
+    };
+  });
 
 }
 
+function movieCategory(movie){
 
-/* =========================
-   FILTER MOVIES + SERIES
-========================= */
+  const type =
+    String(movie.contentType || "")
+      .toLowerCase()
+      .replace(/[\\s_-]/g,"");
+
+  const category =
+    String(
+      movie.category ||
+      movie.industry ||
+      movie.type ||
+      ""
+    ).toLowerCase();
+
+  const genre =
+    String(movie.genre || "").toLowerCase();
+
+  if(
+    genre.split(/[|,/]+/).some(
+      g => g.trim() === "18+"
+    ) ||
+    category.includes("18+")
+  ){
+    return "18+";
+  }
+
+  if(
+    category.includes("hollywood") ||
+    category.includes("holly wood")
+  ){
+    return "Hollywood";
+  }
+
+  if(
+    type === "webseries" ||
+    type === "series"
+  ){
+    return "Web Series";
+  }
+
+  if(
+    type === "tvshow" ||
+    type === "television"
+  ){
+    return "TV Show";
+  }
+
+  return "Movie";
+}
+
 
 function getFilteredMovies(){
 
@@ -1796,8 +1876,23 @@ function getFilteredMovies(){
       .trim()
       .toLowerCase();
 
+  if(activeGenre === "All"){
 
-  /* SEARCH */
+    list =
+      list.filter(
+        movie =>
+          movieCategory(movie) !== "18+"
+      );
+
+  }else{
+
+    list =
+      list.filter(
+        movie =>
+          movieCategory(movie) === activeGenre
+      );
+
+  }
 
   if(q){
 
@@ -1831,123 +1926,40 @@ function getFilteredMovies(){
   }
 
 
-  /* GENRE */
-
-  if(
-    activeGenre !== "All"
-  ){
-
-    list =
-      list.filter(
-        movie =>
-          movie.genre ===
-          activeGenre
-      );
-
-  }
-
 
   /* SORT */
 
   if(!q){
 
-    if(
-      sort.value === "new"
-    ){
-
+    if(sort.value === "new"){
       list.sort(
-        (a,b) => {
-
-          const dateA =
-            new Date(
-              a.addedAt || 0
-            ).getTime();
-
-
-          const dateB =
-            new Date(
-              b.addedAt || 0
-            ).getTime();
-
-
-          return dateB - dateA;
-
-        }
-      );
-
-    }
-
-
-    if(
-      sort.value === "old"
-    ){
-
-      list.sort(
-        (a,b) => {
-
-          const dateA =
-            new Date(
-              a.addedAt || 0
-            ).getTime();
-
-
-          const dateB =
-            new Date(
-              b.addedAt || 0
-            ).getTime();
-
-
-          return dateA - dateB;
-
-        }
-      );
-
-    }
-
-
-    if(
-      sort.value === "az"
-    ){
-
-      list.sort(
-
         (a,b) =>
-          String(
-            a.title || ""
-          )
-          .localeCompare(
-            String(
-              b.title || ""
-            )
-          )
-
+          new Date(b.addedAt || 0).getTime() -
+          new Date(a.addedAt || 0).getTime()
       );
-
     }
 
-
-    if(
-      sort.value === "za"
-    ){
-
+    if(sort.value === "old"){
       list.sort(
-
         (a,b) =>
-          String(
-            b.title || ""
-          )
-          .localeCompare(
-            String(
-              a.title || ""
-            )
-          )
-
+          new Date(a.addedAt || 0).getTime() -
+          new Date(b.addedAt || 0).getTime()
       );
+    }
 
+    if(sort.value === "az"){
+      list.sort((a,b) =>
+        String(a.title || "").localeCompare(String(b.title || ""))
+      );
+    }
+
+    if(sort.value === "za"){
+      list.sort((a,b) =>
+        String(b.title || "").localeCompare(String(a.title || ""))
+      );
     }
 
   }
-
 
   return list;
 
@@ -2623,6 +2635,53 @@ function render(){
 
 
 /* =========================
+   MOVIE TICKER
+========================= */
+
+function renderTicker(){
+
+  if(!movieTicker){
+    return;
+  }
+
+  const latest =
+    [...movies]
+      .filter(
+        movie =>
+          movieCategory(movie) !== "18+"
+      )
+      .sort(
+        (a,b) =>
+          new Date(b.addedAt || 0).getTime() -
+          new Date(a.addedAt || 0).getTime()
+      )
+      .slice(0,20);
+
+  const items =
+    [...latest,...latest]
+      .map(movie => `
+
+        <a
+          class="ticker-item"
+          href="movie.html?id=${encodeURIComponent(String(movie.id))}"
+          title="${escapeHtml(movie.title || "")}"
+        >
+          <img
+            src="${escapeHtml(movie.poster || "")}"
+            alt="${escapeHtml(movie.title || "Movie")}"
+            loading="lazy"
+          >
+        </a>
+
+      `)
+      .join("");
+
+  movieTicker.innerHTML = items;
+
+}
+
+
+/* =========================
    LOAD MOVIES.JSON
 ========================= */
 
@@ -2672,6 +2731,8 @@ async function loadMovies(){
 
     movies =
       data;
+
+    renderTicker();
 
 
     /* =========================
