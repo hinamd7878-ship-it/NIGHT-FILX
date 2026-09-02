@@ -1,4 +1,65 @@
 [
+      {
+    "id": 36,
+    "title": "Iron Man 2 (2010)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },    {
+    "id": 35,
+    "title": "Thor (2011)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },    {
+    "id": 34,
+    "title": "Captain America: The First Avenger (2011)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },    {
+    "id": 33,
+    "title": "The Avengers (2012)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
     {
     "id": 32,
     "title": "The Incredible Hulk",
