@@ -1,0 +1,500 @@
+[
+  {
+    "site": "nightflix",
+    "id": 31,
+    "title": "Tuck Jagadish",
+    "year": 2026,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/MV5BMWUzNjk5NzUtYzU2Ny00MzU2LTk2ZGItZDBiNjM4Y2NmODViXkEyXkFqcGc@._V1_.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "https://vdplay.pages.dev/?u=aHR0cHM6Ly9jNmIxZThjOTM2ODNiZGRlNTgxZTIxNjRjYjk2NTdjOS5yMi5jbG91ZGZsYXJlc3RvcmFnZS5jb20vaHViL2QxMzc0YjY3YTQxZTBmNDFkMTYwZjIwMjBiMjg0NjY1P1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9Y2UzODA2ZmRjYTk5N2Y2NWUzNTZmM2I2ZmMyZjczNWQlMkYyMDI2MDkwMSUyRmF1dG8lMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwOTAxVDEyNDg0NlomWC1BbXotRXhwaXJlcz0yODgwMCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmcmVzcG9uc2UtY29udGVudC1kaXNwb3NpdGlvbj1hdHRhY2htZW50JTNCJTIwZmlsZW5hbWUlM0QlMjJUdWNrLkphZ2FkaXNoLjIwMjEuVU5DVVQuNEstMjE2MHAuU0RSLkFNWk4uV0VCLURMLkhpbmRpLkREMi4wLVRlbHVndS5ERFA1LjEuSEVWQy54MjY1LUhESHViNHUuTXMubWt2JTIyJlgtQW16LVNpZ25hdHVyZT1mOTFiZWJhOWJmZjVmNmU3OGZlNDAzNTRmNTVlY2E2ZjlkZGJjZDBjYWMwZjI1OGY5ZjZhNWRjOWY1M2NiYzdi&m=dmlkZW8veC1tYXRyb3Nr&t=VHVjay5KYWdhZGlzaC4yMDIxLlVOQ1VULjRLLTIxNjBwLlNEUi5BTVpOLldFQi1ETC5IaW5kaS5ERDIuMC1UZWx1Z3UuRERQNS4xLkhFVkMueDI2NS1IREh1YjR1Lk1zLm1rdg==",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/511490/Tuck+Jagadish+%282021%29+UNCUT+1080p+10bit+DS4K+AMZN+WEBRip+.mkv?hash=AgADjC",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-09-01T08:23:09.196Z"
+  },
+  {
+    "id": 1,
+    "title": "spider-man",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/spider-man-marvel-6000x4000-11025.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://youtu.be/62bIsvRcPv0?si=hkP92sh5bk_grHwY",
+    "photos": [
+      "POSTER/spider-man-marvel-6000x4000-11025.jpg"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 2,
+    "title": "iron-man",
+    "year": 2026,
+    "genre": "Sci-Fi",
+    "poster": "POSTER/wp3405076-ironman-poster-wallpaper.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://youtu.be/irVNGjRFZGk?si=dDOli3r7kRYjTbhP",
+    "photos": [
+      "POSTER/wp3405076-ironman-poster-wallpaper.jpg"
+    ],
+    "addedAt": "2026-08-19T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 3,
+    "title": "AVATAR WAY IN WATER",
+    "year": 2025,
+    "genre": "Drama",
+    "poster": "POSTER/wp9063021-avatar-2021-wallpapers.JPG",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://youtu.be/nb_fFj_0rq8?si=ERH7Vj2kMcIwHvbM",
+    "photos": [
+      "POSTER/wp9063021-avatar-2021-wallpapers.JPG"
+    ],
+    "addedAt": "2026-08-18T10:00:00"
+  },
+  {
+    "id": 4,
+    "title": "AVATAR FIRE",
+    "year": 2025,
+    "genre": "Thriller",
+    "poster": "POSTER/wp9062828-avatar-2021-wallpapers.JPG",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://youtu.be/8QVYLudMjJA?si=Epu-RGHhYBaQ7t31",
+    "photos": [
+      "POSTER/wp9062828-avatar-2021-wallpapers.JPG"
+    ],
+    "addedAt": "2026-08-17T10:00:00"
+  },
+  {
+    "id": 5,
+    "title": "Red Valley",
+    "year": 2025,
+    "genre": "Action",
+    "poster": "posters/movie5.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie5.jpg"
+    ],
+    "addedAt": "2026-08-16T10:00:00"
+  },
+  {
+    "id": 6,
+    "title": "City Lights",
+    "year": 2024,
+    "genre": "Drama",
+    "poster": "posters/movie6.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie6.jpg"
+    ],
+    "addedAt": "2026-08-15T10:00:00"
+  },
+  {
+    "id": 7,
+    "title": "Wild Chase",
+    "year": 2024,
+    "genre": "Action",
+    "poster": "posters/movie7.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie7.jpg"
+    ],
+    "addedAt": "2026-08-14T10:00:00"
+  },
+  {
+    "id": 8,
+    "title": "After Dark",
+    "year": 2024,
+    "genre": "Thriller",
+    "poster": "posters/movie8.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie8.jpg"
+    ],
+    "addedAt": "2026-08-13T10:00:00"
+  },
+  {
+    "id": 9,
+    "title": "Laugh Out Loud",
+    "year": 2024,
+    "genre": "Comedy",
+    "poster": "posters/movie9.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie9.jpg"
+    ],
+    "addedAt": "2026-08-12T10:00:00"
+  },
+  {
+    "id": 10,
+    "title": "Dark Forest",
+    "year": 2023,
+    "genre": "Thriller",
+    "poster": "posters/movie10.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie10.jpg"
+    ],
+    "addedAt": "2026-08-11T10:00:00"
+  },
+  {
+    "id": 11,
+    "title": "Neon City",
+    "year": 2023,
+    "genre": "Sci-Fi",
+    "poster": "posters/movie11.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie11.jpg"
+    ],
+    "addedAt": "2026-08-10T10:00:00"
+  },
+  {
+    "id": 12,
+    "title": "The Journey",
+    "year": 2023,
+    "genre": "Drama",
+    "poster": "posters/movie12.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "posters/movie12.jpg"
+    ],
+    "addedAt": "2026-08-09T10:00:00"
+  },
+  {
+    "id": 13,
+    "title": "DHUANDHAR THE REVANGE",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/1.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://gofile.io/d/vnBAzvvO",
+    "photos": [],
+    "addedAt": "2026-08-20T15:00:00"
+  },
+  {
+    "id": 14,
+    "title": "AWARAPAN 2",
+    "year": 2026,
+    "genre": "ROM-COM",
+    "poster": "POSTER/Awarapan.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://zealous-audi-rpedit-c2931070.koyeb.app/watch/405248/Awarapan.2.2026.720p.HDTC.Hindi-LiNE.x264.mkv?hash=AgADYy",
+    "photos": [
+      "POSTER/AWARAPAN-2.jpg"
+    ],
+    "addedAt": "2026-08-21T14:00:00"
+  },
+  {
+    "id": 15,
+    "title": "LEO",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/2.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/501392/Leo.Hindi.2023.1080p.NF.WEB-DL.DDP5.1.Atmos.DV.HDR.H.265.mkv?hash=AgAD1Q",
+    "photos": [
+      "POSTER/LEO POSTER.jpg"
+    ],
+    "addedAt": "2026-08-21T15:00:00"
+  },
+  {
+    "id": 16,
+    "title": "Lucky Baskhar",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/3.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/501828/Lucky.Baskhar.2024.720p.NF.WEB-DL.DUAL.DDP5.1.H.264-Extr.mkv?hash=AgADKh",
+    "photos": [
+      "POSTER/images1.jpg"
+    ],
+    "addedAt": "2026-08-22T15:00:00"
+  },
+  {
+    "id": 17,
+    "title": "The Greatest of All Time",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/4.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/502220/GOAT_The_Greatest_of_All_Time_2024_720p_NF_WEB_DL_Hindi_AAC2_0_HEVC.mkv?hash=AgADRx",
+    "photos": [
+      "MV5BYjc1NDJmMjAtMTJmYi00ZGJmLWFhZTItNThmOTQyMzU4MGM3XkEyXkFqcGc@._V1_.jpg"
+    ],
+    "addedAt": "2026-08-22T15:00:00"
+  },
+  {
+    "id": 18,
+    "title": "Vishwanath & Sons",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "POSTER/5.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://youtu.be/wjycKdvm8bE?si=QIwdrUjeGeMu03bu",
+    "photos": [],
+    "addedAt": "2026-08-23T15:00:00"
+  },
+  {
+    "id": 19,
+    "title": "Saiyaara",
+    "year": 2026,
+    "genre": "Romance/Drama",
+    "poster": "POSTER/6.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/508005/Saiyaara.%5B2025%5D.1080p.10bit.WEBRIP.aV1.Hindi.DDP.5.1.Msub.%5B-.mkv?hash=AgADzx",
+    "photos": [],
+    "addedAt": "2026-08-23T15:00:00"
+  },
+  {
+    "id": 20,
+    "title": "Shiddat",
+    "year": 2026,
+    "genre": "Romance/Drama",
+    "poster": "POSTER/7.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://zealous-audi-rpedit-c2931070.koyeb.app/watch/405340/Shiddat_2021_1080p_Hindi_DS4K_WEB_DL_5_1_ESub_x264_HDHub4u_Ms.mkv?hash=AgADVR",
+    "photos": [],
+    "addedAt": "2026-08-23T15:10:00"
+  },
+  {
+    "id": 21,
+    "title": "Dhurandhar",
+    "year": 2026,
+    "genre": "Action/spy",
+    "poster": "POSTER/8.jpg",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/507608/Dhurandhar.the.Revenge.Raw.and.Undekha.2026.720p.NF.WEB-.mkv?hash=AgADvj",
+    "photos": [],
+    "addedAt": "2026-08-23T19:10:00"
+  },
+  {
+    "site": "nightflix",
+    "id": 22,
+    "title": "Toxic",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/toxic.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/watch/506148/Toxic+%282026%29+V2+HD-TC+Hindi+%28Clean%29+1080p+ESub+%5B+NTK+%5D.mkv?hash=AgADSy",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-25T07:23:09.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 23,
+    "title": "India's Got Latent Season 2",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/India's Got Latent Season .jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "https://vdplay.pages.dev/?u=aHR0cHM6Ly9kYTE5NGUzZTQxMDExZTU4ZWE5NWIwOTE0YzYyMTJkMy5yMi5jbG91ZGZsYXJlc3RvcmFnZS5jb20vaHViL2UyNDQ0Zjc4MGY5NjhjODU4NjdlYTQwMWE5OTAyNjhlP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9OTZiNTAzM2JjOTA1NTk3Y2RiNjBmNzQzMjllOTBlMzIlMkYyMDI2MDgyNiUyRmF1dG8lMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwODI2VDE3MjQ1NFomWC1BbXotRXhwaXJlcz0yODgwMCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QmcmVzcG9uc2UtY29udGVudC1kaXNwb3NpdGlvbj1hdHRhY2htZW50JTNCJTIwZmlsZW5hbWUlM0QlMjJJbmRpYXMuR290LkxhdGVudC5TMDIuQm9udXMuRXAuMDIuNEstMjE2MHAuU0RSLllULldFQi1ETC5IaW5kaS5PUFVTMi4wLlZQOS1IREh1YjR1Lk1zLm1rdiUyMiZYLUFtei1TaWduYXR1cmU9NzkxNjY3MjIyNWZjNDZiYTBjYzY2NTRlZWMwMDYwYTU2OGM0OWM5ODM0ZWYyYWRkNDhiMjlkYWY2ZWUzZjU1OA==&m=dmlkZW8veC1tYXRyb3Nr&t=SW5kaWFzLkdvdC5MYXRlbnQuUzAyLkJvbnVzLkVwLjAyLjRLLTIxNjBwLlNEUi5ZVC5XRUItREwuSGluZGkuT1BVUzIuMC5WUDktSERIdWI0dS5Ncy5ta3Y=",
+    "episodes": [
+      {
+        "episode": 1,
+        "link": "https://anonmp4.art/v/OEQt8JiczDwYCKg"
+      },
+      {
+        "episode": 2,
+        "link": "https://anonmp4.art/v/1EMIWH7uCR5Mdrm"
+      }
+    ],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-26T07:23:09.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 24,
+    "title": "The Fantastic Four",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/The Fantastic Four.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "https://d.tube/watch/VK5mbFUcyPHAowc7mc3j5g",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-27T07:23:09.196Z",
+    "universe": "Marvel"
+  },
+  {
+    "site": "nightflix",
+    "id": 26,
+    "title": "Bandar",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/Bandar.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "https://vdplay.pages.dev/?u=aHR0cHM6Ly9jZG4uYnVua2VyLm1vbnN0ZXIvQmFuZGFyLjIwMjYuMTA4MHAuSGluZGkuRFM0Sy5XRUItREwuNS4xLkVTdWIueDI2NC1IREh1YjR1Lk1zLm1rdj90b2tlbj00NWMzZTZmZDkzZjA0YTUzYThmY2M4MzljNTM5OWJmMw==&m=dmlkZW8veC1tYXRyb3Nr&t=QmFuZGFyLjIwMjYuMTA4MHAuSGluZGkuRFM0Sy5XRUItREwuNS4xLkVTdWIueDI2NC1IREh1YjR1Lk1zLm1rdg==",
+    "download": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T05:23:08.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 25,
+    "title": "alpha",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/Alpha.jpeg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "https://anonmp4.art/v/BZaCeh7r99tqvzy",
+    "download": "https://anonmp4.art/v/BZaCeh7r99tqvzy",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T06:23:09.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 27,
+    "title": "Hridayam",
+    "year": 2028,
+    "genre": "Action",
+    "rating": 9.2,
+    "poster": "POSTER/Hridayam.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T07:23:09.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 28,
+    "title": "Cocktail 2",
+    "year": 2028,
+    "genre": "Romance/Drama",
+    "rating": 9.2,
+    "poster": "POSTER/Cocktail 2.webp",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "",
+    "download": "https://anonmp4.art/v/EuPDms5yeupAQgz",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-28T07:23:09.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 29,
+    "title": "Hanuman Ansh",
+    "year": 2028,
+    "genre": "documentary",
+    "rating": 9.2,
+    "poster": "POSTER/Hanu.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "https://vdplay.pages.dev/?u=aHR0cHM6Ly9jZG4udmFsZW50aW5lLmd1cnUvSGFudW1hbi5BbnNoLjIwMjYuSFEuMTA4MHAuSERUQy5IaW5kaS5DbGVhbi54MjY0LUhESHViNHUuTXMubWt2P3Rva2VuPTZhZDAxNWE2ODZjOWI4NGNjOTIyNWVkMTQ5MzAyYWIz&m=dmlkZW8veC1tYXRyb3Nr&t=SGFudW1hbi5BbnNoLjIwMjYuSFEuMTA4MHAuSERUQy5IaW5kaS5DbGVhbi54MjY0LUhESHViNHUuTXMubWt2",
+    "download": "https://bzwo-f48b2bde0e29.herokuapp.com/511303/Hanuman+Ansh+%282026%29+Hindi+HDTC+1080p+x264+AAC.mkv?hash=AgADVR",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-08-31T07:23:09.196Z"
+  },
+  {
+    "site": "nightflix",
+    "id": 30,
+    "title": "Spider-Man: Brand New Day (2026)",
+    "year": 2026,
+    "genre": "Action | Adventure | Fantasy | Sci-Fi",
+    "rating": 9.2,
+    "poster": "POSTER/SPIDER MAN.jpg",
+    "status": "Completed",
+    "contentType": "movie",
+    "description": "",
+    "watch": "https://vdplay.pages.dev/?u=aHR0cHM6Ly85ZjdlMmI5ZjVlZTMwNGQ4NThjOWE3NDNhM2FhNTM1Ny5yMi5jbG91ZGZsYXJlc3RvcmFnZS5jb20vaHViMi8zMWNlMWE0YzhhZDA2MTg3NWUyMzZiOWU2NmU1ZTUwZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPWYzYTJmYzgwOThhZjgzMzY2NGExYWYxOTA4MjQ5OTMxJTJGMjAyNjA5MDElMkZhdXRvJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDkwMVQwNTI4MTBaJlgtQW16LUV4cGlyZXM9Mjg4MDAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtZGlzcG9zaXRpb249YXR0YWNobWVudCUzQiUyMGZpbGVuYW1lJTNEJTIyU3BpZGVyTWFuLUJyYW5kLk5ldy5EYXkuMjAyNi5IUS4xMDgwcC5WNC1IRFRDLk11bHRpLUxpTkUueDI2NC1IREh1YjR1Lk1zLm1rdiUyMiZYLUFtei1TaWduYXR1cmU9MTViNjQ1Mjc5ZTkxNmE0ZTM5Y2Q2YjA4MjZmOGE5MzYwODJlZTNjYzI3MmMyNWE4MWI0OWIwMzUwZGZhODI0Yg==&m=dmlkZW8veC1tYXRyb3Nr&t=U3BpZGVyTWFuLUJyYW5kLk5ldy5EYXkuMjAyNi5IUS4xMDgwcC5WNC1IRFRDLk11bHRpLUxpTkUueDI2NC1IREh1YjR1Lk1zLm1rdg==",
+    "download": "",
+    "episodes": [],
+    "popular": false,
+    "isNew": false,
+    "addedAt": "2026-09-01T07:23:09.196Z",
+    "universe": "Marvel"
+  }
+]
