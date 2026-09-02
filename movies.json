@@ -1,4 +1,180 @@
-[
+[  
+    {
+    "id": 53,
+    "title": "Spider-Man: Far From Home (2019)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 52,
+    "title": "Avengers: Endgame (2019)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+  {
+    "id": 51,
+    "title": "Captain Marvel (2019)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+  {
+    "id": 50,
+    "title": "Ant-Man and the Wasp (2018)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+  {
+    "id": 49,
+    "title": "Avengers: Infinity War (2018)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 48,
+    "title": "Black Panther (2018)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },  
+  {
+    "id": 47,
+    "title": "Thor: Ragnarok (2017)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+     {
+    "id": 46,
+    "title": "Spider-Man: Homecoming (2017)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },  
+  {
+    "id": 45,
+    "title": "Guardians of the Galaxy Vol. 2 (2017)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+   {
+    "id": 44,
+    "title": "Doctor Strange (2016)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+   {
+    "id": 43,
+    "title": "Captain America: Civil War (2016)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
   {
     "id": 42,
     "title": "Iron Man 3",
