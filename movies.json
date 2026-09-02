@@ -1,4 +1,43 @@
-[   
+[      
+    {
+    "id": 67,
+    "title": "LOKi (Season 1)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/Loki-S01.jpg",
+    "description": "",
+    "contentType": "Web Series",
+    "watch": "",
+    "download": "",
+    "episodes": [
+      {
+        "episode": 1,
+        "link": ""
+      },
+      {
+        "episode": 2,
+        "link": ""
+      },
+         {
+        "episode": 3,
+        "link": ""
+      },
+         {
+        "episode": 4,
+        "link": ""
+      },
+         {
+        "episode": 5,
+        "link": ""
+      },
+         {
+        "episode": 6,
+        "link": ""
+      }
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
     {
     "id": 66,
     "title": "Thunderbolts (2025)",
