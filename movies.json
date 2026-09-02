@@ -1,4 +1,116 @@
 [
+  {
+    "id": 42,
+    "title": "Iron Man 3",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 41,
+    "title": "Thor: The Dark World (2013)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 40,
+    "title": "Captain America: The Winter Soldier (2014)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 39,
+    "title": "Guardians of the Galaxy (2014)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 38,
+    "title": "Avengers: Age of Ultron (2015)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 37,
+    "title": "Ant-Man (2015)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
+  {
+    "id": 36,
+    "title": "Iron Man 2 (2010)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/iron2.jpe",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
  {
     "id": 36,
     "title": "Iron Man 2 (2010)",
