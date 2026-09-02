@@ -95,22 +95,6 @@
     "addedAt": "2026-08-20T10:00:00",
     "universe": "Marvel"
   },
-  {
-    "id": 36,
-    "title": "Iron Man 2 (2010)",
-    "year": 2026,
-    "genre": "Action/Sci-fi ",
-    "poster": "POSTER/iron2.jpe",
-    "description": "",
-    "contentType": "movie",
-    "watch": "",
-    "download": "",
-    "photos": [
-      "POSTER/"
-    ],
-    "addedAt": "2026-08-20T10:00:00",
-    "universe": "Marvel"
-  },
  {
     "id": 36,
     "title": "Iron Man 2 (2010)",
