@@ -1,4 +1,212 @@
-[  
+[   
+    {
+    "id": 66,
+    "title": "Thunderbolts (2025)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 65,
+    "title": "Captain America: Brave New World (2025)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 64,
+    "title": "Deadpool & Wolverine (2024)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 63,
+    "title": "The Marvels (2023)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 62,
+    "title": "Guardians of the Galaxy Vol. 3 (2023)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 61,
+    "title": "Ant-Man and the Wasp: Quantumania (2023)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 60,
+    "title": "Black Panther: Wakanda Forever (2022)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 59,
+    "title": "Thor: Love and Thunder (2022)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 58,
+    "title": "Doctor Strange in the Multiverse of Madness (2022)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 57,
+    "title": "Spider-Man: No Way Home (2021)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 56,
+    "title": "Eternals (2021)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 55,
+    "title": "Shang-Chi and the Legend of the Ten Rings (2021)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  }, 
+    {
+    "id": 54,
+    "title": "Black Widow (2021)",
+    "year": 2026,
+    "genre": "Action/Sci-fi ",
+    "poster": "POSTER/",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-08-20T10:00:00",
+    "universe": "Marvel"
+  },
     {
     "id": 53,
     "title": "Spider-Man: Far From Home (2019)",
