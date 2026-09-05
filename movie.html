@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080a0f">
-
-<script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-
-<title>NIGHTFLIX — Movie Details</title>
-
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080a0f"> <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script> <title>NIGHTFLIX — Movie Details</title> <style>
 
 /* =========================
    RESET
@@ -782,59 +770,7 @@ body {
   color:#8994a6 !important;
 }
 
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<header>
-
-  <div class="container nav">
-
-    <a class="logo" href="index.html">
-      NIGHT<span>FLIX</span>
-    </a>
-
-
-    <button
-      class="back"
-      onclick="history.back()"
-    >
-
-      ← Back
-
-    </button>
-
-  </div>
-
-</header>
-
-
-
-<!-- =========================
-     MOVIE CONTENT
-========================= -->
-
-<main class="movie-page">
-
-  <div class="container">
-
-    <div id="movieContent"></div>
-
-  </div>
-
-</main>
-
-
-
-<script>
+</style> </head><body><header><div class="container nav"><a class="logo" href="index.html"> NIGHT<span>FLIX</span></a><button class="back" onclick="history.back()" > ← Back </button></div></header><main class="movie-page"><div class="container"><div id="movieContent"></div></div></main> <script>
 
 
 /* =========================
@@ -1356,14 +1292,12 @@ function showMovie(movie){
   content.innerHTML = `
 
 
-    <!-- =========================
-         HERO
-    ========================= -->
+    
 
     <div class="movie-layout">
 
 
-      <!-- POSTER -->
+      
 
       <div class="poster-box">
 
@@ -1389,7 +1323,7 @@ function showMovie(movie){
 
 
 
-      <!-- DETAILS -->
+      
 
       <div class="details">
 
@@ -1412,7 +1346,7 @@ function showMovie(movie){
 
 
 
-        <!-- META -->
+        
 
         <div class="meta">
 
@@ -1492,7 +1426,7 @@ function showMovie(movie){
 
 
 
-        <!-- DESCRIPTION -->
+        
 
         <p class="description">
 
@@ -1505,9 +1439,7 @@ function showMovie(movie){
 
 
 
-        <!-- =========================
-             MOVIE BUTTONS
-        ========================= -->
+        
 
         ${
           !isSeries
@@ -1554,9 +1486,7 @@ function showMovie(movie){
 
 
 
-    <!-- =========================
-         SERIES EPISODES
-    ========================= -->
+    
 
     ${
       isSeries
@@ -1568,9 +1498,7 @@ function showMovie(movie){
 
 
 
-    <!-- =========================
-         PHOTOS
-    ========================= -->
+    
 
     ${
       photos.length > 0
@@ -1702,31 +1630,16 @@ function showError(message){
 
 loadMovie();
 
-</script>
-
-
-
-<!-- =========================
-     ADS
-========================= -->
-
-<script type="text/javascript">
+</script> <script type="text/javascript">
 
 aclib.runAutoTag({
   zoneId: 'utva3b2xep',
 });
 
-</script>
-
-
-<script type="text/javascript">
+</script> <script type="text/javascript">
 
 aclib.runInterstitial({
   zoneId: '12047466',
 });
 
-</script>
-
-
-</body>
-</html>
+</script> </body></html>
