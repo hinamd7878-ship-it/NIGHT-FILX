@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NIGHTFLIX — Movie Request</title>
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>NIGHTFLIX — Movie Request</title> <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   min-height:100vh;
@@ -34,47 +28,7 @@ button{
 button:hover{background:#ff2633}
 .note{font-size:12px;color:#697486;margin-top:12px}
 #result{display:none;margin-top:18px;padding:14px;border:1px solid #293241;border-radius:10px;color:#cdd4df}
-</style>
-</head>
-<body>
-<div class="container">
-<header>
-  <a class="logo" href="index.html">NIGHT<span>FLIX</span></a>
-  <a class="back" href="index.html">← Back</a>
-</header>
-
-<div class="card">
-  <h1>Movie Request</h1>
-  <p>Tell us which movie or web series you want to see on NIGHTFLIX.</p>
-
-  <form id="requestForm">
-    <label for="title">Movie / Series Name *</label>
-    <input id="title" required placeholder="e.g. Leo">
-
-    <label for="type">Type</label>
-    <select id="type">
-      <option>Movie</option>
-      <option>Web Series</option>
-      <option>TV Show</option>
-    </select>
-
-    <label for="year">Year (optional)</label>
-    <input id="year" inputmode="numeric" placeholder="2026">
-
-    <label for="message">Extra details (optional)</label>
-    <textarea id="message" placeholder="Language, season/episode, etc."></textarea>
-
-    <button type="submit">Send Movie Request</button>
-  </form>
-
-  <div class="note">
-    The request opens your device's email app. Set your receiving email in this page's JavaScript before publishing.
-  </div>
-  <div id="result"></div>
-</div>
-</div>
-
-<script>
+</style> </head><body><div class="container"><header><a class="logo" href="index.html">NIGHT<span>FLIX</span></a><a class="back" href="index.html">← Back</a></header><div class="card"><h1>Movie Request</h1><p>Tell us which movie or web series you want to see on NIGHTFLIX.</p><form id="requestForm"><label for="title">Movie / Series Name *</label><input id="title" required placeholder="e.g. Leo"><label for="type">Type</label><select id="type"><option>Movie</option><option>Web Series</option><option>TV Show</option></select><label for="year">Year (optional)</label><input id="year" inputmode="numeric" placeholder="2026"><label for="message">Extra details (optional)</label> <textarea id="message" placeholder="Language, season/episode, etc."></textarea> <button type="submit">Send Movie Request</button></form><div class="note"> The request opens your device's email app. Set your receiving email in this page's JavaScript before publishing. </div><div id="result"></div></div></div> <script>
 "use strict";
 
 /* CHANGE THIS ONCE BEFORE PUBLISHING */
@@ -108,6 +62,4 @@ ${message || "None"}`;
   window.location.href =
     `mailto:${encodeURIComponent(REQUEST_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
-</script>
-</body>
-</html>
+</script> </body></html>
