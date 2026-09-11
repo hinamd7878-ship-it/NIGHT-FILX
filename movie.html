@@ -323,6 +323,24 @@ h1{
 
 
 /* =========================
+   TV PLAYER
+========================= */
+
+function playerUrl(link, title){
+
+  if(!hasLink(link)){
+    return "";
+  }
+
+  return "player.html?video=" +
+    encodeURIComponent(link) +
+    "&title=" +
+    encodeURIComponent(title || "NIGHTFLIX");
+
+}
+
+
+/* =========================
    MOVIE BUTTONS
 ========================= */
 
@@ -958,12 +976,13 @@ function createMovieButtons(movie){
         class="watch-btn"
 
         href="${escapeHtml(
-          watch
+          playerUrl(
+            watch,
+            movie.title || "NIGHTFLIX"
+          )
         )}"
 
-        target="_blank"
-
-        rel="noopener noreferrer"
+        target="_self"
 
       >
 
@@ -1068,12 +1087,13 @@ function createEpisodeButtons(episode){
         class="episode-watch"
 
         href="${escapeHtml(
-          watch
+          playerUrl(
+            watch,
+            episode.title || "NIGHTFLIX"
+          )
         )}"
 
-        target="_blank"
-
-        rel="noopener noreferrer"
+        target="_self"
 
       >
 
