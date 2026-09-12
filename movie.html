@@ -1,4 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080a0f"> <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script> <title>NIGHTFLIX — Movie Details</title> <style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#080a0f"
+>
+
+<script
+  id="aclib"
+  type="text/javascript"
+  src="//acscdn.com/script/aclib.js">
+</script>
+
+<title>NIGHTFLIX — Movie Details</title>
+
+<style>
 
 /* =========================
    RESET
@@ -323,24 +348,6 @@ h1{
 
 
 /* =========================
-   TV PLAYER
-========================= */
-
-function playerUrl(link, title){
-
-  if(!hasLink(link)){
-    return "";
-  }
-
-  return "player.html?video=" +
-    encodeURIComponent(link) +
-    "&title=" +
-    encodeURIComponent(title || "NIGHTFLIX");
-
-}
-
-
-/* =========================
    MOVIE BUTTONS
 ========================= */
 
@@ -396,7 +403,7 @@ function playerUrl(link, title){
 
 
 .download-btn:hover{
-  background:var(--accent2);
+  background:#e00000;
 
   transform:translateY(-2px);
 }
@@ -754,42 +761,100 @@ function playerUrl(link, title){
 }
 
 
-
 /* =========================
    WEBVIEW / MOBILE DARK FIX
 ========================= */
+
 html,
 body,
 main.movie-page,
 .movie-page,
 .movie-page > .container,
-#movieContent {
+#movieContent{
+
   background-color:#07090d !important;
+
   color:#f2f5f9 !important;
 }
 
-html {
+
+html{
   background:#07090d !important;
 }
 
-body {
+
+body{
   background-attachment:scroll !important;
+
   -webkit-text-size-adjust:100%;
 }
+
 
 .movie-page h1,
 .movie-page h2,
 .movie-page .details,
-.movie-page .description {
+.movie-page .description{
+
   color:#f2f5f9 !important;
 }
 
-.movie-page .description {
+
+.movie-page .description{
   color:#8994a6 !important;
 }
 
-</style> </head><body><header><div class="container nav"><a class="logo" href="index.html"> NIGHT<span>FLIX</span></a><button class="back" onclick="history.back()" > ← Back </button></div></header><main class="movie-page"><div class="container"><div id="movieContent"></div></div></main> <script>
+</style>
 
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="container nav">
+
+    <a
+      class="logo"
+      href="index.html"
+    >
+      NIGHT<span>FLIX</span>
+    </a>
+
+
+    <button
+      class="back"
+      onclick="history.back()"
+    >
+      ← Back
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MOVIE PAGE
+========================= -->
+
+<main class="movie-page">
+
+  <div class="container">
+
+    <div id="movieContent"></div>
+
+  </div>
+
+</main>
+
+
+<script>
 
 /* =========================
    GLOBAL
@@ -834,6 +899,29 @@ function hasLink(link){
   return (
     typeof link === "string" &&
     link.trim() !== ""
+  );
+
+}
+
+
+/* =========================
+   PLAYER URL
+   FIXED
+========================= */
+
+function playerUrl(link, title){
+
+  if(!hasLink(link)){
+    return "";
+  }
+
+  return (
+    "player.html?video=" +
+    encodeURIComponent(link) +
+    "&title=" +
+    encodeURIComponent(
+      title || "NIGHTFLIX"
+    )
   );
 
 }
@@ -916,7 +1004,10 @@ async function loadMovie(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Movie loading error:",
+      error
+    );
 
 
     showError(
@@ -944,8 +1035,7 @@ function createMovieButtons(movie){
 
     "link": "LINK"
 
-    Old link will be treated
-    as Download.
+    Old link is treated as Download.
   */
 
 
@@ -965,29 +1055,25 @@ function createMovieButtons(movie){
   let buttons = "";
 
 
-  /* WATCH */
+  /* =========================
+     WATCH
+  ========================= */
 
   if(hasLink(watch)){
 
     buttons += `
 
       <a
-
         class="watch-btn"
-
         href="${escapeHtml(
           playerUrl(
             watch,
             movie.title || "NIGHTFLIX"
           )
         )}"
-
         target="_self"
-
       >
-
         ▶ Watch
-
       </a>
 
     `;
@@ -995,28 +1081,23 @@ function createMovieButtons(movie){
   }
 
 
-  /* DOWNLOAD */
+  /* =========================
+     DOWNLOAD
+  ========================= */
 
   if(hasLink(download)){
 
     buttons += `
 
       <a
-
         class="download-btn"
-
         href="${escapeHtml(
           download
         )}"
-
         target="_blank"
-
         rel="noopener noreferrer"
-
       >
-
         ↓ Download
-
       </a>
 
     `;
@@ -1024,7 +1105,9 @@ function createMovieButtons(movie){
   }
 
 
-  /* NO LINKS */
+  /* =========================
+     NO LINKS
+  ========================= */
 
   if(!buttons){
 
@@ -1076,29 +1159,25 @@ function createEpisodeButtons(episode){
   let buttons = "";
 
 
-  /* WATCH */
+  /* =========================
+     WATCH
+  ========================= */
 
   if(hasLink(watch)){
 
     buttons += `
 
       <a
-
         class="episode-watch"
-
         href="${escapeHtml(
           playerUrl(
             watch,
             episode.title || "NIGHTFLIX"
           )
         )}"
-
         target="_self"
-
       >
-
         ▶ Watch
-
       </a>
 
     `;
@@ -1106,34 +1185,33 @@ function createEpisodeButtons(episode){
   }
 
 
-  /* DOWNLOAD */
+  /* =========================
+     DOWNLOAD
+  ========================= */
 
   if(hasLink(download)){
 
     buttons += `
 
       <a
-
         class="episode-download"
-
         href="${escapeHtml(
           download
         )}"
-
         target="_blank"
-
         rel="noopener noreferrer"
-
       >
-
         ↓ Download
-
       </a>
 
     `;
 
   }
 
+
+  /* =========================
+     NO LINKS
+  ========================= */
 
   if(!buttons){
 
@@ -1175,7 +1253,6 @@ function createEpisodes(movie){
 
     <section class="episodes-section">
 
-
       <h2>
         Episodes
       </h2>
@@ -1183,16 +1260,13 @@ function createEpisodes(movie){
 
       <div class="episode-list">
 
-
         ${movie.episodes.map(
 
           (episode,index) => `
 
             <div class="episode-card">
 
-
               <div class="episode-info">
-
 
                 <div class="episode-number">
 
@@ -1215,7 +1289,6 @@ function createEpisodes(movie){
 
                 </div>
 
-
               </div>
 
 
@@ -1227,16 +1300,13 @@ function createEpisodes(movie){
 
               </div>
 
-
             </div>
 
           `
 
         ).join("")}
 
-
       </div>
-
 
     </section>
 
@@ -1257,22 +1327,17 @@ function showMovie(movie){
       : [];
 
 
+  /* =========================
+     PAGE TITLE
+  ========================= */
+
   document.title =
     `${movie.title || "Movie"} — NIGHTFLIX`;
 
 
-  /*
-    IMPORTANT:
-
-    Your JSON uses:
-
-    contentType: "movie"
-
-    OR
-
-    contentType: "webseries"
-  */
-
+  /* =========================
+     CONTENT TYPE
+  ========================= */
 
   const contentType =
     String(
@@ -1280,13 +1345,21 @@ function showMovie(movie){
     ).toLowerCase();
 
 
+  /*
+    FIX:
+    Parentheses added so the
+    episode condition is clear.
+  */
+
   const isSeries =
     contentType === "webseries" ||
     contentType === "web-series" ||
     contentType === "series" ||
     contentType === "tv" ||
-    Array.isArray(movie.episodes) &&
-    movie.episodes.length > 0;
+    (
+      Array.isArray(movie.episodes) &&
+      movie.episodes.length > 0
+    );
 
 
   /* =========================
@@ -1309,41 +1382,35 @@ function showMovie(movie){
       : 0;
 
 
+  /* =========================
+     PAGE HTML
+  ========================= */
+
   content.innerHTML = `
-
-
-    
 
     <div class="movie-layout">
 
 
-      
+      <!-- POSTER -->
 
       <div class="poster-box">
 
-
         <img
-
           src="${escapeHtml(
             movie.poster || ""
           )}"
-
           alt="${escapeHtml(
             movie.title || "Movie"
           )}"
-
           onerror="
             this.style.opacity='.25'
           "
-
         >
-
 
       </div>
 
 
-
-      
+      <!-- DETAILS -->
 
       <div class="details">
 
@@ -1365,8 +1432,7 @@ function showMovie(movie){
         </h1>
 
 
-
-        
+        <!-- META -->
 
         <div class="meta">
 
@@ -1396,7 +1462,8 @@ function showMovie(movie){
 
 
           ${
-            isSeries && episodeCount > 0
+            isSeries &&
+            episodeCount > 0
 
             ?
 
@@ -1445,8 +1512,7 @@ function showMovie(movie){
         </div>
 
 
-
-        
+        <!-- DESCRIPTION -->
 
         <p class="description">
 
@@ -1458,8 +1524,7 @@ function showMovie(movie){
         </p>
 
 
-
-        
+        <!-- MOVIE WATCH / DOWNLOAD -->
 
         ${
           !isSeries
@@ -1469,7 +1534,6 @@ function showMovie(movie){
           `
 
             <div class="download-box">
-
 
               <h2>
 
@@ -1485,8 +1549,9 @@ function showMovie(movie){
               </p>
 
 
-              ${createMovieButtons(movie)}
-
+              ${createMovieButtons(
+                movie
+              )}
 
             </div>
 
@@ -1501,24 +1566,19 @@ function showMovie(movie){
 
       </div>
 
-
     </div>
 
 
-
-    
+    <!-- EPISODES -->
 
     ${
       isSeries
-
         ? createEpisodes(movie)
-
         : ""
     }
 
 
-
-    
+    <!-- PHOTOS -->
 
     ${
       photos.length > 0
@@ -1552,18 +1612,14 @@ function showMovie(movie){
                   `
 
                     <img
-
                       src="${escapeHtml(
                         photo
                       )}"
-
                       alt="${escapeHtml(
                         movie.title ||
                         "Movie"
                       )} photo"
-
                       loading="lazy"
-
                     >
 
                   `
@@ -1607,7 +1663,6 @@ function showError(message){
 
     <div class="error">
 
-
       <h1>
 
         Oops!
@@ -1625,17 +1680,13 @@ function showError(message){
 
 
       <a
-
         class="download-btn"
-
         href="index.html"
-
       >
 
         ← Back to Movies
 
       </a>
-
 
     </div>
 
@@ -1650,16 +1701,45 @@ function showError(message){
 
 loadMovie();
 
-</script> <script type="text/javascript">
+</script>
 
-aclib.runAutoTag({
-  zoneId: 'utva3b2xep',
-});
 
-</script> <script type="text/javascript">
+<!-- =========================
+     ADS
+========================= -->
 
-aclib.runInterstitial({
-  zoneId: '12047466',
-});
+<script type="text/javascript">
 
-</script> </body></html>
+if(
+  typeof aclib !== "undefined" &&
+  typeof aclib.runAutoTag === "function"
+){
+
+  aclib.runAutoTag({
+    zoneId: 'utva3b2xep',
+  });
+
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+if(
+  typeof aclib !== "undefined" &&
+  typeof aclib.runInterstitial === "function"
+){
+
+  aclib.runInterstitial({
+    zoneId: '12047466',
+  });
+
+}
+
+</script>
+
+
+</body>
+
+   </html>
