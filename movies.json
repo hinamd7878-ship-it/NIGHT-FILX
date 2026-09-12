@@ -1,4 +1,21 @@
 [
+   
+    {
+    "id": 70,
+    "title": "Haiwaan",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-09-12T10:00:00",
+    "universe": ""
+  },
     {
     "id": 69,
     "title": "Vishwanath & Sons",
