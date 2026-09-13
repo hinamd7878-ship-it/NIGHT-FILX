@@ -1,5 +1,44 @@
 [
-   
+     {
+    "id": 71,
+    "title": "A Love Other Than Yours",
+    "year": 2026,
+    "genre": "DRAMA",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1tKiFthTxk0-Z8fswfoPuEQOusdfbJSlds0uXQ8u24mqXDxC8sBM1yTrjbDnOBKYrLtTwfzMOi58ScOjVUidLhYbanwtX72P9NqqOoQ&s=10",
+    "description": "",
+    "contentType": "Web Series",
+    "watch": "",
+    "download": "",
+    "episodes": [
+      {
+        "episode": 1,
+        "link": ""
+      },
+      {
+        "episode": 2,
+        "link": ""
+      },
+      {
+        "episode": 3,
+        "link": ""
+      },
+      {
+        "episode": 4,
+        "link": ""
+      },
+      {
+        "episode": 5,
+        "link": ""
+      },
+      {
+        "episode": 6,
+        "link": ""
+      }
+    ],
+    "addedAt": "2026-09-13T10:00:00",
+    "universe": ""
+  }
+
     {
     "id": 70,
     "title": "Haiwaan",
