@@ -1,4 +1,21 @@
 [
+    
+    {
+    "id": 73,
+    "title": "Cocktail 2",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjFr3ysBEwmNVIrABKyFOTUsLPTYll79z_rph6tHz8Tvx9qrts8Z9S-fE&s=10",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjFr3ysBEwmNVIrABKyFOTUsLPTYll79z_rph6tHz8Tvx9qrts8Z9S-fE&s=10",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-09-14T10:00:00",
+    "universe": ""
+  },
     {
     "id": 72,
     "title": "Hanuman Ansh",
