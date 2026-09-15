@@ -1,4 +1,43 @@
 [
+    {
+    "id": 77,
+    "title": "Farzi",
+    "year": 2026,
+    "genre": "Action",
+    "poster": "https://bestsimilar.com/img/movie/thumb/ab/81941.jpg",
+    "description": "",
+    "contentType": "Web Series",
+    "watch": "",
+    "download": "",
+    "episodes": [
+      {
+        "episode": 1,
+        "link": ""
+      },
+      {
+        "episode": 2,
+        "link": ""
+      },
+      {
+        "episode": 3,
+        "link": ""
+      },
+      {
+        "episode": 4,
+        "link": ""
+      },
+      {
+        "episode": 5,
+        "link": ""
+      },
+      {
+        "episode": 6,
+        "link": ""
+      }
+    ],
+    "addedAt": "2026-09-13T10:00:00",
+    "universe": ""
+  },
     
     {
     "id": 76,
