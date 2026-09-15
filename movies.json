@@ -1,4 +1,21 @@
 [
+    
+    {
+    "id": 76,
+    "title": "PREMALU",
+    "year": 2026,
+    "genre": "FRIENDSHIP",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5JFRVLV67f7LNCR7KYmg-lJZBsI6v7eKQiJo6XgNR3yB0slhQ4EEwVdmfy_WHxoVOYmzD&s=10",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-09-15T10:00:00",
+    "universe": ""
+  },
     {
     "id": 75,
     "title": "The Girlfriend",
