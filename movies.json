@@ -1,5 +1,21 @@
 [
     {
+    "id": 75,
+    "title": "The Girlfriend",
+    "year": 2026,
+    "genre": "Drama",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtLk32HmYZpxh1CH23BIypYOIHvdg9SFeRsG4dv4T50MPQ5O_PwMSwIN11_9-2VI-oQY6nvuOvLnVMBlikUma9Pt2MPB-5Ocrz0ZfaHyc&s=10",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-09-15T10:00:00",
+    "universe": ""
+  }
+    {
     "id": 74,
     "title": "Our Sticky Love",
     "year": 2026,
