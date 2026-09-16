@@ -1,6 +1,22 @@
 [ 
     {
-    "id": 77,
+    "id": 79,
+    "title": "Monster",
+    "year": 2026,
+    "genre": "FRIENDSHIP",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-hmradKQCqDOYXm3wbq2nrbswpBpHhYNK-LFZVVtoH1s4wln_SaeSbIZljY1Nkm7y7_Q7gw&s=10",
+    "description": "",
+    "contentType": "movie",
+    "watch": "",
+    "download": "",
+    "photos": [
+      "POSTER/"
+    ],
+    "addedAt": "2026-09-16T10:00:00",
+    "universe": ""
+  },
+    {
+    "id": 78,
     "title": "The Girlfriend",
     "year": 2026,
     "genre": "FRIENDSHIP",
