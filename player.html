@@ -11,7 +11,7 @@
     <title>NIGHTFLIX Player</title>
 
     <!-- HLS.js -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17"></script>
 
     <style>
         * {
@@ -51,7 +51,6 @@
             object-fit: contain;
         }
 
-        /* Loading */
         #loading {
             position: absolute;
             inset: 0;
@@ -85,7 +84,6 @@
             color: #ddd;
         }
 
-        /* Error */
         #error {
             position: absolute;
             inset: 0;
@@ -122,21 +120,16 @@
             cursor: pointer;
         }
 
-        /* LIVE badge */
         #live-badge {
             position: absolute;
             top: 18px;
             left: 18px;
             z-index: 10;
-
             display: none;
-
             padding: 7px 12px;
             border-radius: 5px;
-
             background: rgba(0, 0, 0, 0.75);
             color: #fff;
-
             font-size: 13px;
             font-weight: bold;
             letter-spacing: 0.5px;
@@ -147,12 +140,10 @@
             width: 8px;
             height: 8px;
             margin-right: 6px;
-
             background: #ff0000;
             border-radius: 50%;
         }
 
-        /* TV focus */
         button:focus {
             outline: 3px solid #fff;
             outline-offset: 3px;
@@ -163,28 +154,21 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-
             display: flex;
             gap: 10px;
-
             padding: 10px;
-
             background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
-
             z-index: 15;
         }
 
         .control-btn {
             min-width: 55px;
             min-height: 45px;
-
             border: 0;
             border-radius: 7px;
-
             background: rgba(255, 255, 255, 0.15);
             color: #fff;
-
             font-size: 20px;
             cursor: pointer;
         }
@@ -199,17 +183,12 @@
             bottom: 85px;
             left: 50%;
             transform: translateX(-50%);
-
             display: none;
-
             padding: 8px 14px;
-
             background: rgba(0, 0, 0, 0.75);
             color: #fff;
-
             border-radius: 5px;
             font-size: 14px;
-
             z-index: 20;
         }
     </style>
@@ -241,6 +220,7 @@
 
     <div id="error">
         <h2>Unable to play stream</h2>
+
         <p id="error-message">
             The video stream could not be loaded.
         </p>
@@ -285,611 +265,790 @@
 
 <script>
 
-    /*
-     * ============================================================
-     * NIGHTFLIX PLAYER
-     * HLS.js + MP4 + Android TV Remote Support
-     * ============================================================
-     */
+const video = document.getElementById("video");
+const loading = document.getElementById("loading");
+const loadingText = document.getElementById("loading-text");
 
-    const video = document.getElementById("video");
-    const loading = document.getElementById("loading");
-    const loadingText = document.getElementById("loading-text");
+const errorBox = document.getElementById("error");
+const errorMessage = document.getElementById("error-message");
+const retryButton = document.getElementById("retry");
 
-    const errorBox = document.getElementById("error");
-    const errorMessage = document.getElementById("error-message");
+const liveBadge = document.getElementById("live-badge");
+const statusBox = document.getElementById("status");
 
-    const retryButton = document.getElementById("retry");
+const playBtn = document.getElementById("playBtn");
+const muteBtn = document.getElementById("muteBtn");
+const fullscreenBtn = document.getElementById("fullscreenBtn");
 
-    const liveBadge = document.getElementById("live-badge");
+let hls = null;
+let currentStreamUrl = "";
+let reconnectTimer = null;
+let reconnectAttempts = 0;
 
-    const statusBox = document.getElementById("status");
 
-    const playBtn = document.getElementById("playBtn");
-    const muteBtn = document.getElementById("muteBtn");
-    const fullscreenBtn = document.getElementById("fullscreenBtn");
+/* ============================================================
+   GET STREAM URL
+   ============================================================ */
 
-    let hls = null;
-    let currentStreamUrl = "";
+function getStreamUrl() {
 
-    /*
-     * ------------------------------------------------------------
-     * GET STREAM URL
-     * ------------------------------------------------------------
-     *
-     * Supports:
-     *
-     * player.html?url=STREAM_URL
-     * player.html?src=STREAM_URL
-     * player.html?video=STREAM_URL
-     * player.html?stream=STREAM_URL
-     *
-     */
+    const params = new URLSearchParams(window.location.search);
 
-    function getStreamUrl() {
+    const url =
+        params.get("url") ||
+        params.get("src") ||
+        params.get("video") ||
+        params.get("stream");
 
-        const params = new URLSearchParams(window.location.search);
+    if (url) {
+        return url;
+    }
 
-        const url =
-            params.get("url") ||
-            params.get("src") ||
-            params.get("video") ||
-            params.get("stream");
+    return "https://d3eyhgoylams0m.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/ed7bd2c7-8d10-4051-b397-2f6b90f99acb/979bc08a-2ad0-4ede-a303-846f6108a776/4.m3u8";
+}
 
-        if (url) {
-            return url;
+
+/* ============================================================
+   UI
+   ============================================================ */
+
+function showLoading(message = "Loading stream...") {
+
+    loadingText.textContent = message;
+    loading.style.display = "flex";
+    errorBox.style.display = "none";
+}
+
+
+function hideLoading() {
+
+    loading.style.display = "none";
+}
+
+
+function showError(message) {
+
+    hideLoading();
+
+    errorMessage.textContent = message;
+
+    errorBox.style.display = "flex";
+
+    liveBadge.style.display = "none";
+}
+
+
+function hideError() {
+
+    errorBox.style.display = "none";
+}
+
+
+function showStatus(message) {
+
+    statusBox.textContent = message;
+
+    statusBox.style.display = "block";
+
+    clearTimeout(window.statusTimer);
+
+    window.statusTimer = setTimeout(() => {
+
+        statusBox.style.display = "none";
+
+    }, 1800);
+}
+
+
+/* ============================================================
+   DESTROY HLS
+   ============================================================ */
+
+function destroyHls() {
+
+    if (hls) {
+
+        try {
+            hls.destroy();
+        } catch (e) {
+            console.log("HLS destroy error:", e);
         }
 
+        hls = null;
+    }
+}
+
+
+/* ============================================================
+   LOAD STREAM
+   ============================================================ */
+
+function loadStream() {
+
+    clearTimeout(reconnectTimer);
+
+    destroyHls();
+
+    hideError();
+
+    showLoading("Connecting to live stream...");
+
+    liveBadge.style.display = "none";
+
+    currentStreamUrl = getStreamUrl();
+
+    if (!currentStreamUrl) {
+
+        showError("No stream URL was provided.");
+
+        return;
+    }
+
+    console.log("NIGHTFLIX STREAM:", currentStreamUrl);
+
+    const isHls =
+        currentStreamUrl.toLowerCase().includes(".m3u8");
+
+
+    /* ========================================================
+       HLS
+       ======================================================== */
+
+    if (isHls) {
+
         /*
-         * DD SPORTS STREAM
+         * HLS.JS
          *
-         * If you want DD Sports as default stream,
-         * this URL will be used when no URL parameter exists.
+         * enableWorker:false
+         * Android TV/WebView compatibility ke liye.
          */
 
-        return "https://d3eyhgoylams0m.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/ed7bd2c7-8d10-4051-b397-2f6b90f99acb/979bc08a-2ad0-4ede-a303-846f6108a776/4.m3u8";
-    }
+        if (
+            window.Hls &&
+            Hls.isSupported()
+        ) {
 
+            console.log("Using HLS.js");
 
-    /*
-     * ------------------------------------------------------------
-     * UI HELPERS
-     * ------------------------------------------------------------
-     */
+            hls = new Hls({
 
-    function showLoading(message = "Loading stream...") {
+                enableWorker: false,
 
-        loadingText.textContent = message;
+                lowLatencyMode: false,
 
-        loading.style.display = "flex";
+                backBufferLength: 30,
 
-        errorBox.style.display = "none";
-    }
+                maxBufferLength: 20,
 
+                maxMaxBufferLength: 40,
 
-    function hideLoading() {
+                maxBufferSize: 60 * 1000 * 1000,
 
-        loading.style.display = "none";
-    }
+                liveSyncDurationCount: 3,
 
+                liveMaxLatencyDurationCount: 6,
 
-    function showError(message) {
+                fragLoadingMaxRetry: 5,
 
-        hideLoading();
+                manifestLoadingMaxRetry: 5,
 
-        errorMessage.textContent = message;
+                levelLoadingMaxRetry: 5,
 
-        errorBox.style.display = "flex";
+                fragLoadingRetryDelay: 1000,
 
-        liveBadge.style.display = "none";
-    }
+                manifestLoadingRetryDelay: 1000,
 
+                levelLoadingRetryDelay: 1000
 
-    function hideError() {
+            });
 
-        errorBox.style.display = "none";
-    }
 
+            hls.attachMedia(video);
 
-    function showStatus(message) {
 
-        statusBox.textContent = message;
+            hls.on(
+                Hls.Events.MEDIA_ATTACHED,
+                function () {
 
-        statusBox.style.display = "block";
+                    console.log("Video element attached");
 
-        clearTimeout(window.statusTimer);
+                    hls.loadSource(currentStreamUrl);
 
-        window.statusTimer = setTimeout(() => {
-
-            statusBox.style.display = "none";
-
-        }, 1500);
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * CLEAN OLD HLS INSTANCE
-     * ------------------------------------------------------------
-     */
-
-    function destroyHls() {
-
-        if (hls) {
-
-            try {
-                hls.destroy();
-            } catch (e) {
-                console.log(e);
-            }
-
-            hls = null;
-        }
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * LOAD STREAM
-     * ------------------------------------------------------------
-     */
-
-    function loadStream() {
-
-        destroyHls();
-
-        hideError();
-
-        showLoading("Connecting to live stream...");
-
-        liveBadge.style.display = "none";
-
-        currentStreamUrl = getStreamUrl();
-
-        if (!currentStreamUrl) {
-
-            showError("No stream URL was provided.");
-
-            return;
-        }
-
-        console.log("Stream URL:", currentStreamUrl);
-
-
-        /*
-         * ========================================================
-         * HLS STREAM
-         * ========================================================
-         */
-
-        const isHls =
-            currentStreamUrl.toLowerCase().includes(".m3u8");
-
-
-        if (isHls) {
-
-            /*
-             * HLS.js supported browser
-             */
-
-            if (window.Hls && Hls.isSupported()) {
-
-                console.log("Using HLS.js");
-
-                hls = new Hls({
-
-                    enableWorker: true,
-
-                    lowLatencyMode: true,
-
-                    backBufferLength: 30,
-
-                    maxBufferLength: 30,
-
-                    maxMaxBufferLength: 60
-
-                });
-
-
-                hls.loadSource(currentStreamUrl);
-
-                hls.attachMedia(video);
-
-
-                /*
-                 * Manifest loaded
-                 */
-
-                hls.on(
-                    Hls.Events.MANIFEST_PARSED,
-                    function () {
-
-                        console.log(
-                            "HLS manifest loaded successfully"
-                        );
-
-                        hideLoading();
-
-                        liveBadge.style.display = "block";
-
-                        playVideo();
-
-                    }
-                );
-
-
-                /*
-                 * HLS error handling
-                 */
-
-                hls.on(
-                    Hls.Events.ERROR,
-                    function (event, data) {
-
-                        console.log(
-                            "HLS ERROR:",
-                            data
-                        );
-
-
-                        if (!data.fatal) {
-                            return;
-                        }
-
-
-                        switch (data.type) {
-
-
-                            case Hls.ErrorTypes.NETWORK_ERROR:
-
-                                console.log(
-                                    "HLS network error. Retrying..."
-                                );
-
-                                showStatus(
-                                    "Network error - reconnecting..."
-                                );
-
-                                setTimeout(() => {
-
-                                    if (hls) {
-                                        hls.startLoad();
-                                    }
-
-                                }, 1000);
-
-                                break;
-
-
-                            case Hls.ErrorTypes.MEDIA_ERROR:
-
-                                console.log(
-                                    "HLS media error. Recovering..."
-                                );
-
-                                showStatus(
-                                    "Recovering video..."
-                                );
-
-                                if (hls) {
-                                    hls.recoverMediaError();
-                                }
-
-                                break;
-
-
-                            default:
-
-                                console.log(
-                                    "Fatal HLS error"
-                                );
-
-                                destroyHls();
-
-                                showError(
-                                    "This live stream cannot be played in this browser. The stream may have expired or may require access permissions."
-                                );
-
-                                break;
-
-                        }
-
-                    }
-                );
-
-
-                return;
-            }
-
-
-            /*
-             * ====================================================
-             * NATIVE HLS
-             * ====================================================
-             *
-             * Safari / some TV browsers
-             */
-
-            if (
-                video.canPlayType(
-                    "application/vnd.apple.mpegurl"
-                )
-            ) {
-
-                console.log(
-                    "Using native HLS support"
-                );
-
-                video.src = currentStreamUrl;
-
-                video.addEventListener(
-                    "loadedmetadata",
-                    function () {
-
-                        hideLoading();
-
-                        liveBadge.style.display = "block";
-
-                        playVideo();
-
-                    },
-                    { once: true }
-                );
-
-
-                video.addEventListener(
-                    "error",
-                    function () {
-
-                        showError(
-                            "The HLS stream could not be loaded."
-                        );
-
-                    },
-                    { once: true }
-                );
-
-
-                return;
-            }
-
-
-            /*
-             * HLS not supported
-             */
-
-            showError(
-                "This device/browser does not support HLS playback."
+                }
             );
 
+
+            hls.on(
+                Hls.Events.MANIFEST_PARSED,
+                function () {
+
+                    console.log(
+                        "HLS manifest loaded"
+                    );
+
+                    reconnectAttempts = 0;
+
+                    hideLoading();
+
+                    liveBadge.style.display = "block";
+
+                    playVideo();
+
+                }
+            );
+
+
+            hls.on(
+                Hls.Events.FRAG_LOADED,
+                function () {
+
+                    reconnectAttempts = 0;
+
+                }
+            );
+
+
+            hls.on(
+                Hls.Events.ERROR,
+                function (event, data) {
+
+                    console.log(
+                        "HLS ERROR:",
+                        data
+                    );
+
+
+                    if (!data.fatal) {
+                        return;
+                    }
+
+
+                    if (
+                        data.type ===
+                        Hls.ErrorTypes.NETWORK_ERROR
+                    ) {
+
+                        console.log(
+                            "HLS network error"
+                        );
+
+                        showStatus(
+                            "Network error - reconnecting..."
+                        );
+
+
+                        if (hls) {
+
+                            try {
+                                hls.startLoad();
+                            } catch (e) {
+                                console.log(e);
+                            }
+
+                        }
+
+                        return;
+                    }
+
+
+                    if (
+                        data.type ===
+                        Hls.ErrorTypes.MEDIA_ERROR
+                    ) {
+
+                        console.log(
+                            "HLS media error"
+                        );
+
+                        showStatus(
+                            "Recovering video..."
+                        );
+
+
+                        if (hls) {
+
+                            try {
+                                hls.recoverMediaError();
+                            } catch (e) {
+                                console.log(e);
+                            }
+
+                        }
+
+                        return;
+                    }
+
+
+                    console.log(
+                        "Fatal HLS error"
+                    );
+
+                    scheduleReconnect();
+
+                }
+            );
+
+
             return;
         }
 
 
-        /*
-         * ========================================================
-         * NORMAL MP4 / DIRECT VIDEO
-         * ========================================================
-         */
+        /* ====================================================
+           NATIVE HLS
+           ==================================================== */
 
-        console.log(
-            "Using normal HTML5 video"
+        if (
+            video.canPlayType(
+                "application/vnd.apple.mpegurl"
+            )
+        ) {
+
+            console.log(
+                "Using native HLS"
+            );
+
+            video.src = currentStreamUrl;
+
+            video.load();
+
+            return;
+        }
+
+
+        /* ====================================================
+           HLS NOT SUPPORTED
+           ==================================================== */
+
+        showError(
+            "This device/browser does not support HLS playback."
         );
 
-        video.src = currentStreamUrl;
+        return;
+    }
 
-        video.load();
+
+    /* ========================================================
+       NORMAL VIDEO / MP4
+       ======================================================== */
+
+    console.log(
+        "Using normal HTML5 video"
+    );
+
+    video.src = currentStreamUrl;
+
+    video.load();
+
+}
 
 
-        video.addEventListener(
-            "loadedmetadata",
-            function () {
+/* ============================================================
+   RECONNECT
+   ============================================================ */
+
+function scheduleReconnect() {
+
+    clearTimeout(reconnectTimer);
+
+    reconnectAttempts++;
+
+    if (reconnectAttempts > 5) {
+
+        showError(
+            "Unable to reconnect to the live stream. Please try again."
+        );
+
+        return;
+    }
+
+    showLoading(
+        "Reconnecting... (" +
+        reconnectAttempts +
+        "/5)"
+    );
+
+    reconnectTimer = setTimeout(() => {
+
+        loadStream();
+
+    }, 2000);
+}
+
+
+/* ============================================================
+   PLAY
+   ============================================================ */
+
+function playVideo() {
+
+    /*
+     * First attempt:
+     * normal playback.
+     */
+
+    video.muted = false;
+
+    const promise = video.play();
+
+    if (promise !== undefined) {
+
+        promise
+            .then(() => {
 
                 hideLoading();
 
-                playVideo();
+                updatePlayButton();
 
-            },
-            { once: true }
-        );
+            })
+            .catch((error) => {
 
-
-        video.addEventListener(
-            "error",
-            function () {
-
-                showError(
-                    "The video file could not be played."
+                console.log(
+                    "Normal autoplay blocked:",
+                    error
                 );
 
-            },
-            { once: true }
+
+                /*
+                 * Android WebView autoplay fallback.
+                 *
+                 * Muted playback try.
+                 */
+
+                video.muted = true;
+
+                video.play()
+                    .then(() => {
+
+                        hideLoading();
+
+                        updatePlayButton();
+
+                        updateMuteButton();
+
+                        showStatus(
+                            "Press OK to enable sound"
+                        );
+
+                    })
+                    .catch(() => {
+
+                        hideLoading();
+
+                        updatePlayButton();
+
+                        showStatus(
+                            "Press OK / Enter to play"
+                        );
+
+                    });
+
+            });
+    }
+}
+
+
+/* ============================================================
+   PLAY / PAUSE
+   ============================================================ */
+
+function togglePlay() {
+
+    if (video.paused) {
+
+        video.play()
+            .then(() => {
+
+                updatePlayButton();
+
+            })
+            .catch(() => {
+
+                showStatus(
+                    "Press OK again to play"
+                );
+
+            });
+
+    } else {
+
+        video.pause();
+
+        updatePlayButton();
+
+    }
+}
+
+
+function updatePlayButton() {
+
+    if (video.paused) {
+
+        playBtn.textContent = "▶";
+
+    } else {
+
+        playBtn.textContent = "⏸";
+
+    }
+}
+
+
+/* ============================================================
+   MUTE
+   ============================================================ */
+
+function toggleMute() {
+
+    video.muted = !video.muted;
+
+    updateMuteButton();
+
+}
+
+
+function updateMuteButton() {
+
+    if (
+        video.muted ||
+        video.volume === 0
+    ) {
+
+        muteBtn.textContent = "🔇";
+
+    } else {
+
+        muteBtn.textContent = "🔊";
+
+    }
+}
+
+
+/* ============================================================
+   VOLUME
+   ============================================================ */
+
+function volumeUp() {
+
+    video.muted = false;
+
+    video.volume = Math.min(
+        1,
+        video.volume + 0.1
+    );
+
+    updateMuteButton();
+
+    showStatus(
+        "Volume " +
+        Math.round(video.volume * 100) +
+        "%"
+    );
+}
+
+
+function volumeDown() {
+
+    video.muted = false;
+
+    video.volume = Math.max(
+        0,
+        video.volume - 0.1
+    );
+
+    updateMuteButton();
+
+    showStatus(
+        "Volume " +
+        Math.round(video.volume * 100) +
+        "%"
+    );
+}
+
+
+/* ============================================================
+   FULLSCREEN
+   ============================================================ */
+
+function toggleFullscreen() {
+
+    const container =
+        document.getElementById(
+            "player-container"
         );
-    }
 
 
-    /*
-     * ------------------------------------------------------------
-     * PLAY VIDEO
-     * ------------------------------------------------------------
-     */
+    if (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement
+    ) {
 
-    function playVideo() {
+        if (document.exitFullscreen) {
 
-        const promise = video.play();
+            document.exitFullscreen();
 
-        if (promise !== undefined) {
-
-            promise
-                .then(() => {
-
-                    hideLoading();
-
-                    updatePlayButton();
-
-                })
-                .catch((error) => {
-
-                    console.log(
-                        "Autoplay blocked:",
-                        error
-                    );
-
-                    hideLoading();
-
-                    updatePlayButton();
-
-                    showStatus(
-                        "Press OK / Enter to play"
-                    );
-
-                });
-        }
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * PLAY / PAUSE
-     * ------------------------------------------------------------
-     */
-
-    function togglePlay() {
-
-        if (video.paused) {
-
-            video.play()
-                .then(() => {
-                    updatePlayButton();
-                })
-                .catch(() => {
-                    showStatus("Unable to play");
-                });
-
-        } else {
-
-            video.pause();
-
-            updatePlayButton();
-        }
-    }
-
-
-    function updatePlayButton() {
-
-        if (video.paused) {
-
-            playBtn.textContent = "▶";
-
-        } else {
-
-            playBtn.textContent = "⏸";
-
-        }
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * MUTE
-     * ------------------------------------------------------------
-     */
-
-    function toggleMute() {
-
-        video.muted = !video.muted;
-
-        updateMuteButton();
-
-    }
-
-
-    function updateMuteButton() {
-
-        if (video.muted || video.volume === 0) {
-
-            muteBtn.textContent = "🔇";
-
-        } else {
-
-            muteBtn.textContent = "🔊";
-
-        }
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * VOLUME
-     * ------------------------------------------------------------
-     */
-
-    function volumeUp() {
-
-        video.muted = false;
-
-        video.volume = Math.min(
-            1,
-            video.volume + 0.1
-        );
-
-        updateMuteButton();
-
-        showStatus(
-            "Volume " +
-            Math.round(video.volume * 100) +
-            "%"
-        );
-    }
-
-
-    function volumeDown() {
-
-        video.muted = false;
-
-        video.volume = Math.max(
-            0,
-            video.volume - 0.1
-        );
-
-        updateMuteButton();
-
-        showStatus(
-            "Volume " +
-            Math.round(video.volume * 100) +
-            "%"
-        );
-    }
-
-
-    /*
-     * ------------------------------------------------------------
-     * FULLSCREEN
-     * ------------------------------------------------------------
-     */
-
-    function toggleFullscreen() {
-
-        const container =
-            document.getElementById(
-                "player-container"
-            );
-
-
-        if (
-            document.fullscreenElement ||
-            document.webkitFullscreenElement
+        } else if (
+            document.webkitExitFullscreen
         ) {
 
-            if (document.exitFullscreen) {
+            document.webkitExitFullscreen();
 
-                document.exitFullscreen();
+        }
 
-            } else if (
-                document.webkitExitFullscreen
+        return;
+    }
+
+
+    if (container.requestFullscreen) {
+
+        container.requestFullscreen();
+
+    } else if (
+        container.webkitRequestFullscreen
+    ) {
+
+        container.webkitRequestFullscreen();
+
+    } else if (
+        video.webkitEnterFullscreen
+    ) {
+
+        video.webkitEnterFullscreen();
+
+    }
+}
+
+
+/* ============================================================
+   TV REMOTE
+   ============================================================ */
+
+document.addEventListener(
+    "keydown",
+    function (e) {
+
+        console.log(
+            "Remote key:",
+            e.key,
+            e.keyCode
+        );
+
+
+        /* OK / ENTER */
+
+        if (
+            e.key === "Enter" ||
+            e.key === "NumpadEnter" ||
+            e.keyCode === 13
+        ) {
+
+            e.preventDefault();
+
+            /*
+             * Agar muted autoplay chal raha hai,
+             * OK dabane par sound enable karo.
+             */
+
+            if (video.muted) {
+
+                video.muted = false;
+
+                updateMuteButton();
+
+                if (video.paused) {
+                    togglePlay();
+                }
+
+                showStatus(
+                    "Sound ON"
+                );
+
+                return;
+            }
+
+            togglePlay();
+
+            return;
+        }
+
+
+        /* SPACE */
+
+        if (e.key === " ") {
+
+            e.preventDefault();
+
+            togglePlay();
+
+            return;
+        }
+
+
+        /* MEDIA PLAY PAUSE */
+
+        if (
+            e.key === "MediaPlayPause" ||
+            e.keyCode === 179
+        ) {
+
+            e.preventDefault();
+
+            togglePlay();
+
+            return;
+        }
+
+
+        /* VOLUME UP */
+
+        if (
+            e.key === "ArrowUp"
+        ) {
+
+            e.preventDefault();
+
+            volumeUp();
+
+            return;
+        }
+
+
+        /* VOLUME DOWN */
+
+        if (
+            e.key === "ArrowDown"
+        ) {
+
+            e.preventDefault();
+
+            volumeDown();
+
+            return;
+        }
+
+
+        /* LEFT */
+
+        if (
+            e.key === "ArrowLeft"
+        ) {
+
+            e.preventDefault();
+
+            if (
+                Number.isFinite(
+                    video.duration
+                )
             ) {
 
-                document.webkitExitFullscreen();
+                video.currentTime =
+                    Math.max(
+                        0,
+                        video.currentTime - 10
+                    );
+
+                showStatus(
+                    "-10 seconds"
+                );
 
             }
 
@@ -897,402 +1056,281 @@
         }
 
 
-        if (container.requestFullscreen) {
+        /* RIGHT */
 
-            container.requestFullscreen();
-
-        } else if (
-            container.webkitRequestFullscreen
+        if (
+            e.key === "ArrowRight"
         ) {
 
-            container.webkitRequestFullscreen();
+            e.preventDefault();
 
-        } else if (video.webkitEnterFullscreen) {
+            if (
+                Number.isFinite(
+                    video.duration
+                )
+            ) {
 
-            video.webkitEnterFullscreen();
+                video.currentTime =
+                    Math.min(
+                        video.duration,
+                        video.currentTime + 10
+                    );
+
+                showStatus(
+                    "+10 seconds"
+                );
+
+            }
+
+            return;
+        }
+
+
+        /* FULLSCREEN */
+
+        if (
+            e.key === "f" ||
+            e.key === "F"
+        ) {
+
+            e.preventDefault();
+
+            toggleFullscreen();
+
+            return;
+        }
+
+
+        /* BACK */
+
+        if (
+            e.key === "Escape" ||
+            e.key === "Backspace" ||
+            e.key === "BrowserBack" ||
+            e.keyCode === 4
+        ) {
+
+            e.preventDefault();
+
+            if (
+                document.fullscreenElement ||
+                document.webkitFullscreenElement
+            ) {
+
+                toggleFullscreen();
+
+            } else {
+
+                window.history.back();
+
+            }
+
+            return;
+        }
+
+    }
+);
+
+
+/* ============================================================
+   BUTTON EVENTS
+   ============================================================ */
+
+playBtn.addEventListener(
+    "click",
+    function () {
+
+        togglePlay();
+
+    }
+);
+
+
+muteBtn.addEventListener(
+    "click",
+    function () {
+
+        toggleMute();
+
+    }
+);
+
+
+fullscreenBtn.addEventListener(
+    "click",
+    function () {
+
+        toggleFullscreen();
+
+    }
+);
+
+
+retryButton.addEventListener(
+    "click",
+    function () {
+
+        reconnectAttempts = 0;
+
+        loadStream();
+
+    }
+);
+
+
+/* ============================================================
+   VIDEO EVENTS
+   ============================================================ */
+
+video.addEventListener(
+    "play",
+    function () {
+
+        updatePlayButton();
+
+        hideLoading();
+
+    }
+);
+
+
+video.addEventListener(
+    "pause",
+    function () {
+
+        updatePlayButton();
+
+    }
+);
+
+
+video.addEventListener(
+    "waiting",
+    function () {
+
+        showStatus(
+            "Buffering..."
+        );
+
+    }
+);
+
+
+video.addEventListener(
+    "playing",
+    function () {
+
+        hideLoading();
+
+        statusBox.style.display = "none";
+
+        reconnectAttempts = 0;
+
+    }
+);
+
+
+video.addEventListener(
+    "canplay",
+    function () {
+
+        hideLoading();
+
+    }
+);
+
+
+video.addEventListener(
+    "loadedmetadata",
+    function () {
+
+        hideLoading();
+
+        liveBadge.style.display = "block";
+
+    }
+);
+
+
+video.addEventListener(
+    "stalled",
+    function () {
+
+        console.log(
+            "Video stalled"
+        );
+
+        showStatus(
+            "Stream buffering..."
+        );
+
+    }
+);
+
+
+video.addEventListener(
+    "error",
+    function () {
+
+        console.log(
+            "Video error:",
+            video.error
+        );
+
+        /*
+         * HLS.js errors are handled separately.
+         * This is mainly for native HLS / MP4.
+         */
+
+        if (!hls) {
+
+            showError(
+                "The video stream could not be played."
+            );
 
         }
 
     }
+);
 
 
-    /*
-     * ------------------------------------------------------------
-     * TV REMOTE SUPPORT
-     * ------------------------------------------------------------
-     *
-     * ENTER / OK
-     *       Play / Pause
-     *
-     * SPACE
-     *       Play / Pause
-     *
-     * MEDIA PLAY PAUSE
-     *       Play / Pause
-     *
-     * UP
-     *       Volume +
-     *
-     * DOWN
-     *       Volume -
-     *
-     * LEFT / RIGHT
-     *       Seek for normal video
-     *
-     * BACK / ESCAPE
-     *       Go back
-     *
-     * F
-     *       Fullscreen
-     *
-     */
+video.addEventListener(
+    "volumechange",
+    function () {
 
-    document.addEventListener(
-        "keydown",
-        function (e) {
+        updateMuteButton();
 
-            console.log(
-                "Remote key:",
-                e.key,
-                e.keyCode
-            );
+    }
+);
 
 
-            /*
-             * OK / ENTER
-             */
+/* ============================================================
+   PREVENT RIGHT CLICK
+   ============================================================ */
 
-            if (
-                e.key === "Enter" ||
-                e.key === "NumpadEnter"
-            ) {
+document.addEventListener(
+    "contextmenu",
+    function (e) {
 
-                e.preventDefault();
+        e.preventDefault();
 
-                togglePlay();
+    }
+);
 
-                return;
-            }
 
+/* ============================================================
+   INITIALIZE
+   ============================================================ */
 
-            /*
-             * SPACE
-             */
+video.volume = 1;
 
-            if (e.key === " ") {
+video.muted = false;
 
-                e.preventDefault();
+updatePlayButton();
 
-                togglePlay();
+updateMuteButton();
 
-                return;
-            }
-
-
-            /*
-             * MEDIA PLAY / PAUSE
-             */
-
-            if (
-                e.key === "MediaPlayPause" ||
-                e.keyCode === 179
-            ) {
-
-                e.preventDefault();
-
-                togglePlay();
-
-                return;
-            }
-
-
-            /*
-             * VOLUME UP
-             */
-
-            if (
-                e.key === "ArrowUp"
-            ) {
-
-                e.preventDefault();
-
-                volumeUp();
-
-                return;
-            }
-
-
-            /*
-             * VOLUME DOWN
-             */
-
-            if (
-                e.key === "ArrowDown"
-            ) {
-
-                e.preventDefault();
-
-                volumeDown();
-
-                return;
-            }
-
-
-            /*
-             * LEFT
-             *
-             * Only seek when duration is finite.
-             *
-             * Live streams normally have Infinity duration,
-             * therefore live TV will not accidentally seek.
-             */
-
-            if (
-                e.key === "ArrowLeft"
-            ) {
-
-                e.preventDefault();
-
-                if (
-                    Number.isFinite(video.duration)
-                ) {
-
-                    video.currentTime =
-                        Math.max(
-                            0,
-                            video.currentTime - 10
-                        );
-
-                    showStatus("-10 seconds");
-
-                }
-
-                return;
-            }
-
-
-            /*
-             * RIGHT
-             */
-
-            if (
-                e.key === "ArrowRight"
-            ) {
-
-                e.preventDefault();
-
-                if (
-                    Number.isFinite(video.duration)
-                ) {
-
-                    video.currentTime =
-                        Math.min(
-                            video.duration,
-                            video.currentTime + 10
-                        );
-
-                    showStatus("+10 seconds");
-
-                }
-
-                return;
-            }
-
-
-            /*
-             * FULLSCREEN
-             */
-
-            if (
-                e.key === "f" ||
-                e.key === "F"
-            ) {
-
-                e.preventDefault();
-
-                toggleFullscreen();
-
-                return;
-            }
-
-
-            /*
-             * BACK BUTTON
-             *
-             * Android TV WebView may send:
-             *
-             * Escape
-             * Backspace
-             * BrowserBack
-             */
-
-            if (
-                e.key === "Escape" ||
-                e.key === "Backspace" ||
-                e.key === "BrowserBack" ||
-                e.keyCode === 4
-            ) {
-
-                e.preventDefault();
-
-                if (
-                    document.fullscreenElement ||
-                    document.webkitFullscreenElement
-                ) {
-
-                    toggleFullscreen();
-
-                } else {
-
-                    window.history.back();
-
-                }
-
-                return;
-            }
-
-        }
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * BUTTON EVENTS
-     * ------------------------------------------------------------
-     */
-
-    playBtn.addEventListener(
-        "click",
-        function () {
-
-            togglePlay();
-
-        }
-    );
-
-
-    muteBtn.addEventListener(
-        "click",
-        function () {
-
-            toggleMute();
-
-        }
-    );
-
-
-    fullscreenBtn.addEventListener(
-        "click",
-        function () {
-
-            toggleFullscreen();
-
-        }
-    );
-
-
-    retryButton.addEventListener(
-        "click",
-        function () {
-
-            loadStream();
-
-        }
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * VIDEO EVENTS
-     * ------------------------------------------------------------
-     */
-
-    video.addEventListener(
-        "play",
-        function () {
-
-            updatePlayButton();
-
-            hideLoading();
-
-        }
-    );
-
-
-    video.addEventListener(
-        "pause",
-        function () {
-
-            updatePlayButton();
-
-        }
-    );
-
-
-    video.addEventListener(
-        "waiting",
-        function () {
-
-            showStatus(
-                "Buffering..."
-            );
-
-        }
-    );
-
-
-    video.addEventListener(
-        "playing",
-        function () {
-
-            hideLoading();
-
-            statusBox.style.display =
-                "none";
-
-        }
-    );
-
-
-    video.addEventListener(
-        "volumechange",
-        function () {
-
-            updateMuteButton();
-
-        }
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * PREVENT RIGHT CLICK
-     * ------------------------------------------------------------
-     */
-
-    document.addEventListener(
-        "contextmenu",
-        function (e) {
-
-            e.preventDefault();
-
-        }
-    );
-
-
-    /*
-     * ------------------------------------------------------------
-     * INITIALIZE
-     * ------------------------------------------------------------
-     */
-
-    video.volume = 1;
-
-    updatePlayButton();
-
-    updateMuteButton();
-
-    loadStream();
+loadStream();
 
 </script>
 
