@@ -1,5 +1,19 @@
 [ 
     {
+  "id": 81,
+  "title": "AAJ TAK",
+  "year": 2026,
+  "genre": "NEWS",
+  "poster": "https://upload.wikimedia.org/wikipedia/en/7/77/Aaj_Tak_logo.svg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+  "description": "Live NEWS",
+  "contentType": "live",
+  "watch": "https://d3kdywbtdfbp9z.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/dff423e0-3c82-46d6-9ecb-3baa96b5694a/a2a7fb76-9d79-4f6d-b8b3-6b774268a786/4.m3u8",
+  "download": "",
+  "photos": [],
+  "addedAt": "2026-09-16T12:00:00",
+  "universe": ""
+},
+    {
     "id": 80,
     "title": "DD SPORTS",
     "year": 2026,
