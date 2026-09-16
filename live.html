@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#07090d">
+
+<title>NIGHTFLIX — LIVE TV</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#07090d;
+  --panel:#10151e;
+  --line:#222b38;
+  --text:#f2f5f9;
+  --muted:#8994a6;
+  --accent:#e50914;
+}
+
+body{
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,#080a0f,#07090d);
+  min-height:100vh;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1440px,100%);
+  margin:auto;
+  padding:0 24px;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(7,9,13,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+  height:72px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:950;
+  letter-spacing:1.5px;
+}
+
+.logo span{
+  color:var(--accent);
+}
+
+.back{
+  color:#aab3c2;
+  font-size:14px;
+}
+
+.back:hover{
+  color:#fff;
+}
+
+/* LIVE TITLE */
+
+.live-title{
+  padding:34px 0 20px;
+}
+
+.live-title h1{
+  font-size:clamp(28px,4vw,44px);
+}
+
+.live-title p{
+  color:var(--muted);
+  margin-top:8px;
+  font-size:13px;
+}
+
+.dot{
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#f00;
+  margin-right:7px;
+  box-shadow:0 0 0 0 rgba(255,0,0,.65);
+  animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+  0%{
+    box-shadow:0 0 0 0 rgba(255,0,0,.65);
+  }
+
+  70%{
+    box-shadow:0 0 0 7px rgba(255,0,0,0);
+  }
+
+  100%{
+    box-shadow:0 0 0 0 rgba(255,0,0,0);
+  }
+}
+
+/* SECTION */
+
+.section{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:8px 0 14px;
+}
+
+.section h2{
+  font-size:21px;
+}
+
+.badge{
+  font-size:10px;
+  font-weight:800;
+  background:#e50914;
+  padding:5px 8px;
+  border-radius:5px;
+}
+
+/* CHANNEL GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:12px;
+}
+
+.card{
+  background:rgba(14,17,23,.78);
+  border:1px solid #1e2733;
+  border-radius:11px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:hover,
+.card:focus{
+  transform:translateY(-4px);
+  border-color:rgba(255,43,43,.35);
+  outline:none;
+}
+
+.poster{
+  position:relative;
+  aspect-ratio:2/3;
+  background:#151b24;
+}
+
+.poster img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.play{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:#e50914;
+  display:grid;
+  place-items:center;
+  font-size:21px;
+  opacity:.95;
+}
+
+.info{
+  padding:11px;
+}
+
+.title{
+  font-size:13px;
+  font-weight:800;
+}
+
+.meta{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:7px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+  .grid{
+    grid-template-columns:repeat(6,minmax(0,1fr));
+  }
+}
+
+@media(max-width:1000px){
+  .grid{
+    grid-template-columns:repeat(5,minmax(0,1fr));
+  }
+}
+
+@media(max-width:760px){
+
+  .container{
+    padding:0 15px;
+  }
+
+  .nav{
+    height:62px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:9px;
+  }
+}
+
+@media(max-width:500px){
+
+  .grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+  }
+
+  .title{
+    font-size:10px;
+  }
+}
+
+@media(max-width:350px){
+
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container nav">
+
+    <a class="logo" href="index.html">
+      NIGHT<span>FLIX</span>
+    </a>
+
+    <a class="back" href="index.html">
+      ← Back to Movies
+    </a>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <section class="live-title">
+
+    <h1>
+      <span class="dot"></span>
+      LIVE TV
+    </h1>
+
+    <p>
+      Live channels — select a channel to start watching.
+    </p>
+
+  </section>
+
+
+  <div class="section">
+
+    <h2>
+      Live Channels
+    </h2>
+
+    <span class="badge">
+      LIVE
+    </span>
+
+  </div>
+
+
+  <div class="grid">
+
+    <!-- DD SPORTS -->
+
+    <article
+      class="card"
+      tabindex="0"
+      onclick="openChannel()"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openChannel()}"
+    >
+
+      <div class="poster">
+
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/thumb/7/71/DD_Sports_logo.svg/512px-DD_Sports_logo.svg.png"
+          alt="DD Sports"
+        >
+
+        <div class="play">
+          ▶
+        </div>
+
+      </div>
+
+      <div class="info">
+
+        <div class="title">
+          DD Sports
+        </div>
+
+        <div class="meta">
+          Sports • Live
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</main>
+
+
+<script>
+
+const STREAM =
+"https://d3eyhgoylams0m.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/ed7bd2c7-8d10-4051-b397-2f6b90f99acb/979bc08a-2ad0-4ede-a303-846f6108a776/4.m3u8";
+
+
+function openChannel(){
+
+  window.location.href =
+    "player.html?url=" +
+    encodeURIComponent(STREAM);
+
+}
+
+</script>
+
+</body>
+</html>
