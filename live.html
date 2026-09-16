@@ -16,17 +16,16 @@
 
 :root{
   --bg:#07090d;
-  --panel:#10151e;
-  --line:#222b38;
   --text:#f2f5f9;
   --muted:#8994a6;
+  --line:#202936;
   --accent:#e50914;
 }
 
 body{
   font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--text);
-  background:linear-gradient(180deg,#080a0f,#07090d);
+  background:var(--bg);
   min-height:100vh;
 }
 
@@ -46,7 +45,7 @@ a{
 header{
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
   background:rgba(7,9,13,.82);
   backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(255,255,255,.06);
@@ -70,52 +69,51 @@ header{
 }
 
 .back{
-  color:#aab3c2;
   font-size:14px;
+  color:#aab3c2;
 }
 
 .back:hover{
   color:#fff;
 }
 
-/* LIVE TITLE */
+/* TITLE */
 
-.live-title{
-  padding:34px 0 20px;
+.heading{
+  padding:32px 0 20px;
 }
 
-.live-title h1{
+.heading h1{
   font-size:clamp(28px,4vw,44px);
 }
 
-.live-title p{
-  color:var(--muted);
+.heading p{
   margin-top:8px;
+  color:var(--muted);
   font-size:13px;
 }
 
-.dot{
+/* RED LIVE DOT */
+
+.live-dot{
   display:inline-block;
   width:9px;
   height:9px;
   border-radius:50%;
-  background:#f00;
+  background:#ff0000;
   margin-right:7px;
-  box-shadow:0 0 0 0 rgba(255,0,0,.65);
-  animation:pulse 1.2s infinite;
+  animation:blink 1.1s infinite;
 }
 
-@keyframes pulse{
-  0%{
-    box-shadow:0 0 0 0 rgba(255,0,0,.65);
+@keyframes blink{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
   }
 
-  70%{
-    box-shadow:0 0 0 7px rgba(255,0,0,0);
-  }
-
-  100%{
-    box-shadow:0 0 0 0 rgba(255,0,0,0);
+  50%{
+    opacity:.35;
+    transform:scale(.75);
   }
 }
 
@@ -123,8 +121,8 @@ header{
 
 .section{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin:8px 0 14px;
 }
 
@@ -133,11 +131,11 @@ header{
 }
 
 .badge{
-  font-size:10px;
-  font-weight:800;
   background:#e50914;
   padding:5px 8px;
   border-radius:5px;
+  font-size:10px;
+  font-weight:800;
 }
 
 /* CHANNEL GRID */
@@ -146,11 +144,12 @@ header{
   display:grid;
   grid-template-columns:repeat(7,minmax(0,1fr));
   gap:12px;
+  padding-bottom:40px;
 }
 
 .card{
-  background:rgba(14,17,23,.78);
-  border:1px solid #1e2733;
+  background:#0e1117;
+  border:1px solid var(--line);
   border-radius:11px;
   overflow:hidden;
   cursor:pointer;
@@ -160,14 +159,17 @@ header{
 .card:hover,
 .card:focus{
   transform:translateY(-4px);
-  border-color:rgba(255,43,43,.35);
+  border-color:rgba(229,9,20,.55);
   outline:none;
 }
+
+/* POSTER */
 
 .poster{
   position:relative;
   aspect-ratio:2/3;
   background:#151b24;
+  overflow:hidden;
 }
 
 .poster img{
@@ -176,6 +178,22 @@ header{
   object-fit:cover;
   display:block;
 }
+
+/* IMAGE ERROR */
+
+.poster-fallback{
+  width:100%;
+  height:100%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:15px;
+  font-weight:900;
+  font-size:18px;
+}
+
+/* PLAY */
 
 .play{
   position:absolute;
@@ -189,8 +207,24 @@ header{
   display:grid;
   place-items:center;
   font-size:21px;
-  opacity:.95;
+  box-shadow:0 4px 20px rgba(0,0,0,.45);
 }
+
+/* LIVE LABEL */
+
+.live-label{
+  position:absolute;
+  top:9px;
+  left:9px;
+  background:#e50914;
+  color:white;
+  padding:5px 7px;
+  border-radius:5px;
+  font-size:9px;
+  font-weight:900;
+}
+
+/* INFO */
 
 .info{
   padding:11px;
@@ -199,6 +233,9 @@ header{
 .title{
   font-size:13px;
   font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .meta{
@@ -207,18 +244,33 @@ header{
   margin-top:7px;
 }
 
+/* EMPTY */
+
+.empty{
+  padding:45px 15px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--line);
+  border-radius:10px;
+  margin-bottom:40px;
+}
+
 /* RESPONSIVE */
 
 @media(max-width:1200px){
+
   .grid{
     grid-template-columns:repeat(6,minmax(0,1fr));
   }
+
 }
 
 @media(max-width:1000px){
+
   .grid{
     grid-template-columns:repeat(5,minmax(0,1fr));
   }
+
 }
 
 @media(max-width:760px){
@@ -235,6 +287,7 @@ header{
     grid-template-columns:repeat(4,minmax(0,1fr));
     gap:9px;
   }
+
 }
 
 @media(max-width:500px){
@@ -247,13 +300,15 @@ header{
   .title{
     font-size:10px;
   }
+
 }
 
 @media(max-width:350px){
 
   .grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
+
 }
 </style>
 </head>
@@ -279,15 +334,15 @@ header{
 
 <main class="container">
 
-  <section class="live-title">
+  <section class="heading">
 
     <h1>
-      <span class="dot"></span>
+      <span class="live-dot"></span>
       LIVE TV
     </h1>
 
     <p>
-      Live channels — select a channel to start watching.
+      Live channels
     </p>
 
   </section>
@@ -306,44 +361,11 @@ header{
   </div>
 
 
-  <div class="grid">
+  <div id="grid" class="grid"></div>
 
-    <!-- DD SPORTS -->
 
-    <article
-      class="card"
-      tabindex="0"
-      onclick="openChannel()"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openChannel()}"
-    >
-
-      <div class="poster">
-
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/thumb/7/71/DD_Sports_logo.svg/512px-DD_Sports_logo.svg.png"
-          alt="DD Sports"
-        >
-
-        <div class="play">
-          ▶
-        </div>
-
-      </div>
-
-      <div class="info">
-
-        <div class="title">
-          DD Sports
-        </div>
-
-        <div class="meta">
-          Sports • Live
-        </div>
-
-      </div>
-
-    </article>
-
+  <div id="empty" class="empty" style="display:none;">
+    No LIVE TV channels found.
   </div>
 
 </main>
@@ -351,17 +373,290 @@ header{
 
 <script>
 
-const STREAM =
-"https://d3eyhgoylams0m.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/ed7bd2c7-8d10-4051-b397-2f6b90f99acb/979bc08a-2ad0-4ede-a303-846f6108a776/4.m3u8";
+"use strict";
 
 
-function openChannel(){
+const grid =
+document.getElementById("grid");
 
-  window.location.href =
-    "player.html?url=" +
-    encodeURIComponent(STREAM);
+const empty =
+document.getElementById("empty");
+
+
+/* CHECK LIVE CHANNEL */
+
+function isLiveChannel(item){
+
+  const type =
+    String(item.contentType || "")
+    .toLowerCase()
+    .replace(/[\s_-]/g,"");
+
+  return (
+    type === "live" ||
+    type === "livetv" ||
+    type === "livechannel"
+  );
 
 }
+
+
+/* SAFE TEXT */
+
+function safe(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* LOAD MOVIES.JSON */
+
+async function loadLiveChannels(){
+
+  try{
+
+    const response =
+      await fetch(
+        "movies.json",
+        {cache:"no-store"}
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "movies.json HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(!Array.isArray(data)){
+
+      throw new Error(
+        "movies.json format invalid"
+      );
+
+    }
+
+
+    /* ONLY LIVE ITEMS */
+
+    const channels =
+      data.filter(isLiveChannel);
+
+
+    if(channels.length === 0){
+
+      empty.style.display = "block";
+
+      return;
+
+    }
+
+
+    /* CREATE CARDS */
+
+    grid.innerHTML =
+      channels.map((channel,index)=>{
+
+        const title =
+          channel.title ||
+          "Live Channel";
+
+
+        const poster =
+          channel.poster ||
+          "";
+
+
+        const category =
+          channel.genre ||
+          channel.category ||
+          "Live TV";
+
+
+        const stream =
+          channel.watch ||
+          channel.stream ||
+          "";
+
+
+        return `
+
+          <article
+            class="card"
+            tabindex="0"
+            data-index="${index}"
+          >
+
+            <div class="poster">
+
+              <img
+                src="${safe(poster)}"
+                alt="${safe(title)}"
+                loading="lazy"
+              >
+
+              <div
+                class="poster-fallback"
+              >
+                ${safe(title)}
+              </div>
+
+
+              <div class="live-label">
+                ● LIVE
+              </div>
+
+
+              <div class="play">
+                ▶
+              </div>
+
+            </div>
+
+
+            <div class="info">
+
+              <div class="title">
+                ${safe(title)}
+              </div>
+
+              <div class="meta">
+                ${safe(category)} • Live
+              </div>
+
+            </div>
+
+          </article>
+
+        `;
+
+      }).join("");
+
+
+    /* IMAGE ERROR HANDLER */
+
+    document
+      .querySelectorAll(".poster img")
+      .forEach(img=>{
+
+        img.addEventListener(
+          "error",
+          function(){
+
+            this.style.display = "none";
+
+            const fallback =
+              this.nextElementSibling;
+
+            if(fallback){
+
+              fallback.style.display =
+                "flex";
+
+            }
+
+          }
+        );
+
+      });
+
+
+    /* CLICK + TV REMOTE */
+
+    document
+      .querySelectorAll(".card")
+      .forEach((card,index)=>{
+
+        function openChannel(){
+
+          const channel =
+            channels[index];
+
+
+          const stream =
+            channel.watch ||
+            channel.stream ||
+            "";
+
+
+          if(!stream){
+
+            alert(
+              "Is channel ka watch/stream URL movies.json me nahi hai."
+            );
+
+            return;
+
+          }
+
+
+          window.location.href =
+            "player.html?url=" +
+            encodeURIComponent(stream);
+
+        }
+
+
+        card.addEventListener(
+          "click",
+          openChannel
+        );
+
+
+        card.addEventListener(
+          "keydown",
+          event=>{
+
+            if(
+              event.key === "Enter" ||
+              event.key === " "
+            ){
+
+              event.preventDefault();
+
+              openChannel();
+
+            }
+
+          }
+        );
+
+      });
+
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    empty.style.display =
+      "block";
+
+    empty.textContent =
+      "movies.json load nahi hua.";
+
+  }
+
+}
+
+
+/* START */
+
+loadLiveChannels();
 
 </script>
 
