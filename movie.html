@@ -530,6 +530,8 @@ h1{
 
 .episode-watch:hover{
   background:var(--watch2);
+
+  transform:translateY(-2px);
 }
 
 
@@ -542,6 +544,8 @@ h1{
 
 .episode-download:hover{
   background:var(--accent2);
+
+  transform:translateY(-2px);
 }
 
 
@@ -906,7 +910,6 @@ function hasLink(link){
 
 /* =========================
    PLAYER URL
-   FIXED
 ========================= */
 
 function playerUrl(link, title){
@@ -1026,16 +1029,14 @@ async function loadMovie(){
 function createMovieButtons(movie){
 
   /*
-    NEW FORMAT:
+    MOVIE FORMAT:
 
     "watch": "WATCH LINK",
     "download": "DOWNLOAD LINK"
 
-    OLD FORMAT:
-
-    "link": "LINK"
-
-    Old link is treated as Download.
+    IMPORTANT:
+    Movie ke liye bhi watch aur
+    download alag links hain.
   */
 
 
@@ -1048,7 +1049,6 @@ function createMovieButtons(movie){
   const download =
     movie.download ||
     movie.downloadLink ||
-    movie.link ||
     "";
 
 
@@ -1143,16 +1143,31 @@ function createMovieButtons(movie){
 
 function createEpisodeButtons(episode){
 
+  /*
+    NEW EPISODE FORMAT:
+
+    {
+      "episode": 1,
+      "watch": "WATCH LINK",
+      "download": "DOWNLOAD LINK"
+    }
+
+    IMPORTANT:
+
+    WATCH  -> episode.watch
+    DOWNLOAD -> episode.download
+
+    NO episode.link fallback.
+  */
+
+
   const watch =
     episode.watch ||
-    episode.watchLink ||
     "";
 
 
   const download =
     episode.download ||
-    episode.downloadLink ||
-    episode.link ||
     "";
 
 
@@ -1160,7 +1175,7 @@ function createEpisodeButtons(episode){
 
 
   /* =========================
-     WATCH
+     WATCH BUTTON
   ========================= */
 
   if(hasLink(watch)){
@@ -1172,7 +1187,8 @@ function createEpisodeButtons(episode){
         href="${escapeHtml(
           playerUrl(
             watch,
-            episode.title || "NIGHTFLIX"
+            episode.title ||
+            "NIGHTFLIX"
           )
         )}"
         target="_self"
@@ -1186,7 +1202,7 @@ function createEpisodeButtons(episode){
 
 
   /* =========================
-     DOWNLOAD
+     DOWNLOAD BUTTON
   ========================= */
 
   if(hasLink(download)){
@@ -1344,12 +1360,6 @@ function showMovie(movie){
       movie.contentType || "movie"
     ).toLowerCase();
 
-
-  /*
-    FIX:
-    Parentheses added so the
-    episode condition is clear.
-  */
 
   const isSeries =
     contentType === "webseries" ||
@@ -1742,4 +1752,4 @@ if(
 
 </body>
 
-   </html>
+</html>
