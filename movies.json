@@ -31,45 +31,51 @@
     "addedAt": "2026-09-16T10:00:00",
     "universe": ""
   },
+{
+  "id": 77,
+  "title": "Farzi",
+  "year": 2026,
+  "genre": "Action",
+  "poster": "https://bestsimilar.com/img/movie/thumb/ab/81941.jpg",
+  "description": "",
+  "contentType": "Web Series",
+  "watch": "",
+  "download": "",
+  "episodes": [
     {
-    "id": 77,
-    "title": "Farzi",
-    "year": 2026,
-    "genre": "Action",
-    "poster": "https://bestsimilar.com/img/movie/thumb/ab/81941.jpg",
-    "description": "",
-    "contentType": "Web Series",
-    "watch": "",
-    "download": "",
-    "episodes": [
-      {
-        "episode": 1,
-        "link": "https://bzwo-f48b2bde0e29.herokuapp.com/523027/%40RunningMoviesHD_Farzi_2023_Season_1_Ep_01_TO_02_Hindi_720p_WEB.mkv?hash=AgADkw"
-      },
-      {
-        "episode": 2,
-        "link": ""
-      },
-      {
-        "episode": 3,
-        "link": ""
-      },
-      {
-        "episode": 4,
-        "link": ""
-      },
-      {
-        "episode": 5,
-        "link": ""
-      },
-      {
-        "episode": 6,
-        "link": ""
-      }
-    ],
-    "addedAt": "2026-09-15T10:00:00",
-    "universe": ""
-  },
+      "episode": 1,
+      "watch": "",
+      "download": "https://bzwo-f48b2bde0e29.herokuapp.com/523027/%40RunningMoviesHD_Farzi_2023_Season_1_Ep_01_TO_02_Hindi_720p_WEB.mkv?hash=AgADkw"
+    },
+    {
+      "episode": 2,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 3,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 4,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 5,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 6,
+      "watch": "",
+      "download": ""
+    }
+  ],
+  "addedAt": "2026-09-15T10:00:00",
+  "universe": ""
+}
     
     {
     "id": 76,
