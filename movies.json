@@ -1,7 +1,7 @@
 [   
     {
   "id": 84,
-  "title": "Hindi Movies 24/7"
+  "title": "Hindi Movies 24/7",
   "year": 2026,
   "genre": "",
   "poster": "",
@@ -15,7 +15,7 @@
 }, 
     {
   "id": 83,
-  "title": "South Movies 24/7"
+  "title": "South Movies 24/7",
   "year": 2026,
   "genre": "",
   "poster": "",
@@ -29,7 +29,7 @@
 },
     {
   "id": 82,
-  "title": "DORAEMON"
+  "title": "DORAEMON",
   "year": 2026,
   "genre": "KIDS",
   "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjVosHP3GotCwJtIiFit0YDhpSaKgRNhkOe14da4JfYfNusdTkXocjm7TXySGNiWZiqLc8NMu1g-6OP8EZTxMAx8Nl_mvyMV9eFE1Fj_g&s",
