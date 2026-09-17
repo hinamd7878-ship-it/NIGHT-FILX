@@ -1,4 +1,18 @@
-[ 
+[  
+    {
+  "id": 82,
+  "title": "DORAEMON,
+  "year": 2026,
+  "genre": "KIDS",
+  "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjVosHP3GotCwJtIiFit0YDhpSaKgRNhkOe14da4JfYfNusdTkXocjm7TXySGNiWZiqLc8NMu1g-6OP8EZTxMAx8Nl_mvyMV9eFE1Fj_g&s",
+  "description": "Live CARTOON",
+  "contentType": "live",
+  "watch": "https://live20.bozztv.com/giatvplayout7/giatv-209902/tracks-v1a1/mono.ts.m3u8",
+  "download": "",
+  "photos": [],
+  "addedAt": "2026-08-16T12:00:00",
+  "universe": ""
+},
     {
   "id": 81,
   "title": "AAJ TAK",
