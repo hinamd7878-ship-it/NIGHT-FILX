@@ -1,5 +1,19 @@
 [                            
     {
+  "id": 93,
+  "title": "horror tv",
+  "year": 2026,
+  "genre": "",
+  "poster": "",
+  "description": " ",
+  "contentType": "Live",
+  "watch": "https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/93dc292b-cbcf-4988-ab97-94feced4c14b/master.m3u8?ads.channel=6607&ads.content_custom_1_param=FAST&ads.user=2&ads.content_custom_3_param=YuppFastIndia&hdnts=st=1789823472~exp=1789845072~acl=!*/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/93dc292b-cbcf-4988-ab97-94feced4c14b/*!/payload/yupptvott_5_-1_3b6f5839-0b53-aa06-7a80-023047a6357c_US_40.76.117.242_yuppfast_2_channel_77_-1/*~data=yupptvott_5_-1_3b6f5839-0b53-aa06-7a80-023047a6357c_US_40.76.117.242_yuppfast_2_channel_77_-1~hmac=b0744cd77d6260742d61c808adf297bce38053ff0bdefe9ecb383ef2cfc0fcf9&ads.network_name=yuppfast&ads.app_store_url=&ads.app_bundle=&ads.content_livestream=1&ads.content_genre=MOVIES&ads.channel_name=HorrorTV&ads.language=ENG&ads.user=0",
+  "download": "",
+  "photos": [],
+  "addedAt": "2026-08-18T12:00:00",
+  "universe": ""
+},                          
+    {
   "id": 92,
   "title": "24x7 lofi song",
   "year": 2026,
