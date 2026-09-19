@@ -1,13 +1,13 @@
 [                            
     {
   "id": 92,
-  "title": "big boss 24x7 live",
+  "title": "24x7 lofi song",
   "year": 2026,
   "genre": "",
   "poster": "",
   "description": " ",
   "contentType": "Live",
-  "watch": "",
+  "watch": "https://ssai.aniview.com/api/v1/hls/stream.m3u8?AVS_SSAIID=68954484dd7915fcaf0e16b7",
   "download": "",
   "photos": [],
   "addedAt": "2026-08-18T12:00:00",
