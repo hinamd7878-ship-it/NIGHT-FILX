@@ -1,5 +1,19 @@
 [                             
     {
+  "id": 95,
+  "title": "24x7 movie",
+  "year": 2026,
+  "genre": "",
+  "poster": "",
+  "description": " ",
+  "contentType": "Live",
+  "watch": "https://live20.bozztv.com/giatvplayout7/giatv-209612/tracks-v1a1/mono.ts.m3u8",
+  "download": "",
+  "photos": [],
+  "addedAt": "2026-08-18T12:00:00",
+  "universe": ""
+},                           
+    {
   "id": 94,
   "title": "",
   "year": 2026,
