@@ -1333,21 +1333,81 @@ updateMuteButton();
 loadStream();
 
 </script>
-
+<!-- NIGHTFLIX CASUAL DEVTOOLS PROTECTION -->
 <script>
-/* NIGHTFLIX: basic shortcut/right-click deterrent.
-   This cannot hide network requests or stream URLs from a determined user. */
-(function(){
-  document.addEventListener("contextmenu", e => e.preventDefault(), true);
-  document.addEventListener("dragstart", e => e.preventDefault(), true);
-  document.addEventListener("keydown", function(e){
-    const k = String(e.key || "").toLowerCase();
-    if (k === "f12" || (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(k)) || (e.ctrlKey && k === "u")) {
+(function () {
+  "use strict";
+
+  // Block common browser context-menu / source / DevTools shortcuts.
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  }, { capture: true });
+
+  document.addEventListener("dragstart", function (e) {
+    e.preventDefault();
+  }, { capture: true });
+
+  document.addEventListener("keydown", function (e) {
+    var key = String(e.key || "").toLowerCase();
+    var code = String(e.code || "").toLowerCase();
+
+    // F12 / DevTools
+    if (e.key === "F12" || code === "f12") {
       e.preventDefault();
       e.stopPropagation();
+      return false;
     }
+
+    // Ctrl+Shift+I / J / C = DevTools
+    if (e.ctrlKey && e.shiftKey && (key === "i" || key === "j" || key === "c")) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+
+    // Ctrl+U = View Source
+    if (e.ctrlKey && key === "u") {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+
+    // Ctrl+S = Save page (casual deterrent)
+    if (e.ctrlKey && key === "s") {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  }, { capture: true });
+
+  // Discourage text/image selection on ordinary page content while keeping
+  // inputs/search fields usable.
+  var style = document.createElement("style");
+  style.textContent = `
+    body, body * {
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+    input, textarea, select, [contenteditable="true"] {
+      -webkit-user-select: text !important;
+      user-select: text !important;
+      -webkit-touch-callout: default !important;
+    }
+    img, video {
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+
+  // Keep the deterrent active if another script replaces the context menu handler.
+  window.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
   }, true);
 })();
 </script>
+
 </body>
 </html>
+
