@@ -1333,6 +1333,21 @@ updateMuteButton();
 loadStream();
 
 </script>
+
+<script>
+/* NIGHTFLIX: basic shortcut/right-click deterrent.
+   This cannot hide network requests or stream URLs from a determined user. */
+(function(){
+  document.addEventListener("contextmenu", e => e.preventDefault(), true);
+  document.addEventListener("dragstart", e => e.preventDefault(), true);
+  document.addEventListener("keydown", function(e){
+    const k = String(e.key || "").toLowerCase();
+    if (k === "f12" || (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(k)) || (e.ctrlKey && k === "u")) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+})();
+</script>
 </body>
 </html>
-
