@@ -364,21 +364,82 @@
     "universe": ""
   },
     {
-    "id": 74,
-    "title": "Our Sticky Love",
-    "year": 2026,
-    "genre": "Drama",
-    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFbYCWkP0l3jh4XEARyzav51dMU7NkcQFqh5JcXIFYGVRu42BYannbE2tnSlSHBQyaWcMEkh2qvHt9jdjp6vhAoi-YutmG4xP6EIxVaCXSgA&s=10",
-    "description": "",
-    "contentType": "Drama",
-    "watch": "",
-    "download": "https://zealous-audi-rpedit-c2931070.koyeb.app/441166/Our_Sticky_Love_S01E01_1080p_NF_WEB_DL_Hindi_English_ESub_x264_mkv.mkv?hash=AgADei",
-    "photos": [
-      "POSTER/"
-    ],
-    "addedAt": "2026-09-12T10:00:00",
-    "universe": ""
-  },
+  "id": 74,
+  "title": "Our Sticky Love",
+  "year": 2026,
+  "genre": "Drama",
+  "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFbYCWkP0l3jh4XEARyzav51dMU7NkcQFqh5JcXIFYGVRu42BYannbE2tnSlSHBQyaWcMEkh2qvHt9jdjp6vhAoi-YutmG4xP6EIxVaCXSgA&s=10",
+  "description": "",
+  "contentType": "Web Series",
+  "watch": "",
+  "download": "",
+  "episodes": [
+    {
+      "episode": 1,
+      "watch": "",
+      "download": "https://zealous-audi-rpedit-c2931070.koyeb.app/441166/Our_Sticky_Love_S01E01_1080p_NF_WEB_DL_Hindi_English_ESub_x264_mkv.mkv?hash=AgADei"
+    },
+    {
+      "episode": 2,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 3,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 4,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 5,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 6,
+      "watch": "",
+      "download": ""
+    },
+       {
+      "episode": 7,
+      "watch": "",
+      "download": ""
+    },
+       {
+      "episode": 8,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 9,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 10,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 11,
+      "watch": "",
+      "download": ""
+    },
+       {
+      "episode": 12,
+      "watch": "",
+      "download": ""
+    }
+    
+  ],
+  "addedAt": "2026-09-21T10:00:00",
+  "universe": ""
+},
+   
     {
     "id": 73,
     "title": "Cocktail 2",
