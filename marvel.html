@@ -244,21 +244,6 @@ header{
   }
 
 }
-
-/* NIGHTFLIX TV REMOTE FOCUS */
-.movie:focus, .card:focus {
-  outline: 3px solid #ff0000;
-  outline-offset: 3px;
-  transform: translateY(-4px) scale(1.015);
-  scroll-margin: 90px;
-  z-index: 5;
-}
-.movie, .card {
-  transition: transform .18s ease, box-shadow .18s ease, outline-color .18s ease;
-}
-@media (prefers-reduced-motion: reduce) {
-  .movie, .card { transition: none !important; }
-}
 </style> </head><body><header><div class="nav"><a class="logo" href="index.html"> NIGHT<span>FLIX</span></a><a class="home" href="index.html"> ← Back to Home </a></div></header><section class="hero"><div class="eyebrow"> NIGHTFLIX CONTENT LIBRARY </div><h1>Marvel Universe</h1><p> A dedicated Marvel movie library inside NIGHTFLIX. Only titles marked with the <b>Marvel</b> universe are shown here. </p></section><div class="bar"><div class="count" id="count"> Loading... </div><input class="search" id="search" type="search" placeholder="Search Marvel movies..." ></div><main class="grid" id="grid"></main> <script>
 
 const grid = document.getElementById('grid');
@@ -280,41 +265,6 @@ const esc = s =>
     }[c])
   );
 
-
-function enableTVRemoteNavigation(selector){
-  const cards = Array.from(document.querySelectorAll(selector));
-  if (!cards.length) return;
-
-  let columns = 1;
-  const updateColumns = () => {
-    if (!cards[0]) return;
-    const top = cards[0].getBoundingClientRect().top;
-    const sameRow = cards.filter(c => Math.abs(c.getBoundingClientRect().top - top) < 8);
-    columns = Math.max(1, sameRow.length);
-  };
-
-  updateColumns();
-  window.addEventListener("resize", updateColumns, {passive:true});
-
-  cards.forEach((card, index) => {
-    card.addEventListener("keydown", e => {
-      let target = -1;
-      if (e.key === "ArrowRight") target = index + 1;
-      else if (e.key === "ArrowLeft") target = index - 1;
-      else if (e.key === "ArrowDown") target = index + columns;
-      else if (e.key === "ArrowUp") target = index - columns;
-      else if (e.key === "Enter" || e.key === " ") return;
-      else return;
-
-      if (target >= 0 && target < cards.length) {
-        e.preventDefault();
-        cards[target].focus({preventScroll:true});
-        cards[target].scrollIntoView({behavior:"smooth", block:"nearest", inline:"nearest"});
-      }
-    });
-  });
-}
-
 /* RENDER MOVIES */
 function render(){
 
@@ -325,8 +275,6 @@ function render(){
       .toLowerCase()
       .includes(q)
   );
-
-  enableTVRemoteNavigation(".card");
 
   count.textContent =
     `${list.length} Marvel movie${list.length === 1 ? '' : 's'}`;
@@ -416,20 +364,79 @@ fetch('movies.json')
 
   });
 
-</script> 
+</script> <!-- NIGHTFLIX CASUAL DEVTOOLS PROTECTION -->
 <script>
-/* NIGHTFLIX: basic shortcut/right-click deterrent.
-   This cannot hide network requests or stream URLs from a determined user. */
-(function(){
-  document.addEventListener("contextmenu", e => e.preventDefault(), true);
-  document.addEventListener("dragstart", e => e.preventDefault(), true);
-  document.addEventListener("keydown", function(e){
-    const k = String(e.key || "").toLowerCase();
-    if (k === "f12" || (e.ctrlKey && e.shiftKey && ["i","j","c"].includes(k)) || (e.ctrlKey && k === "u")) {
+(function () {
+  "use strict";
+
+  // Block common browser context-menu / source / DevTools shortcuts.
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  }, { capture: true });
+
+  document.addEventListener("dragstart", function (e) {
+    e.preventDefault();
+  }, { capture: true });
+
+  document.addEventListener("keydown", function (e) {
+    var key = String(e.key || "").toLowerCase();
+    var code = String(e.code || "").toLowerCase();
+
+    // F12 / DevTools
+    if (e.key === "F12" || code === "f12") {
       e.preventDefault();
       e.stopPropagation();
+      return false;
     }
+
+    // Ctrl+Shift+I / J / C = DevTools
+    if (e.ctrlKey && e.shiftKey && (key === "i" || key === "j" || key === "c")) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+
+    // Ctrl+U = View Source
+    if (e.ctrlKey && key === "u") {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+
+    // Ctrl+S = Save page (casual deterrent)
+    if (e.ctrlKey && key === "s") {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  }, { capture: true });
+
+  // Discourage text/image selection on ordinary page content while keeping
+  // inputs/search fields usable.
+  var style = document.createElement("style");
+  style.textContent = `
+    body, body * {
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+    input, textarea, select, [contenteditable="true"] {
+      -webkit-user-select: text !important;
+      user-select: text !important;
+      -webkit-touch-callout: default !important;
+    }
+    img, video {
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+    }
+  `;
+  (document.head || document.documentElement).appendChild(style);
+
+  // Keep the deterrent active if another script replaces the context menu handler.
+  window.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
   }, true);
 })();
 </script>
+
 </body></html>
