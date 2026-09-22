@@ -31,11 +31,11 @@ button:focus{outline:3px solid #fff;outline-offset:3px}
 </head>
 <body>
 <div id="player-container">
-<video id="video" playsinline webkit-playsinline preload="auto" controls crossorigin="anonymous"></video>
+<video id="video" playsinline webkit-playsinline preload="auto" controls></video>
 <div id="live-badge"><span id="live-dot"></span>LIVE</div>
 <div id="loading"><div class="spinner"></div><div id="loading-text">Loading stream...</div></div>
 <div id="status"></div>
-<div id="error"><h2>Unable to play stream</h2><p id="error-message">The video stream could not be loaded.</p><button id="retry">Retry</button></div>
+<div id="error"><h2>Unable to play stream</h2><p id="error-message">The video stream could not be played.</p><button id="retry">Retry</button></div>
 <div id="controls">
 <button id="playBtn" class="control-btn" aria-label="Play or Pause">▶</button>
 <button id="muteBtn" class="control-btn" aria-label="Mute">🔊</button>
@@ -81,9 +81,7 @@ function getStreamUrl(){
 function isHlsUrl(url){
     if(!url)return false;
     const lower=url.toLowerCase().split("#")[0];
-
     if(lower.includes(".m3u8"))return true;
-
     if(
         lower.includes("format=m3u8")||
         lower.includes("type=m3u8")||
@@ -92,9 +90,7 @@ function isHlsUrl(url){
         lower.includes("hls=true")||
         lower.includes("hls=1")
     )return true;
-
     if(lower.includes("/manifest/")&&!/\.(mp4|webm|mkv|mov)(\?|$)/i.test(lower))return true;
-
     return false;
 }
 
@@ -133,7 +129,6 @@ function getVideoErrorMessage(){
 function getHlsErrorMessage(data){
     if(!data)return"Unknown HLS error.";
     let message="HLS "+(data.type||"UNKNOWN")+"\n"+(data.details||"UNKNOWN_DETAIL");
-
     if(data.response){
         if(data.response.code)message+="\nHTTP status: "+data.response.code;
         if(data.response.url)message+="\nRequest: "+data.response.url;
@@ -144,7 +139,6 @@ function getHlsErrorMessage(data){
     if(data.error&&data.error.message)message+="\nError: "+data.error.message;
     if(data.reason)message+="\nReason: "+data.reason;
     if(data.url)message+="\nURL: "+data.url;
-
     return message;
 }
 
@@ -162,7 +156,6 @@ function resetVideo(){
 
 function loadStream(){
     if(isLoadingStream)return;
-
     isLoadingStream=true;
     clearTimeout(reconnectTimer);
     destroyHls();
@@ -179,7 +172,6 @@ function loadStream(){
         return;
     }
 
-    console.log("NIGHTFLIX STREAM:",currentStreamUrl);
     setDebug(currentStreamUrl);
 
     if(isHlsUrl(currentStreamUrl)){
@@ -195,24 +187,21 @@ function loadHls(){
     showLoading("Loading HLS stream...");
     hlsRecoveryAttempts=0;
 
+    if(video.canPlayType("application/vnd.apple.mpegurl")){
+        video.src=currentStreamUrl;
+        video.load();
+        playVideo();
+        isLoadingStream=false;
+        return;
+    }
+
     if(window.Hls&&Hls.isSupported()){
         hls=new Hls({
-            enableWorker:false,
+            enableWorker:true,
             lowLatencyMode:false,
-            backBufferLength:30,
-            maxBufferLength:30,
-            maxMaxBufferLength:60,
-            maxBufferSize:60*1000*1000,
-            liveSyncDurationCount:3,
-            liveMaxLatencyDurationCount:8,
-            manifestLoadingMaxRetry:2,
-            levelLoadingMaxRetry:2,
-            fragLoadingMaxRetry:3,
-            manifestLoadingRetryDelay:1000,
-            levelLoadingRetryDelay:1000,
-            fragLoadingRetryDelay:1000,
-            startFragPrefetch:true,
-            capLevelToPlayerSize:true
+            xhrSetup: function(xhr, url) {
+                xhr.withCredentials = false;
+            }
         });
 
         hls.on(Hls.Events.MEDIA_ATTACHED,function(){
@@ -223,8 +212,7 @@ function loadHls(){
             }
         });
 
-        hls.on(Hls.Events.MANIFEST_PARSED,function(event,data){
-            console.log("HLS manifest parsed:",data);
+        hls.on(Hls.Events.MANIFEST_PARSED,function(){
             isLoadingStream=false;
             reconnectAttempts=0;
             hlsRecoveryAttempts=0;
@@ -240,26 +228,18 @@ function loadHls(){
             if(video.readyState>=2)hideLoading();
         });
 
-        hls.on(Hls.Events.LEVEL_LOADED,function(){
-            if(video.readyState>=2)hideLoading();
-        });
-
         hls.on(Hls.Events.ERROR,function(event,data){
             console.log("HLS ERROR:",data);
             lastHlsError=getHlsErrorMessage(data);
             setDebug(lastHlsError);
 
-            if(!data.fatal){
-                if(data.details===Hls.ErrorDetails.BUFFER_STALLED_ERROR)showStatus("Buffering...");
-                return;
-            }
+            if(!data.fatal) return;
 
             if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
-                if(hlsRecoveryAttempts<2&&hls){
-                    hlsRecoveryAttempts++;
-                    showStatus("Recovering stream...");
-                    try{hls.startLoad();return}
-                    catch(e){console.log("HLS startLoad failed:",e)}
+                if(data.response && (data.response.code === 0 || data.response.code === 403)){
+                    isLoadingStream=false;
+                    showError("Stream server blocked request (CORS/403 issue).\nServer browser requests ko direct allow nahi kar raha hai.");
+                    return;
                 }
                 scheduleReconnect("Network error");
                 return;
@@ -268,34 +248,17 @@ function loadHls(){
             if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
                 if(hlsRecoveryAttempts<2&&hls){
                     hlsRecoveryAttempts++;
-                    showStatus("Recovering video...");
-                    try{hls.recoverMediaError();return}
-                    catch(e){console.log("Media recovery failed:",e)}
+                    try{hls.recoverMediaError();return}catch(e){}
                 }
                 scheduleReconnect("Media error");
                 return;
             }
 
             isLoadingStream=false;
-            showError(
-                "HLS stream failed.\n\n"+lastHlsError+
-                "\n\nPossible causes:\n"+
-                "• CORS restriction\n• HTTP 403/404\n• Expired stream URL\n"+
-                "• Server blocked browser request\n• Invalid HLS manifest"
-            );
+            showError("HLS playback failed due to restrictions.");
         });
 
         hls.attachMedia(video);
-        return;
-    }
-
-    if(
-        video.canPlayType("application/vnd.apple.mpegurl")||
-        video.canPlayType("application/x-mpegURL")
-    ){
-        video.src=currentStreamUrl;
-        video.load();
-        isLoadingStream=false;
         return;
     }
 
@@ -314,17 +277,13 @@ function scheduleReconnect(reason){
     clearTimeout(reconnectTimer);
     reconnectAttempts++;
 
-    if(reconnectAttempts>5){
+    if(reconnectAttempts>3){
         isLoadingStream=false;
-        showError(
-            "Unable to reconnect.\n\n"+(reason||"Stream error")+
-            "\n\n"+(lastHlsError||"")+
-            "\n\nIf the URL works directly but not here, the server may be blocking browser/CORS requests."
-        );
+        showError("Stream load nahi ho pa rahi hai. Provider ne CORS block kiya hua hai.");
         return;
     }
 
-    showLoading("Reconnecting... ("+reconnectAttempts+"/5)");
+    showLoading("Reconnecting... ("+reconnectAttempts+"/3)");
     reconnectTimer=setTimeout(function(){
         isLoadingStream=false;
         loadStream();
@@ -332,35 +291,25 @@ function scheduleReconnect(reason){
 }
 
 function playVideo(){
-    video.muted=false;
+    video.muted=true;
     const promise=video.play();
 
     if(promise&&typeof promise.then==="function"){
         promise.then(function(){
             hideLoading();
             updatePlayButton();
+            updateMuteButton();
         }).catch(function(error){
-            console.log("Autoplay blocked:",error);
-            video.muted=true;
-
-            video.play().then(function(){
-                hideLoading();
-                updatePlayButton();
-                updateMuteButton();
-                showStatus("Press OK to enable sound");
-            }).catch(function(){
-                hideLoading();
-                updatePlayButton();
-                showStatus("Press OK / Play to start");
-            });
+            hideLoading();
+            updatePlayButton();
+            showStatus("Click Play button to start");
         });
     }
 }
 
 function togglePlay(){
     if(video.paused){
-        const p=video.play();
-        if(p)p.then(updatePlayButton).catch(()=>showStatus("Press OK again to play"));
+        video.play().then(updatePlayButton).catch(()=>showStatus("Play failed"));
     }else{
         video.pause();
         updatePlayButton();
@@ -370,168 +319,32 @@ function updatePlayButton(){playBtn.textContent=video.paused?"▶":"⏸"}
 function toggleMute(){video.muted=!video.muted;updateMuteButton()}
 function updateMuteButton(){muteBtn.textContent=(video.muted||video.volume===0)?"🔇":"🔊"}
 
-function volumeUp(){
-    video.muted=false;
-    video.volume=Math.min(1,video.volume+0.1);
-    updateMuteButton();
-    showStatus("Volume "+Math.round(video.volume*100)+"%");
-}
-function volumeDown(){
-    video.muted=false;
-    video.volume=Math.max(0,video.volume-0.1);
-    updateMuteButton();
-    showStatus("Volume "+Math.round(video.volume*100)+"%");
-}
-
 function toggleFullscreen(){
     const container=document.getElementById("player-container");
-
     if(document.fullscreenElement||document.webkitFullscreenElement){
         if(document.exitFullscreen)document.exitFullscreen();
         else if(document.webkitExitFullscreen)document.webkitExitFullscreen();
-        return;
+    }else{
+        if(container.requestFullscreen)container.requestFullscreen();
+        else if(container.webkitRequestFullscreen)container.webkitRequestFullscreen();
     }
-
-    if(container.requestFullscreen)container.requestFullscreen();
-    else if(container.webkitRequestFullscreen)container.webkitRequestFullscreen();
-    else if(video.webkitEnterFullscreen)video.webkitEnterFullscreen();
 }
-
-document.addEventListener("keydown",function(e){
-    const key=String(e.key||"");
-    const lower=key.toLowerCase();
-
-    if(key==="Enter"||key==="NumpadEnter"||e.keyCode===13){
-        e.preventDefault();
-
-        if(video.muted){
-            video.muted=false;
-            updateMuteButton();
-            if(video.paused)togglePlay();
-            showStatus("Sound ON");
-            return;
-        }
-        togglePlay();
-        return;
-    }
-
-    if(key===" "){e.preventDefault();togglePlay();return}
-    if(key==="MediaPlayPause"||e.keyCode===179){e.preventDefault();togglePlay();return}
-    if(key==="ArrowUp"){e.preventDefault();volumeUp();return}
-    if(key==="ArrowDown"){e.preventDefault();volumeDown();return}
-
-    if(key==="ArrowLeft"||key==="ArrowRight"){
-        if(Number.isFinite(video.duration)){
-            e.preventDefault();
-            const amount=key==="ArrowLeft"?-10:10;
-            video.currentTime=Math.max(0,Math.min(video.duration,video.currentTime+amount));
-            showStatus(amount<0?"-10 seconds":"+10 seconds");
-        }
-        return;
-    }
-
-    if(lower==="f"){e.preventDefault();toggleFullscreen();return}
-
-    if(key==="Escape"||key==="Backspace"||key==="BrowserBack"||e.keyCode===4){
-        e.preventDefault();
-
-        if(document.fullscreenElement||document.webkitFullscreenElement)toggleFullscreen();
-        else window.history.back();
-    }
-});
 
 playBtn.addEventListener("click",togglePlay);
 muteBtn.addEventListener("click",toggleMute);
 fullscreenBtn.addEventListener("click",toggleFullscreen);
-
 retryButton.addEventListener("click",function(){
     reconnectAttempts=0;
-    hlsRecoveryAttempts=0;
     isLoadingStream=false;
-    lastHlsError="";
     loadStream();
 });
 
-video.addEventListener("play",function(){updatePlayButton();hideLoading()});
+video.addEventListener("play",updatePlayButton);
 video.addEventListener("pause",updatePlayButton);
-video.addEventListener("waiting",function(){showStatus("Buffering...")});
-video.addEventListener("playing",function(){
-    hideLoading();
-    statusBox.style.display="none";
-    liveBadge.style.display="block";
-});
-video.addEventListener("canplay",hideLoading);
-video.addEventListener("loadedmetadata",function(){
-    hideLoading();
-    liveBadge.style.display="block";
-});
-video.addEventListener("stalled",function(){showStatus("Stream buffering...")});
-
-video.addEventListener("error",function(){
-    console.log("HTML5 VIDEO ERROR:",video.error);
-
-    if(!hls){
-        const message=getVideoErrorMessage();
-        setDebug(message);
-        showError(
-            message+
-            "\n\nPossible causes:\n"+
-            "• Unsupported format\n• CORS restriction\n• HTTP 403/404\n"+
-            "• Expired URL\n• Server blocked browser request"
-        );
-    }
-});
-
+video.addEventListener("playing",()=>{hideLoading();liveBadge.style.display="block";});
 video.addEventListener("volumechange",updateMuteButton);
-document.addEventListener("contextmenu",e=>e.preventDefault());
 
-video.volume=1;
-video.muted=false;
-updatePlayButton();
-updateMuteButton();
 loadStream();
-</script>
-
-<script>
-(function(){
-    "use strict";
-
-    document.addEventListener("dragstart",function(e){e.preventDefault()},{capture:true});
-
-    document.addEventListener("keydown",function(e){
-        const key=String(e.key||"").toLowerCase();
-        const code=String(e.code||"").toLowerCase();
-
-        if(
-            e.key==="F12"||code==="f12"||
-            (e.ctrlKey&&e.shiftKey&&(key==="i"||key==="j"||key==="c"))||
-            (e.ctrlKey&&key==="u")||
-            (e.ctrlKey&&key==="s")
-        ){
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        }
-    },{capture:true});
-
-    const style=document.createElement("style");
-    style.textContent=`
-        body,body *{
-            -webkit-user-select:none!important;
-            user-select:none!important;
-            -webkit-touch-callout:none!important;
-        }
-        input,textarea,select,[contenteditable="true"]{
-            -webkit-user-select:text!important;
-            user-select:text!important;
-        }
-        img,video{
-            -webkit-user-drag:none!important;
-            user-drag:none!important;
-        }
-    `;
-    document.head.appendChild(style);
-})();
 </script>
 </body>
 </html>
