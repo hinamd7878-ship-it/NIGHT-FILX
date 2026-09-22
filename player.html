@@ -60,10 +60,11 @@ const muteBtn=document.getElementById("muteBtn");
 const fullscreenBtn=document.getElementById("fullscreenBtn");
 const debugBox=document.getElementById("debug");
 
-let hls=null,currentStreamUrl="",reconnectTimer=null,reconnectAttempts=0;
+let hls=null,rawStreamUrl="",currentStreamUrl="",reconnectTimer=null,reconnectAttempts=0;
 let hlsRecoveryAttempts=0,isLoadingStream=false,lastHlsError="",streamType="";
+let isProxyActive=false;
 
-function getStreamUrl(){
+function getRawStreamUrl(){
     const params=new URLSearchParams(window.location.search);
     let url=params.get("url")||params.get("src")||params.get("video")||params.get("stream");
 
@@ -76,6 +77,10 @@ function getStreamUrl(){
     }catch(e){console.log("URL decode skipped:",e)}
 
     return url.trim();
+}
+
+function applyCorsProxy(url){
+    return "https://corsproxy.io/?" + encodeURIComponent(url);
 }
 
 function isHlsUrl(url){
@@ -154,7 +159,7 @@ function resetVideo(){
     try{video.removeAttribute("src");video.load()}catch(e){}
 }
 
-function loadStream(){
+function loadStream(useProxyFallback=false){
     if(isLoadingStream)return;
     isLoadingStream=true;
     clearTimeout(reconnectTimer);
@@ -162,19 +167,26 @@ function loadStream(){
     resetVideo();
     hideError();
     liveBadge.style.display="none";
-    showLoading("Connecting to stream...");
+    showLoading(useProxyFallback ? "Connecting via CORS Proxy..." : "Connecting to stream...");
 
-    currentStreamUrl=getStreamUrl();
+    rawStreamUrl=getRawStreamUrl();
 
-    if(!currentStreamUrl){
+    if(!rawStreamUrl){
         isLoadingStream=false;
         showError("No stream URL was provided.");
         return;
     }
 
+    if(useProxyFallback || new URLSearchParams(window.location.search).get("proxy")==="true"){
+        isProxyActive=true;
+        currentStreamUrl=applyCorsProxy(rawStreamUrl);
+    }else{
+        currentStreamUrl=rawStreamUrl;
+    }
+
     setDebug(currentStreamUrl);
 
-    if(isHlsUrl(currentStreamUrl)){
+    if(isHlsUrl(rawStreamUrl)){
         streamType="HLS";
         loadHls();
     }else{
@@ -184,10 +196,10 @@ function loadStream(){
 }
 
 function loadHls(){
-    showLoading("Loading HLS stream...");
+    showLoading(isProxyActive ? "Loading HLS via Proxy..." : "Loading HLS stream...");
     hlsRecoveryAttempts=0;
 
-    if(video.canPlayType("application/vnd.apple.mpegurl")){
+    if(!isProxyActive && video.canPlayType("application/vnd.apple.mpegurl")){
         video.src=currentStreamUrl;
         video.load();
         playVideo();
@@ -220,7 +232,7 @@ function loadHls(){
             hideLoading();
             hideError();
             liveBadge.style.display="block";
-            showStatus("Stream connected");
+            showStatus(isProxyActive ? "Connected via Proxy" : "Stream connected");
             playVideo();
         });
 
@@ -236,9 +248,10 @@ function loadHls(){
             if(!data.fatal) return;
 
             if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
-                if(data.response && (data.response.code === 0 || data.response.code === 403)){
+                if(!isProxyActive){
                     isLoadingStream=false;
-                    showError("Stream server blocked request (CORS/403 issue).\nServer browser requests ko direct allow nahi kar raha hai.");
+                    showStatus("CORS detected, switching to proxy...");
+                    loadStream(true);
                     return;
                 }
                 scheduleReconnect("Network error");
@@ -255,7 +268,7 @@ function loadHls(){
             }
 
             isLoadingStream=false;
-            showError("HLS playback failed due to restrictions.");
+            showError("HLS playback failed. Server restrictions active.");
         });
 
         hls.attachMedia(video);
@@ -279,14 +292,14 @@ function scheduleReconnect(reason){
 
     if(reconnectAttempts>3){
         isLoadingStream=false;
-        showError("Stream load nahi ho pa rahi hai. Provider ne CORS block kiya hua hai.");
+        showError("Stream load nahi ho pa rahi hai. Provider ne fully block kiya hua hai.");
         return;
     }
 
     showLoading("Reconnecting... ("+reconnectAttempts+"/3)");
     reconnectTimer=setTimeout(function(){
         isLoadingStream=false;
-        loadStream();
+        loadStream(isProxyActive);
     },2000);
 }
 
@@ -336,7 +349,8 @@ fullscreenBtn.addEventListener("click",toggleFullscreen);
 retryButton.addEventListener("click",function(){
     reconnectAttempts=0;
     isLoadingStream=false;
-    loadStream();
+    isProxyActive=false;
+    loadStream(false);
 });
 
 video.addEventListener("play",updatePlayButton);
@@ -344,7 +358,7 @@ video.addEventListener("pause",updatePlayButton);
 video.addEventListener("playing",()=>{hideLoading();liveBadge.style.display="block";});
 video.addEventListener("volumechange",updateMuteButton);
 
-loadStream();
+loadStream(false);
 </script>
 </body>
 </html>
