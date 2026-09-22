@@ -31,7 +31,7 @@ button:focus{outline:3px solid #fff;outline-offset:3px}
 </head>
 <body>
 <div id="player-container">
-<video id="video" playsinline webkit-playsinline preload="auto" controls></video>
+<video id="video" playsinline webkit-playsinline preload="auto"></video>
 <div id="live-badge"><span id="live-dot"></span>LIVE</div>
 <div id="loading"><div class="spinner"></div><div id="loading-text">Loading stream...</div></div>
 <div id="status"></div>
@@ -62,7 +62,7 @@ const debugBox=document.getElementById("debug");
 
 let hls=null,rawStreamUrl="",currentStreamUrl="",reconnectTimer=null,reconnectAttempts=0;
 let hlsRecoveryAttempts=0,isLoadingStream=false,lastHlsError="",streamType="";
-let isProxyActive=false;
+let useProxy=false;
 
 function getRawStreamUrl(){
     const params=new URLSearchParams(window.location.search);
@@ -79,8 +79,10 @@ function getRawStreamUrl(){
     return url.trim();
 }
 
-function applyCorsProxy(url){
-    return "https://corsproxy.io/?" + encodeURIComponent(url);
+function proxyUrl(target){
+    if(!target) return target;
+    if(target.startsWith("https://corsproxy.io/?")) return target;
+    return "https://corsproxy.io/?" + encodeURIComponent(target);
 }
 
 function isHlsUrl(url){
@@ -120,33 +122,6 @@ function showStatus(message){
 }
 function setDebug(message){debugBox.textContent=message||""}
 
-function getVideoErrorMessage(){
-    if(!video.error)return"Unknown HTML5 video error.";
-    switch(video.error.code){
-        case MediaError.MEDIA_ERR_ABORTED:return"Playback was aborted.";
-        case MediaError.MEDIA_ERR_NETWORK:return"Network error while loading the video.";
-        case MediaError.MEDIA_ERR_DECODE:return"The browser could not decode this video/stream.";
-        case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:return"The video format or stream is not supported.";
-        default:return"Unknown video error (code "+video.error.code+").";
-    }
-}
-
-function getHlsErrorMessage(data){
-    if(!data)return"Unknown HLS error.";
-    let message="HLS "+(data.type||"UNKNOWN")+"\n"+(data.details||"UNKNOWN_DETAIL");
-    if(data.response){
-        if(data.response.code)message+="\nHTTP status: "+data.response.code;
-        if(data.response.url)message+="\nRequest: "+data.response.url;
-    }
-    if(data.networkDetails&&typeof data.networkDetails.status==="number"){
-        message+="\nNetwork status: "+data.networkDetails.status;
-    }
-    if(data.error&&data.error.message)message+="\nError: "+data.error.message;
-    if(data.reason)message+="\nReason: "+data.reason;
-    if(data.url)message+="\nURL: "+data.url;
-    return message;
-}
-
 function destroyHls(){
     if(hls){
         try{hls.destroy()}catch(e){console.log("HLS destroy error:",e)}
@@ -159,7 +134,7 @@ function resetVideo(){
     try{video.removeAttribute("src");video.load()}catch(e){}
 }
 
-function loadStream(useProxyFallback=false){
+function loadStream(enableProxy=false){
     if(isLoadingStream)return;
     isLoadingStream=true;
     clearTimeout(reconnectTimer);
@@ -167,9 +142,9 @@ function loadStream(useProxyFallback=false){
     resetVideo();
     hideError();
     liveBadge.style.display="none";
-    showLoading(useProxyFallback ? "Connecting via CORS Proxy..." : "Connecting to stream...");
 
-    rawStreamUrl=getRawStreamUrl();
+    useProxy = enableProxy || (new URLSearchParams(window.location.search).get("proxy") === "true");
+    rawStreamUrl = getRawStreamUrl();
 
     if(!rawStreamUrl){
         isLoadingStream=false;
@@ -177,13 +152,7 @@ function loadStream(useProxyFallback=false){
         return;
     }
 
-    if(useProxyFallback || new URLSearchParams(window.location.search).get("proxy")==="true"){
-        isProxyActive=true;
-        currentStreamUrl=applyCorsProxy(rawStreamUrl);
-    }else{
-        currentStreamUrl=rawStreamUrl;
-    }
-
+    currentStreamUrl = useProxy ? proxyUrl(rawStreamUrl) : rawStreamUrl;
     setDebug(currentStreamUrl);
 
     if(isHlsUrl(rawStreamUrl)){
@@ -196,35 +165,33 @@ function loadStream(useProxyFallback=false){
 }
 
 function loadHls(){
-    showLoading(isProxyActive ? "Loading HLS via Proxy..." : "Loading HLS stream...");
+    showLoading(useProxy ? "Connecting via Proxy..." : "Loading HLS stream...");
     hlsRecoveryAttempts=0;
 
-    if(!isProxyActive && video.canPlayType("application/vnd.apple.mpegurl")){
-        video.src=currentStreamUrl;
-        video.load();
-        playVideo();
-        isLoadingStream=false;
-        return;
-    }
-
-    if(window.Hls&&Hls.isSupported()){
-        hls=new Hls({
-            enableWorker:true,
-            lowLatencyMode:false,
+    // HLS.js supported browsers (Desktop + Android Chrome) should always use HLS.js
+    if(window.Hls && Hls.isSupported()){
+        hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: false,
             xhrSetup: function(xhr, url) {
                 xhr.withCredentials = false;
+                // If proxy is active and chunk URL is direct, route through proxy
+                if(useProxy && !url.startsWith("https://corsproxy.io/?")){
+                    xhr.open('GET', proxyUrl(url), true);
+                }
             }
         });
 
-        hls.on(Hls.Events.MEDIA_ATTACHED,function(){
-            try{hls.loadSource(currentStreamUrl)}
-            catch(e){
+        hls.on(Hls.Events.MEDIA_ATTACHED, function(){
+            try {
+                hls.loadSource(currentStreamUrl);
+            } catch(e) {
                 isLoadingStream=false;
                 showError("Could not load HLS source.\n\n"+e.message);
             }
         });
 
-        hls.on(Hls.Events.MANIFEST_PARSED,function(){
+        hls.on(Hls.Events.MANIFEST_PARSED, function(){
             isLoadingStream=false;
             reconnectAttempts=0;
             hlsRecoveryAttempts=0;
@@ -232,25 +199,24 @@ function loadHls(){
             hideLoading();
             hideError();
             liveBadge.style.display="block";
-            showStatus(isProxyActive ? "Connected via Proxy" : "Stream connected");
+            showStatus(useProxy ? "Connected via Proxy" : "Stream connected");
             playVideo();
         });
 
-        hls.on(Hls.Events.FRAG_LOADED,function(){
-            if(video.readyState>=2)hideLoading();
+        hls.on(Hls.Events.FRAG_LOADED, function(){
+            if(video.readyState>=2) hideLoading();
         });
 
-        hls.on(Hls.Events.ERROR,function(event,data){
-            console.log("HLS ERROR:",data);
-            lastHlsError=getHlsErrorMessage(data);
-            setDebug(lastHlsError);
+        hls.on(Hls.Events.ERROR, function(event, data){
+            console.log("HLS ERROR:", data);
+            setDebug("HLS error: " + (data.details || ""));
 
             if(!data.fatal) return;
 
-            if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
-                if(!isProxyActive){
+            if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
+                if(!useProxy){
                     isLoadingStream=false;
-                    showStatus("CORS detected, switching to proxy...");
+                    showStatus("CORS detected, retrying with Proxy...");
                     loadStream(true);
                     return;
                 }
@@ -258,20 +224,29 @@ function loadHls(){
                 return;
             }
 
-            if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
-                if(hlsRecoveryAttempts<2&&hls){
+            if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
+                if(hlsRecoveryAttempts < 2 && hls){
                     hlsRecoveryAttempts++;
-                    try{hls.recoverMediaError();return}catch(e){}
+                    try{hls.recoverMediaError(); return;}catch(e){}
                 }
                 scheduleReconnect("Media error");
                 return;
             }
 
             isLoadingStream=false;
-            showError("HLS playback failed. Server restrictions active.");
+            showError("Stream error. Server restricted access.");
         });
 
         hls.attachMedia(video);
+        return;
+    }
+
+    // Native fallback for Apple Safari (iOS/macOS)
+    if(video.canPlayType("application/vnd.apple.mpegurl")){
+        video.src = currentStreamUrl;
+        video.load();
+        playVideo();
+        isLoadingStream=false;
         return;
     }
 
@@ -281,7 +256,7 @@ function loadHls(){
 
 function loadNormalVideo(){
     showLoading("Loading video...");
-    video.src=currentStreamUrl;
+    video.src = currentStreamUrl;
     video.load();
     isLoadingStream=false;
 }
@@ -290,24 +265,24 @@ function scheduleReconnect(reason){
     clearTimeout(reconnectTimer);
     reconnectAttempts++;
 
-    if(reconnectAttempts>3){
+    if(reconnectAttempts > 3){
         isLoadingStream=false;
-        showError("Stream load nahi ho pa rahi hai. Provider ne fully block kiya hua hai.");
+        showError("Stream load nahi ho pa rahi hai. Provider ne source block kiya hua hai.");
         return;
     }
 
     showLoading("Reconnecting... ("+reconnectAttempts+"/3)");
     reconnectTimer=setTimeout(function(){
         isLoadingStream=false;
-        loadStream(isProxyActive);
-    },2000);
+        loadStream(useProxy);
+    }, 2000);
 }
 
 function playVideo(){
     video.muted=true;
     const promise=video.play();
 
-    if(promise&&typeof promise.then==="function"){
+    if(promise && typeof promise.then==="function"){
         promise.then(function(){
             hideLoading();
             updatePlayButton();
@@ -349,7 +324,7 @@ fullscreenBtn.addEventListener("click",toggleFullscreen);
 retryButton.addEventListener("click",function(){
     reconnectAttempts=0;
     isLoadingStream=false;
-    isProxyActive=false;
+    useProxy=false;
     loadStream(false);
 });
 
@@ -357,6 +332,13 @@ video.addEventListener("play",updatePlayButton);
 video.addEventListener("pause",updatePlayButton);
 video.addEventListener("playing",()=>{hideLoading();liveBadge.style.display="block";});
 video.addEventListener("volumechange",updateMuteButton);
+
+video.addEventListener("error", function(){
+    if(!useProxy && streamType==="HLS"){
+        isLoadingStream=false;
+        loadStream(true);
+    }
+});
 
 loadStream(false);
 </script>
