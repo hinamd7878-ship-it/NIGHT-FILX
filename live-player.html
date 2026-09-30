@@ -191,7 +191,21 @@
             font-size: 14px;
             z-index: 20;
         }
-    </style>
+    
+/* AUTO-HIDE CUSTOM PLAYER CONTROLS */
+#controls{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+  transition:opacity .25s ease, visibility .25s ease, transform .25s ease;
+}
+#player-container.controls-hidden #controls{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateX(-50%) translateY(12px);
+}
+</style>
 </head>
 
 <body>
@@ -282,106 +296,28 @@ const fullscreenBtn = document.getElementById("fullscreenBtn");
 
 let hls = null;
 let currentStreamUrl = "";
-let reconnectTimer = null;
-let reconnectAttempts = 0;
+let controlsHideTimer = null;
+const playerContainer = document.getElementById("player-container");
 
-
-/* ============================================================
-   GET STREAM URL
-   ============================================================ */
-
-function getStreamUrl() {
-
-    const params = new URLSearchParams(window.location.search);
-
-    const url =
-        params.get("url") ||
-        params.get("src") ||
-        params.get("video") ||
-        params.get("stream");
-
-    if (url) {
-        return url;
-    }
-
-    return "";
-}
-
-
-/* ============================================================
-   UI
-   ============================================================ */
-
-function showLoading(message = "Loading stream...") {
-
-    loadingText.textContent = message;
-    loading.style.display = "flex";
-    errorBox.style.display = "none";
-}
-
-
-function hideLoading() {
-
-    loading.style.display = "none";
-}
-
-
-function showError(message) {
-
-    hideLoading();
-
-    errorMessage.textContent = message;
-
-    errorBox.style.display = "flex";
-
-    liveBadge.style.display = "none";
-}
-
-
-function hideError() {
-
-    errorBox.style.display = "none";
-}
-
-
-function showStatus(message) {
-
-    statusBox.textContent = message;
-
-    statusBox.style.display = "block";
-
-    clearTimeout(window.statusTimer);
-
-    window.statusTimer = setTimeout(() => {
-
-        statusBox.style.display = "none";
-
-    }, 1800);
-}
-
-
-/* ============================================================
-   DESTROY HLS
-   ============================================================ */
-
-function destroyHls() {
-
-    if (hls) {
-
-        try {
-            hls.destroy();
-        } catch (e) {
-            console.log("HLS destroy error:", e);
-        }
-
-        hls = null;
+function showControls(){
+    playerContainer.classList.remove("controls-hidden");
+    clearTimeout(controlsHideTimer);
+    if(!video.paused){
+        controlsHideTimer = setTimeout(hideControls, 10000);
     }
 }
 
+function hideControls(){
+    if(video.paused) return;
+    playerContainer.classList.add("controls-hidden");
+}
 
-/* ============================================================
-   LOAD STREAM
-   ============================================================ */
+function scheduleControlsHide(){
+    clearTimeout(controlsHideTimer);
+    if(!video.paused){
+        controlsHideTimer = setTimeout(hideControls, 10000);
+    }
+}
 
 function loadStream() {
 
@@ -928,6 +864,8 @@ document.addEventListener(
     "keydown",
     function (e) {
 
+        showControls();
+
         console.log(
             "Remote key:",
             e.key,
@@ -1135,8 +1073,24 @@ document.addEventListener(
 
 
 /* ============================================================
+   AUTO-HIDE / TOUCH CONTROLS
+   ============================================================ */
+["pointerdown","touchstart","mousemove"].forEach(function(type){
+    playerContainer.addEventListener(type, function(){
+        showControls();
+    }, {passive:true});
+});
+
+playerContainer.addEventListener("click", function(e){
+    if(e.target === playerContainer || e.target === video){
+        showControls();
+    }
+});
+
+/* ============================================================
    BUTTON EVENTS
    ============================================================ */
+
 
 playBtn.addEventListener(
     "click",
@@ -1189,8 +1143,9 @@ video.addEventListener(
     function () {
 
         updatePlayButton();
-
         hideLoading();
+        showControls();
+        scheduleControlsHide();
 
     }
 );
@@ -1201,6 +1156,7 @@ video.addEventListener(
     function () {
 
         updatePlayButton();
+        showControls();
 
     }
 );
@@ -1325,8 +1281,12 @@ document.addEventListener(
    ============================================================ */
 
 video.volume = 1;
-
 video.muted = false;
+video.playsInline = true;
+video.setAttribute("playsinline","");
+video.setAttribute("webkit-playsinline","");
+video.setAttribute("x5-playsinline","true");
+video.setAttribute("x5-video-player-type","h5");
 
 updatePlayButton();
 
@@ -1412,4 +1372,3 @@ loadStream();
 
 </body>
 </html>
-
