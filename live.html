@@ -253,52 +253,77 @@ header{
 }
 
 /* TV ACTION BUTTONS */
-
 .channel-actions{
-  display:flex;
-  gap:6px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
   margin-top:10px;
 }
 
 .tv-btn{
-  flex:1;
-  text-align:center;
-  padding:6px 4px;
+  min-height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:7px 5px;
   font-size:10px;
-  font-weight:800;
-  border-radius:5px;
+  font-weight:850;
+  border-radius:7px;
   text-decoration:none;
   outline:none;
   cursor:pointer;
-  transition:.15s;
-  display:inline-block;
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
 }
 
 .btn-player{
-  background:rgba(229,9,20,0.25);
+  background:#e50914;
   border:1px solid #e50914;
   color:#fff;
+  box-shadow:0 5px 16px rgba(229,9,20,.18);
+}
+
+.btn-player:hover{
+  background:#f6121d;
 }
 
 .btn-direct{
-  background:rgba(255,255,255,0.12);
-  border:1px solid rgba(255,255,255,0.2);
+  background:#171c25;
+  border:1px solid #3a4352;
   color:#fff;
 }
 
-.btn-vlc{
-  background:#e65100;
-  border:1px solid #ff7043;
-  color:#fff;
+.btn-direct:hover{
+  background:#222936;
+  border-color:#596577;
 }
 
-/* TV FOCUS EFFECT (BUTTONS) */
+/* TV FOCUS EFFECT */
+.card:focus,
+.card.tv-focused{
+  transform:scale(1.035);
+}
+
 .tv-btn:focus{
-  transform:scale(1.1);
-  background:#ffcc00 !important;
-  color:#000 !important;
+  transform:scale(1.045);
+  background:#e50914 !important;
+  color:#fff !important;
   border-color:#fff !important;
-  box-shadow:0 0 12px #ffcc00;
+  box-shadow:0 0 0 3px rgba(229,9,20,.32),0 8px 20px rgba(0,0,0,.45);
+  outline:none;
+}
+
+.grid{
+  scroll-behavior:smooth;
+}
+
+.card{
+  will-change:transform;
+  scroll-margin-top:95px;
+  scroll-margin-bottom:95px;
 }
 
 /* EMPTY */
@@ -447,9 +472,6 @@ async function loadLiveChannels(){
               <a href="${safe(stream)}" target="_blank" class="tv-btn btn-direct" tabindex="0" title="Direct Stream">
                 🔗 Direct
               </a>
-              <a href="vlc://${safe(stream)}" class="tv-btn btn-vlc" tabindex="0" title="VLC Player">
-                VLC
-              </a>
             </div>
           </div>
         </article>
@@ -474,15 +496,23 @@ async function loadLiveChannels(){
       if(cards.length < 2) return 1;
       const firstTop = cards[0].getBoundingClientRect().top;
       const count = cards.filter(card =>
-        Math.abs(card.getBoundingClientRect().top - firstTop) <= 10
+        Math.abs(card.getBoundingClientRect().top - firstTop) <= 12
       ).length;
       return Math.max(1, count);
     }
 
     function smoothFocus(elem){
       if(!elem) return;
+
       elem.focus({preventScroll:true});
-      elem.scrollIntoView({behavior:"smooth", block:"nearest", inline:"nearest"});
+
+      requestAnimationFrame(()=>{
+        elem.scrollIntoView({
+          behavior:"smooth",
+          block:"center",
+          inline:"nearest"
+        });
+      });
     }
 
     // Har card ke events
