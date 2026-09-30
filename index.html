@@ -1111,6 +1111,99 @@ footer{
   }
 }
 
+
+/* =========================
+   TV SMOOTH FOCUS
+========================= */
+.movie{
+  will-change:transform;
+  scroll-margin-top:110px;
+  transform-origin:center center;
+}
+.movie:focus,
+.movie.tv-focused{
+  outline:3px solid var(--accent);
+  outline-offset:3px;
+  border-color:var(--accent);
+  transform:scale(1.035);
+  box-shadow:0 14px 40px rgba(0,0,0,.58);
+  z-index:8;
+}
+.grid{
+  scroll-behavior:smooth;
+}
+
+/* =========================
+   NIGHTFLIX START ANIMATION
+========================= */
+#nightflix-splash{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+  overflow:hidden;
+  animation:nfSplashOut .75s ease 2.15s forwards;
+}
+#nightflix-splash::before{
+  content:"";
+  position:absolute;
+  width:52vw;
+  height:52vw;
+  max-width:620px;
+  max-height:620px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(229,9,20,.24) 0%,rgba(229,9,20,.08) 35%,transparent 70%);
+  filter:blur(8px);
+  animation:nfGlow 1.9s ease-out forwards;
+}
+.nf-splash-logo{
+  position:relative;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(42px,9vw,100px);
+  font-weight:950;
+  letter-spacing:clamp(2px,1vw,10px);
+  color:#fff;
+  text-shadow:0 0 28px rgba(229,9,20,.45);
+  transform:scale(.72);
+  opacity:0;
+  animation:nfLogoIn 1.15s cubic-bezier(.16,1,.3,1) .18s forwards;
+}
+.nf-splash-logo span{color:#e50914;}
+.nf-splash-line{
+  position:absolute;
+  left:50%;
+  bottom:-20px;
+  width:0;
+  height:3px;
+  transform:translateX(-50%);
+  background:#e50914;
+  box-shadow:0 0 18px rgba(229,9,20,.9);
+  animation:nfLineIn .8s ease .65s forwards;
+}
+@keyframes nfLogoIn{
+  0%{opacity:0;transform:scale(.72);filter:blur(10px)}
+  55%{opacity:1;transform:scale(1.04);filter:blur(0)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes nfLineIn{
+  from{width:0}
+  to{width:72%}
+}
+@keyframes nfGlow{
+  from{transform:scale(.45);opacity:0}
+  45%{opacity:1}
+  to{transform:scale(1.15);opacity:.75}
+}
+@keyframes nfSplashOut{
+  to{opacity:0;visibility:hidden;pointer-events:none}
+}
+@media(prefers-reduced-motion:reduce){
+  #nightflix-splash{animation:none;opacity:0;visibility:hidden;pointer-events:none}
+}
+
 </style> </head><body><header><div class="container nav"><button class="menu-btn" id="menuBtn" aria-label="Open menu" > ☰ </button><a class="logo" href="#home"> NIGHT<span>FLIX</span></a><nav class="navlinks" id="navlinks"><a class="active" href="#home"> Home </a><a href="#movies"> Movies & Series </a><a href="#genres"> Genres </a><a class="live-nav" href="live.html"><span class="live-nav-dot"></span> LIVE TV</a><a href="marvel.html"> Marvel Universe </a><a href="#about"> About </a><a class="request-link" href="movie-request.html"> Movie Request </a></nav><div class="nav-right"><div class="search-wrap"><input id="search" type="search" placeholder="Search movies & series..." aria-label="Search movies and web series" ><span class="search-icon"> ⌕ </span></div><button class="icon-btn" id="topSearch" title="Focus search" > ⌕ </button></div></div></header><main class="container" id="movies" ><div class="toolbar" id="genres" ><div class="chips" id="chips" ></div><select class="sort" id="sort" aria-label="Sort movies and series" ><option value="new"> Newest first </option><option value="old"> Oldest first </option><option value="az"> A → Z </option><option value="za"> Z → A </option></select></div><div class="section-head"><h2> Movies & Web Series </h2><span class="count" id="count" > 0 titles </span></div><div class="grid" id="grid" ></div><div class="empty" id="empty" > No movies or web series found. </div><div class="pagination" id="pagination" aria-label="Movie and series pages" ></div></main><footer id="about"><strong> NIGHTFLIX </strong><br> Movies & Web Series Collection. <br> Publish only content and links you have permission to use. <div class="social-links" aria-label="Social media links" ><a class="social-link" href="" aria-label="Instagram" title="Instagram" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.25a1.25 1.25 0 1 1-1.25 1.25Z"/></svg></a><a class="social-link" href="" aria-label="YouTube" title="YouTube" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5 6-3.5-6-3.5v7Z"/></svg></a><a class="social-link" href="" aria-label="Facebook" title="Facebook" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M13.5 22v-8h2.75l.5-3h-3.25V9.1c0-.87.29-1.6 1.72-1.6h1.83V4.82A24 24 0 0 0 14.8 4c-2.72 0-4.55 1.66-4.55 4.7V11H7.5v3h2.75v8h3.25Z"/></svg></a></div></footer><div class="toast" id="toast" ></div> <script>
 
 "use strict";
@@ -2617,4 +2710,88 @@ aclib.runPop({
 })();
 </script>
 
+<script>
+
+/* NIGHTFLIX TV D-PAD: smooth poster-to-poster movement */
+(function(){
+  const grid = document.getElementById("grid");
+  if(!grid) return;
+
+  function getCards(){
+    return Array.from(grid.querySelectorAll(".movie"));
+  }
+
+  function getColumns(cards){
+    if(cards.length < 2) return 1;
+    const top = cards[0].getBoundingClientRect().top;
+    return Math.max(1, cards.filter(c =>
+      Math.abs(c.getBoundingClientRect().top - top) < 12
+    ).length);
+  }
+
+  function focusCard(card){
+    if(!card) return;
+    card.focus({preventScroll:true});
+    requestAnimationFrame(() => {
+      card.scrollIntoView({
+        behavior:"smooth",
+        block:"center",
+        inline:"nearest"
+      });
+    });
+  }
+
+  function bindTvNavigation(){
+    const cards = getCards();
+    if(!cards.length) return;
+
+    cards.forEach((card,index)=>{
+      card.onkeydown = function(e){
+        if(!["ArrowLeft","ArrowRight","ArrowUp","ArrowDown"].includes(e.key)) return;
+
+        const cols = getColumns(cards);
+        let target = null;
+
+        if(e.key === "ArrowLeft") target = cards[index-1];
+        if(e.key === "ArrowRight") target = cards[index+1];
+        if(e.key === "ArrowUp") target = cards[index-cols];
+        if(e.key === "ArrowDown") target = cards[index+cols];
+
+        if(target){
+          e.preventDefault();
+          focusCard(target);
+        }
+      };
+    });
+  }
+
+  const observer = new MutationObserver(bindTvNavigation);
+  observer.observe(grid,{childList:true});
+  bindTvNavigation();
+})();
+
+/* Netflix-style NIGHTFLIX splash: once per browser session */
+(function(){
+  const key = "nightflix_intro_seen_v1";
+  let seen = false;
+  try { seen = sessionStorage.getItem(key) === "1"; } catch(e){}
+  if(seen){
+    const old = document.getElementById("nightflix-splash");
+    if(old) old.remove();
+    return;
+  }
+
+  const splash = document.createElement("div");
+  splash.id = "nightflix-splash";
+  splash.innerHTML = '<div class="nf-splash-logo">NIGHT<span>FLIX</span><div class="nf-splash-line"></div></div>';
+  document.body.prepend(splash);
+
+  try { sessionStorage.setItem(key,"1"); } catch(e){}
+
+  setTimeout(()=>{
+    if(splash && splash.parentNode) splash.remove();
+  },3000);
+})();
+
+</script>
 </body></html>
