@@ -1,4 +1,70 @@
-[ {
+[ 
+  {
+  "id": 111,
+  "title": "",
+  "year": 2026,
+  "genre": "18+",
+  "poster": "https://m.media-amazon.com/images/M/MV5BOWI3MjgwZTEtZTJiMS00OTJmLTk5YzYtZDg2NzA1ZjQ1Yjk0XkEyXkFqcGc@._V1_.jpg",
+  "description": "",
+  "contentType": "Web Series",
+  "watch": "",
+  "download": "",
+  "episodes": [
+    {
+      "episode": 1,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E01.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+    {
+      "episode": 2,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E02.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+    {
+      "episode": 3,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E03.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+    {
+      "episode": 4,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E04.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+    {
+      "episode": 5,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E05.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+    {
+      "episode": 6,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E06.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+     {
+      "episode": 7,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E07.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+     {
+      "episode": 8,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E08.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+     {
+      "episode": 9,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E09.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    },
+     {
+      "episode": 10,
+      "watch": "https://archive.org/download/mastram.-s-01-e-01.720p.-hindi.-web-dl.-2.0.x-264-hdhub-4u.-ms/Mastram.S01E10.720p.Hindi.WEB-DL.2.0.x264-HDHub4u.Ms.mp4",
+      "download": ""
+    }
+  ],
+  "addedAt": "2026-09-27T10:00:00",
+  "universe": ""
+}
+  {
   "id": 110,
   "title": "",
   "year": 2026,
