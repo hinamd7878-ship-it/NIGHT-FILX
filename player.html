@@ -26,6 +26,20 @@ video{width:100%;height:100%;display:block;background:#000;object-fit:contain}
 .control-btn{min-width:55px;min-height:45px;border:0;border-radius:7px;background:rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer}
 .control-btn:hover,.control-btn:focus{background:rgba(255,255,255,.3)}
 button:focus{outline:3px solid #ffcc00;outline-offset:2px}
+
+/* AUTO-HIDE CUSTOM PLAYER CONTROLS */
+#controls{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+  transition:opacity .25s ease, visibility .25s ease, transform .25s ease;
+}
+#player-container.controls-hidden #controls{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateX(-50%) translateY(12px);
+}
 </style>
 </head>
 <body>
@@ -64,6 +78,31 @@ const fullscreenBtn = document.getElementById("fullscreenBtn");
 
 let hls = null;
 let currentStreamUrl = "";
+let controlsHideTimer = null;
+const playerContainer = document.getElementById("player-container");
+
+function showControls(){
+  if(!playerContainer) return;
+  playerContainer.classList.remove("controls-hidden");
+  clearTimeout(controlsHideTimer);
+
+  if(!video.paused){
+    controlsHideTimer = setTimeout(hideControls, 10000);
+  }
+}
+
+function hideControls(){
+  if(!playerContainer || video.paused) return;
+  playerContainer.classList.add("controls-hidden");
+}
+
+function scheduleControlsHide(){
+  clearTimeout(controlsHideTimer);
+  if(!video.paused){
+    controlsHideTimer = setTimeout(hideControls, 10000);
+  }
+}
+
 
 function getStreamUrl(){
   const params = new URLSearchParams(window.location.search);
@@ -233,6 +272,7 @@ function toggleFullscreen(){
 
 /* TV REMOTE CONTROLS */
 document.addEventListener("keydown", function(e){
+  showControls();
   if(e.key === "Enter" || e.keyCode === 13){
     e.preventDefault();
     if(video.muted){
@@ -289,13 +329,27 @@ document.addEventListener("keydown", function(e){
   }
 });
 
+
+/* Touch/click anywhere on the video: show controls again */
+["pointerdown","touchstart","mousemove"].forEach(function(type){
+  playerContainer.addEventListener(type, function(){
+    showControls();
+  }, {passive:true});
+});
+
+playerContainer.addEventListener("click", function(e){
+  if(e.target === playerContainer || e.target === video){
+    showControls();
+  }
+});
+
 playBtn.addEventListener("click", togglePlay);
 muteBtn.addEventListener("click", toggleMute);
 fullscreenBtn.addEventListener("click", toggleFullscreen);
 retryButton.addEventListener("click", loadStream);
 
-video.addEventListener("play", updatePlayButton);
-video.addEventListener("pause", updatePlayButton);
+video.addEventListener("play", function(){ updatePlayButton(); showControls(); scheduleControlsHide(); });
+video.addEventListener("pause", function(){ updatePlayButton(); showControls(); });
 video.addEventListener("waiting", () => showStatus("Buffering..."));
 video.addEventListener("playing", () => { hideLoading(); hideError(); });
 
