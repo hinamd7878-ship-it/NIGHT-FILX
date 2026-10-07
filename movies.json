@@ -23,7 +23,11 @@
   "contentType": "",
   "watch": "https://archive.org/download/jhgeofgr/Jailer.mp4",
   "download": "",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/10/06/vlcsnap-2026-10-06-03h11m32s429.jpg",
+    "https://catimages.org/images/2026/10/06/vlcsnap-2026-10-06-03h12m53s719.jpg",
+    "https://catimages.org/images/2026/10/06/vlcsnap-2026-10-06-03h13m51s569.jpg"
+  ],
   "addedAt": "2026-10-24T01:00:00",
   "universe": ""
 },
