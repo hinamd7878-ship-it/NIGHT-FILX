@@ -65,7 +65,11 @@
   "contentType": "",
   "watch": "https://archive.org/download/spidermen-movie/spidermen.mp4",
   "download": "",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/10/06/vlcsnap-2026-10-05-11h21m57s625.jpg",
+    "https://catimages.org/images/2026/10/06/vlcsnap-2026-10-05-11h24m20s025.jpg",
+    "https://catimages.org/images/2026/10/06/vlcsnap-2026-10-05-11h27m02s604.jpg"
+  ],
   "addedAt": "2026-10-25T01:00:00",
   "universe": ""
 },
