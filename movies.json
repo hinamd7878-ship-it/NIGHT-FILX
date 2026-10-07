@@ -216,7 +216,13 @@
   "contentType": "",
   "watch": "https://archive.org/download/kenil-video-archive-unique123/kenil.mp4",
   "download": "https://archive.org/download/drishyam-3.2026.720p.-ds-4-k.-web-dl.-hindi.-hq-studio.-dub.x-264-hdhub-4u.-ms/Drishyam-3.2026.720p.DS4K.WEB-DL.Hindi.HQ-Studio.Dub.x264-HDHub4u.Ms.mkv",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/10/03/vlcsnap-2026-10-02-22h48m30s907.jpg",
+    "https://catimages.org/images/2026/10/03/vlcsnap-2026-10-02-22h45m29s134.jpg",
+    "https://catimages.org/images/2026/10/03/vlcsnap-2026-10-02-22h46m33s241.jpg",
+    "https://catimages.org/images/2026/10/03/vlcsnap-2026-10-02-22h49m23s769.jpg",
+    "https://catimages.org/images/2026/10/03/STEREO.02_23_19_12.Still021.md.png"
+  ],
   "addedAt": "2026-10-26T01:00:00",
   "universe": ""
 },
