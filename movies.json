@@ -143,7 +143,11 @@
   "contentType": "",
   "watch": "https://archive.org/download/nightflix-unit-20261003/unit.mp4",
   "download": "",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/10/02/vlcsnap-2026-10-01-14h33m55s713.jpg",
+    "https://catimages.org/images/2026/10/02/vlcsnap-2026-10-01-14h31m12s191.jpg",
+    "https://catimages.org/images/2026/10/02/vlcsnap-2026-10-01-14h31m18s592.jpg"
+  ],
   "addedAt": "2026-10-25T01:00:00",
   "universe": ""
 },
