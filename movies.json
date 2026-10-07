@@ -87,7 +87,11 @@
   "contentType": "",
   "watch": "https://archive.org/download/093r0/luststory.mp4",
   "download": "",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/09/18/vlcsnap-2026-09-18-00h09m37s215-1.jpg",
+    "https://catimages.org/images/2026/09/18/vlcsnap-2026-09-18-00h11m13s967-1.jpg",
+    "https://catimages.org/images/2026/09/18/vlcsnap-2026-09-18-00h12m28s224-1.jpg"
+  ],
   "addedAt": "2026-10-25T01:00:00",
   "universe": ""
 },
