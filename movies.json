@@ -142,7 +142,12 @@
   "contentType": "",
   "watch": "https://archive.org/download/doremon-video-0m0m0m0/doremon123.mp4",
   "download": "",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/10/04/Vlcsnap.mkv-frame020934.jpg",
+    "https://catimages.org/images/2026/10/04/Vlcsnap.mkv-frame066988.jpg",
+    "https://catimages.org/images/2026/10/04/Vlcsnap.mkv-frame075361.jpg",
+    "https://catimages.org/images/2026/10/04/Vlcsnap.mkv-frame121416.jpg"
+  ],
   "addedAt": "2026-10-25T01:00:00",
   "universe": ""
 },
