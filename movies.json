@@ -1,4 +1,5 @@
-[  {
+[ 
+  {
   "id": 154,
   "title": "Chumbak",
   "year": 2026,
@@ -50,12 +51,37 @@
       "download": ""
     },
      {
-      "episode": 9,
+      "episode": 10,
       "watch": "",
       "download": ""
     },
      {
-      "episode": 10,
+      "episode": 11,
+      "watch": "",
+      "download": ""
+    },
+    {
+      "episode": 12,
+      "watch": "",
+      "download": ""
+    },  
+    {
+      "episode": 13,
+      "watch": "",
+      "download": ""
+    },
+      {
+      "episode": 14,
+      "watch": "",
+      "download": ""
+    },
+      {
+      "episode": 15,
+      "watch": "",
+      "download": ""
+    },
+      {
+      "episode": 16,
       "watch": "",
       "download": ""
     }
