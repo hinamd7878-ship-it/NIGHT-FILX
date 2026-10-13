@@ -7,9 +7,16 @@
   "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcwibcGBmEmSbSz7ROaK3un95TmISX-eC6_ndBdWY5fzCGowjh7SY1KcV_S3w0eu-vO-mo&s=10",
   "description": " ",
   "contentType": "",
-  "watch": "",
+  "watch": "https://archive.org/download/jfkgjk/1.mp4",
   "download": "",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2026/10/10/vlcsnap-2026-10-09-22h01m47s456-1.jpg",
+    "https://catimages.org/images/2026/10/10/vlcsnap-2026-10-09-22h04m07s716-1.jpg",
+    "https://catimages.org/images/2026/10/10/vlcsnap-2026-10-09-22h04m41s101-1.jpg",
+    "https://catimages.org/images/2026/10/10/vlcsnap-2026-10-09-22h07m09s442-1.jpg",
+    "https://catimages.org/images/2026/10/10/vlcsnap-2026-10-09-22h07m32s735-1.jpg",
+    "https://catimages.org/images/2026/10/10/vlcsnap-2026-10-09-22h08m24s458-1.jpg"
+  ],
   "addedAt": "2026-10-13T01:00:00",
   "universe": ""
 },
