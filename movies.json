@@ -1,5 +1,68 @@
 [  
   {
+  "id": 158,
+  "title": "Ishqa Ishqa ",
+  "year": 2026,
+  "genre": "",
+  "poster": "https://m.media-amazon.com/images/S/pv-target-images/cb34d61d2162a4672ddc645070ba9506b958c7aa558262444d9913a78e511bda.jpg",
+  "description": "",
+  "contentType": "",
+  "watch": "",
+  "download": "",
+  "photos": [
+  
+  ],
+  "episodes": [
+    {
+      "episode": 1,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/1.mp4",
+      "download": ""
+    },
+    {
+      "episode": 2,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/2.mp4",
+      "download": ""
+    },
+     {
+      "episode": 3,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/3.mp4",
+      "download": ""
+    },
+     {
+      "episode": 4,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/4.mp4",
+      "download": ""
+    },
+     {
+      "episode": 5,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/5.mp4",
+      "download": ""
+    },
+     {
+      "episode": 6,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/6.mp4",
+      "download": ""
+    },
+     {
+      "episode": 7,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/7.mp4",
+      "download": ""
+    },
+     {
+      "episode": 8,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/8.mp4",
+      "download": ""
+    },
+     {
+      "episode": 9,
+      "watch": "https://ia600601.us.archive.org/31/items/jguhrg/9.mp4",
+      "download": ""
+    }
+  ],
+  "addedAt": "2026-10-27T10:00:00",
+  "universe": ""
+},
+  {
   "id": 157,
   "title": "VisionQuest",
   "year": 2026,
