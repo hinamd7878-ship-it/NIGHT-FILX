@@ -1,4 +1,32 @@
-[ 
+[   
+  {
+  "id": 163,
+  "title": "Sony Ten Sports 1 HD",
+  "year": 2026,
+  "genre": "",
+  "poster": "https://intvschedule.com/wp-content/uploads/2025/09/SONY-SPORTS-TEN-1-e1758658084851.webp",
+  "description": " ",
+  "contentType": "live",
+  "watch": "https://toffee.rootbd.xyz/channel/18.m3u8",
+  "download": "",
+  "photos": [],
+  "addedAt": "2026-08-25T01:00:00",
+  "universe": ""
+},
+   {
+  "id": 162,
+  "title": "Sony Entertainment Television HD",
+  "year": 2026,
+  "genre": "",
+  "poster": "https://upload.wikimedia.org/wikipedia/en/d/de/Sony_TV_new.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
+  "description": " ",
+  "contentType": "live",
+  "watch": "https://toffee.rootbd.xyz/channel/12.m3u8",
+  "download": "",
+  "photos": [],
+  "addedAt": "2026-08-25T01:00:00",
+  "universe": ""
+},
   {
   "id": 161,
   "title": "Colony",
