@@ -1,4 +1,67 @@
-[  
+[ 
+  {
+  "id": 166,
+  "title": "Friends Sex and Games",
+  "year": 2026,
+  "genre": "",
+  "poster": "https://image.tmdb.org/t/p/w342/zijeb3WqqTIYJm3mmp1sb0uNGUj.jpg",
+  "description": "",
+  "contentType": "18+",
+  "watch": "",
+  "download": "",
+  "photos": [
+  "https://catimages.org/images/2026/10/20/Vlcsnap.mkv-frame019690.th.jpg",
+    "https://catimages.org/images/2026/10/20/Vlcsnap.mkv-frame020859.th.jpg",
+    "https://catimages.org/images/2026/10/20/Vlcsnap.mkv-frame022671.th.jpg",
+    "https://catimages.org/images/2026/10/20/Vlcsnap.mkv-frame023846.th.jpg",
+    "https://catimages.org/images/2026/10/20/Vlcsnap.mkv-frame025978.th.jpg",
+    "https://catimages.org/images/2026/10/20/Vlcsnap.mkv-frame028761.th.jpg"
+  ],
+  "episodes": [
+    {
+      "episode": 1,
+      "watch": "https://ia600806.us.archive.org/35/items/jdjnvjfjfv/1.mp4",
+      "download": ""
+    },
+    {
+      "episode": 2,
+      "watch": "https://ia600806.us.archive.org/35/items/jdjnvjfjfv/2.mp4",
+      "download": ""
+    },
+     {
+      "episode": 3,
+      "watch": "https://ia600806.us.archive.org/35/items/jdjnvjfjfv/3.mp4",
+      "download": ""
+    },
+     {
+      "episode": 4,
+      "watch": "https://ia600806.us.archive.org/35/items/jdjnvjfjfv/4.mp4",
+      "download": ""
+    },
+     {
+      "episode": 5,
+      "watch": "https://ia600806.us.archive.org/35/items/jdjnvjfjfv/5.mp4",
+      "download": ""
+    },
+     {
+      "episode": 6,
+      "watch": "https://ia600806.us.archive.org/35/items/jdjnvjfjfv/6.mp4",
+      "download": ""
+    },
+     {
+      "episode": 7,
+      "watch": "",
+      "download": ""
+    },
+     {
+      "episode": 8,
+      "watch": "",
+      "download": ""
+    }
+  ],
+  "addedAt": "2026-10-27T10:00:00",
+  "universe": ""
+},
   {
   "id": 165,
   "title": "DC",
