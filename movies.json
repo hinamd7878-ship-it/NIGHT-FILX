@@ -771,7 +771,13 @@
   "contentType": "",
   "watch": "https://archive.org/download/the.-next.-365.-days.-2022.1080p.-nf.-web-dl.-hindi.-ddp-5.1-english.-ddp-5.1.-h.-264-4k-hd-hub.-com/The.Next.365.Days.2022.1080p.NF.WEB-DL.Hindi.DDP5.1-English.DDP5.1.H.264-4kHdHub.Com.mp4",
   "download": "https://archive.org/download/the.-next.-365.-days.-2022.1080p.-nf.-web-dl.-hindi.-ddp-5.1-english.-ddp-5.1.-h.-264-4k-hd-hub.-com/The.Next.365.Days.2022.1080p.NF.WEB-DL.Hindi.DDP5.1-English.DDP5.1.H.264-4kHdHub.Com.mkv",
-  "photos": [],
+  "photos": [
+    "https://catimages.org/images/2025/01/22/365.Days.2020.00_32_20_06.th.jpg",
+    "https://catimages.org/images/2025/01/22/365.Days.2020.00_46_00_09.th.jpg",
+    "https://catimages.org/images/2025/01/22/365.Days.2020.00_51_45_10.th.jpg",
+    "https://catimages.org/images/2025/01/22/365.Days.2020.01_09_00_14.th.jpg",
+    "https://catimages.org/images/2025/01/22/365.Days.2020.01_48_26_15.th.jpg"
+  ],
   "addedAt": "2026-08-25T01:00:00",
   "universe": ""
 },
