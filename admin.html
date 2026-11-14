@@ -32,7 +32,7 @@
 <div class="form-actions"><button type="submit" id="movieSubmit">Add movie to GitHub</button><button type="button" class="secondary hidden" id="movieCancel">Cancel edit</button></div></form>
 <form id="shortForm" class="hidden"><h2 id="shortFormTitle">Add Short</h2>
 <label>Short title / scene name *</label><input id="shortTitle" required maxlength="160" placeholder="e.g. Best action scene">
-<label>Link this Short to a movie *</label><select id="shortMovieId" required><option value="">Select an existing movie</option></select><div class="hint">Select the exact movie from movies.json. This ID connects the Short to its movie detail page.</div>
+<label>Search movie by name *</label><input id="shortMovieSearch" type="search" autocomplete="off" placeholder="Type movie name to search..."><label for="shortMovieId">Select matching movie</label><select id="shortMovieId" required><option value="">Select an existing movie</option></select><div class="hint">Search by movie title, then select the exact result. The original movie ID is saved to link this Short to its movie detail page.</div>
 <label>Short poster URL (optional)</label><input id="shortPoster" type="url" placeholder="https://...jpg">
 <label>Short MP4 URL *</label><input id="shortVideo" type="url" required placeholder="https://...mp4">
 <label>Caption (optional)</label><textarea id="shortCaption" rows="2" placeholder="Short description"></textarea>
@@ -54,7 +54,19 @@ function setEpisodes(episodes=[]){$("episodeRows").innerHTML="";(episodes.length
 function toggleSeriesEditor(){const series=isSeriesType();$("episodesEditor").classList.toggle("hidden",!series);$("movieVideo").required=!series;$("movieVideoRequired").textContent=series?"(optional for web series)":"*";}
 
 async function refresh(){const d=await api("/api/catalog");movies=d.movies||[];shorts=d.shorts||[];populateMovieSelect();renderList();}
-function populateMovieSelect(selected=""){$("shortMovieId").innerHTML='<option value="">Select an existing movie</option>'+movies.map(m=>`<option value="${esc(m.id)}">${esc(m.title)} (ID: ${esc(m.id)})</option>`).join("");if(selected!=="")$("shortMovieId").value=String(selected);}
+function populateMovieSelect(selected=""){
+  const search=$("shortMovieSearch");
+  if(search) search.value="";
+  renderMovieSelectOptions(selected);
+}
+function renderMovieSelectOptions(selected=""){
+  const query=($("shortMovieSearch")?.value||"").trim().toLowerCase();
+  const matches=movies.filter(m=>String(m.title||"").toLowerCase().includes(query));
+  const select=$("shortMovieId");
+  const keep=selected!==""?String(selected):select.value;
+  select.innerHTML='<option value="">Select an existing movie</option>'+matches.map(m=>`<option value="${esc(m.id)}">${esc(m.title)} (ID: ${esc(m.id)})</option>`).join("");
+  if(keep && matches.some(m=>String(m.id)===keep)) select.value=keep;
+}
 function renderList(){const arr=mode==="movies"?movies:shorts;$ ("items").innerHTML=arr.map((x,i)=>{const linked=mode==="shorts"?movies.find(m=>String(m.id)===String(x.movieId)):null;return `<div class="item">${x.poster?`<img src="${esc(x.poster)}" alt="">`:""}<div><strong>${esc(x.title||"Untitled")}</strong><span class="muted small">${mode==="movies"?`Movie ID: ${esc(x.id)}`:`Linked movie: ${esc(linked?.title||"Not linked")} · ID: ${esc(x.movieId??"—")}`}</span></div><button type="button" onclick="editEntry(${i})">Edit</button><button type="button" onclick="deleteEntry(${i})">Delete</button></div>`}).join("")||'<p class="muted">No entries yet.</p>';}
 function resetMovieForm(){editingMovieId=null;$('movieForm').reset();$('movieFormTitle').textContent='Add movie';$('movieSubmit').textContent='Add movie to GitHub';$('movieCancel').classList.add('hidden');setEpisodes([]);toggleSeriesEditor();}
 function resetShortForm(){editingShortIndex=null;$('shortForm').reset();$('shortFormTitle').textContent='Add Short';$('shortSubmit').textContent='Add Short to GitHub';$('shortCancel').classList.add('hidden');}
@@ -64,7 +76,7 @@ $('loginBtn').onclick=async()=>{try{password=$('password').value;await refresh()
 $('logoutBtn').onclick=()=>{password='';$('adminPanel').classList.add('hidden');$('loginPanel').classList.remove('hidden');$('password').value='';};
 $('movieTab').onclick=()=>{mode='movies';$('movieForm').classList.remove('hidden');$('shortForm').classList.add('hidden');$('movieTab').classList.remove('secondary');$('shortTab').classList.add('secondary');renderList();};
 $('shortTab').onclick=()=>{mode='shorts';$('shortForm').classList.remove('hidden');$('movieForm').classList.add('hidden');$('shortTab').classList.remove('secondary');$('movieTab').classList.add('secondary');renderList();};
-$('movieCancel').onclick=resetMovieForm;$('shortCancel').onclick=resetShortForm;$('movieType').addEventListener('change',toggleSeriesEditor);$('addEpisodeBtn').onclick=()=>makeEpisodeRow({},$('episodeRows').children.length);
+$('movieCancel').onclick=resetMovieForm;$('shortCancel').onclick=resetShortForm;$('shortMovieSearch').addEventListener('input',()=>renderMovieSelectOptions());$('movieType').addEventListener('change',toggleSeriesEditor);$('addEpisodeBtn').onclick=()=>makeEpisodeRow({},$('episodeRows').children.length);
 $('movieForm').onsubmit=async e=>{e.preventDefault();try{let episodes=isSeriesType()?readEpisodes():[];if(isSeriesType()){if(!episodes.length)throw Error('Add at least one episode.');if(episodes.some(ep=>!ep.watch))throw Error('Har episode ka Watch URL required hai.');}const payload={id:editingMovieId,title:$('movieTitle').value.trim(),year:Number($('movieYear').value)||new Date().getFullYear(),genre:$('movieGenre').value.trim(),contentType:$('movieType').value,poster:$('moviePoster').value.trim(),watch:$('movieVideo').value.trim(),download:$('movieDownload').value.trim(),rating:$('movieRating').value===''?null:Number($('movieRating').value),status:$('movieStatus').value.trim(),universe:$('movieUniverse').value.trim(),description:$('movieDescription').value.trim(),photos:$('moviePhotos').value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean),episodes,popular:$('moviePopular').checked,isNew:$('movieNew').checked};const wasEditing=editingMovieId!==null;const d=await api('/api/movies',wasEditing?'PATCH':'POST',payload);resetMovieForm();message($('status'),(wasEditing?'Movie updated.':'Movie added.')+' GitHub commit: '+d.commit);await refresh();}catch(e){message($('status'),e.message,true);}};
 toggleSeriesEditor();setEpisodes([]);
 $('shortForm').onsubmit=async e=>{e.preventDefault();try{const movieId=Number($('shortMovieId').value);if(!movies.some(m=>Number(m.id)===movieId))throw Error('Please select a movie from the existing movie list.');const payload={title:$('shortTitle').value.trim(),poster:$('shortPoster').value.trim(),video:$('shortVideo').value.trim(),movieId,caption:$('shortCaption').value.trim(),index:editingShortIndex};const wasEditing=editingShortIndex!==null;const d=await api('/api/shorts',wasEditing?'PATCH':'POST',payload);resetShortForm();message($('status'),(wasEditing?'Short updated.':'Short added.')+' GitHub commit: '+d.commit);await refresh();}catch(e){message($('status'),e.message,true);}};
