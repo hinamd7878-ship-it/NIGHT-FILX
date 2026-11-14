@@ -1215,6 +1215,8 @@ footer{
 /* Instagram-style fixed bottom navigation */
 body{padding-bottom:92px}
 .quick-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:99999;width:100%;max-width:720px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:4px;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:rgba(10,12,18,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.10);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 -8px 28px rgba(0,0,0,.38)}
+.quick-nav{opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease}
+.quick-nav.nav-ready{opacity:1;visibility:visible}
 .quick-nav a,.quick-nav button{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 2px;border:0;border-radius:10px;background:transparent;color:#aab1bf;text-decoration:none;font:600 11px/1.2 Inter,Segoe UI,Roboto,Arial,sans-serif;cursor:pointer;transition:color .2s,transform .2s}
 .quick-nav a:hover,.quick-nav button:hover{color:#fff;transform:translateY(-1px)}
 .quick-nav .q-icon{font-size:22px;line-height:1.1}
@@ -2821,9 +2823,11 @@ aclib.runPop({
   const key = "nightflix_intro_seen_v1";
   let seen = false;
   try { seen = sessionStorage.getItem(key) === "1"; } catch(e){}
+  const quickNav = document.querySelector(".quick-nav");
   if(seen){
     const old = document.getElementById("nightflix-splash");
     if(old) old.remove();
+    if(quickNav) quickNav.classList.add("nav-ready");
     return;
   }
 
@@ -2836,6 +2840,7 @@ aclib.runPop({
 
   setTimeout(()=>{
     if(splash && splash.parentNode) splash.remove();
+    if(quickNav) quickNav.classList.add("nav-ready");
   },3000);
 })();
 
@@ -2843,7 +2848,7 @@ aclib.runPop({
 
 <nav class="quick-nav" aria-label="Main quick navigation">
   <a class="quick-active" href="#home" aria-label="Home"><span class="q-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-  <button type="button" id="quickSearchBtn" aria-label="Search"><span class="q-icon" aria-hidden="true">⌕</span><span>Search</span></button>
+  <button type="button" aria-label="Search" onclick="document.getElementById('search').focus();document.getElementById('search').scrollIntoView({behavior:'smooth',block:'center'});"><span class="q-icon" aria-hidden="true">⌕</span><span>Search</span></button>
   <a href="shorts.html" aria-label="Shorts"><span class="q-icon" aria-hidden="true">▷</span><span>Shorts</span></a>
   <a href="#movies-grid" aria-label="Movies"><span class="q-icon" aria-hidden="true">▣</span><span>Movies</span></a>
   <a href="live.html" aria-label="Live TV"><span class="q-icon" aria-hidden="true">◉</span><span class="live-label"><span class="live-dot" aria-hidden="true"></span>Live TV</span></a>
@@ -2857,17 +2862,15 @@ aclib.runPop({
   const searchBtn = document.getElementById('topSearch');
   const menuBtn = document.getElementById('menuBtn');
   const nav = document.getElementById('navlinks');
-  const quickNav = document.querySelector('.quick-nav');
-  const isSmall = () => window.matchMedia('(max-width: 760px)').matches;
 
-  const openSearch = () => {
-    if (!search || !searchWrap) return;
-    if (isSmall()) searchWrap.classList.add('mobile-open');
-    search.focus({preventScroll:true});
-    search.scrollIntoView({behavior:'smooth', block:'center'});
-  };
-
-  if (searchBtn) searchBtn.addEventListener('click', openSearch);
+  if (searchBtn && search && searchWrap) {
+    searchBtn.addEventListener('click', () => {
+      if (matchMedia('(max-width: 500px)').matches) {
+        searchWrap.classList.toggle('mobile-open');
+      }
+      search.focus();
+    });
+  }
   if (menuBtn && nav) {
     menuBtn.addEventListener('click', () => {
       const opened = nav.classList.toggle('open');
@@ -2875,40 +2878,22 @@ aclib.runPop({
     });
   }
 
-  if (quickNav) {
-    const searchAction = quickNav.querySelector('[aria-label="Search"]');
-    if (searchAction) {
-      searchAction.removeAttribute('onclick');
-      searchAction.addEventListener('click', openSearch);
-      searchAction.addEventListener('keydown', e => {
-        if (['Enter',' ','Select','OK','DPAD_CENTER'].includes(e.key)) {
-          e.preventDefault(); openSearch();
-        }
-      });
-    }
-
-    const items = [...quickNav.querySelectorAll('a,button')];
-    items.forEach(el => {
-      el.tabIndex = 0;
-      el.addEventListener('keydown', e => {
-        if (['Enter',' ','Select','OK','DPAD_CENTER'].includes(e.key)) {
-          e.preventDefault(); el.click();
-        }
-      });
-      el.addEventListener('focus', () => el.scrollIntoView({block:'nearest',inline:'nearest'}));
-    });
-
-    document.addEventListener('keydown', e => {
-      if (!quickNav.contains(document.activeElement)) return;
-      const i = items.indexOf(document.activeElement);
-      if (i < 0) return;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault(); items[(i + 1) % items.length].focus();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault(); items[(i - 1 + items.length) % items.length].focus();
+  // TV remotes commonly send arrows, Enter/OK, Backspace and Escape.
+  const focusables = () => [...document.querySelectorAll(
+    'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex="0"]'
+  )].filter(el => el.getClientRects().length && !el.closest('[hidden]'));
+  document.addEventListener('keydown', e => {
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+      const items = focusables();
+      const current = document.activeElement;
+      const idx = items.indexOf(current);
+      if (idx >= 0) {
+        const delta = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
+        const next = items[(idx + delta + items.length) % items.length];
+        if (next) { e.preventDefault(); next.focus(); next.scrollIntoView({block:'nearest',inline:'nearest'}); }
       }
-    });
-  }
+    }
+  });
 })();
 </script>
 
