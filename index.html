@@ -1204,7 +1204,53 @@ footer{
   #nightflix-splash{animation:none;opacity:0;visibility:hidden;pointer-events:none}
 }
 
-</style> </head><body><header><div class="container nav"><button class="menu-btn" id="menuBtn" aria-label="Open menu" > ☰ </button><a class="logo" href="#home"> NIGHT<span>FLIX</span></a><nav class="navlinks" id="navlinks"><a class="active" href="#home"> Home </a><a href="#movies"> Movies & Series </a><a href="#genres"> Genres </a><a class="live-nav" href="live.html"><span class="live-nav-dot"></span> LIVE TV</a><a href="marvel.html"> Marvel Universe </a><a href="#about"> About </a><a class="request-link" href="movie-request.html"> Movie Request </a></nav><div class="nav-right"><div class="search-wrap"><input id="search" type="search" placeholder="Search movies & series..." aria-label="Search movies and web series" ><span class="search-icon"> ⌕ </span></div><button class="icon-btn" id="topSearch" title="Focus search" > ⌕ </button></div></div></header><main class="container" id="movies" ><div class="toolbar" id="genres" ><div class="chips" id="chips" ></div><select class="sort" id="sort" aria-label="Sort movies and series" ><option value="new"> Newest first </option><option value="old"> Oldest first </option><option value="az"> A → Z </option><option value="za"> Z → A </option></select></div><div class="section-head"><h2> Movies & Web Series </h2><span class="count" id="count" > 0 titles </span></div><div class="grid" id="grid" ></div><div class="empty" id="empty" > No movies or web series found. </div><div class="pagination" id="pagination" aria-label="Movie and series pages" ></div></main><footer id="about"><strong> NIGHTFLIX </strong><br> Movies & Web Series Collection. <br> Publish only content and links you have permission to use. <div class="social-links" aria-label="Social media links" ><a class="social-link" href="" aria-label="Instagram" title="Instagram" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.25a1.25 1.25 0 1 1-1.25 1.25Z"/></svg></a><a class="social-link" href="" aria-label="YouTube" title="YouTube" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5 6-3.5-6-3.5v7Z"/></svg></a><a class="social-link" href="" aria-label="Facebook" title="Facebook" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M13.5 22v-8h2.75l.5-3h-3.25V9.1c0-.87.29-1.6 1.72-1.6h1.83V4.82A24 24 0 0 0 14.8 4c-2.72 0-4.55 1.66-4.55 4.7V11H7.5v3h2.75v8h3.25Z"/></svg></a></div></footer><div class="toast" id="toast" ></div> <script>
+
+/* NIGHTFLIX SHORTS LAUNCH */
+.shorts-launch{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:24px;margin:28px 0 30px;padding:25px 30px;border:1px solid rgba(229,9,20,.28);border-radius:18px;background:radial-gradient(ellipse at 85% 50%,rgba(229,9,20,.2),transparent 42%),linear-gradient(115deg,#151923,#0d1017 65%,#1a0c10);box-shadow:0 16px 42px rgba(0,0,0,.25)}
+.shorts-launch:after{content:'▶';position:absolute;right:24%;top:50%;transform:translateY(-50%) rotate(-12deg);font-size:120px;color:rgba(255,255,255,.025);z-index:-1}
+.shorts-launch-copy{min-width:0}.shorts-eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;color:#ff5962}.shorts-launch h1{font-size:clamp(24px,4vw,36px);margin:6px 0 5px;font-weight:900}.shorts-launch h1 span{color:#ff2633}.shorts-launch p{font-size:13px;color:#aab3c2;line-height:1.5}.shorts-launch-btn{flex-shrink:0;display:flex;align-items:center;gap:12px;padding:14px 19px;border-radius:12px;background:#e50914;color:white;font-weight:800;font-size:14px;box-shadow:0 8px 24px rgba(229,9,20,.24);transition:transform .2s,background .2s}.shorts-launch-btn:hover{transform:translateY(-2px);background:#ff2633}.shorts-play{display:grid;place-items:center;width:29px;height:29px;border:1px solid rgba(255,255,255,.5);border-radius:50%;font-size:11px;padding-left:2px}.shorts-arrow{font-size:18px}
+@media(max-width:650px){.shorts-launch{align-items:flex-start;flex-direction:column;padding:21px;margin:18px 0 24px;gap:16px}.shorts-launch-btn{width:100%;justify-content:center}.shorts-launch:after{right:8%;font-size:95px}}
+
+
+/* Instagram-style fixed bottom navigation */
+body{padding-bottom:92px}
+.quick-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:99999;width:100%;max-width:720px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:4px;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:rgba(10,12,18,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.10);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 -8px 28px rgba(0,0,0,.38)}
+.quick-nav a,.quick-nav button{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 2px;border:0;border-radius:10px;background:transparent;color:#aab1bf;text-decoration:none;font:600 11px/1.2 Inter,Segoe UI,Roboto,Arial,sans-serif;cursor:pointer;transition:color .2s,transform .2s}
+.quick-nav a:hover,.quick-nav button:hover{color:#fff;transform:translateY(-1px)}
+.quick-nav .q-icon{font-size:22px;line-height:1.1}
+.quick-nav .quick-active{color:#ff2638}
+.quick-nav .quick-active:before{content:'';position:absolute;top:-10px;width:26px;height:3px;border-radius:8px;background:#ff172b;box-shadow:0 0 9px #ff172b}
+.quick-nav .live-label{display:flex;align-items:center;gap:4px;color:#ff2638}
+.quick-nav .live-dot{width:7px;height:7px;display:inline-block;border-radius:50%;background:#ff172b;box-shadow:0 0 7px #ff172b,0 0 14px rgba(255,23,43,.85);animation:nf-live-pulse 1.6s infinite}
+@keyframes nf-live-pulse{0%,100%{opacity:1}50%{opacity:.48}}
+@media(min-width:900px){.quick-nav{bottom:14px;border:1px solid rgba(255,255,255,.12);border-radius:18px}.quick-nav .quick-active:before{top:-11px}}
+@media(max-width:370px){.quick-nav{padding-left:5px;padding-right:5px}.quick-nav a,.quick-nav button{font-size:10px}.quick-nav .q-icon{font-size:20px}}
+
+
+/* NIGHTFLIX mobile + TV usability */
+.nf-tv-focus, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline:3px solid #ff2638 !important; outline-offset:3px !important;
+}
+@media(max-width:760px){
+  .nav-right{gap:7px}
+  .search-wrap.mobile-open{display:block!important;position:absolute;top:calc(100% + 6px);left:12px;right:12px;width:auto;z-index:150}
+  .search-wrap.mobile-open input{width:100%;min-height:46px}
+  .icon-btn{min-width:44px;min-height:44px}
+  .menu-btn{min-width:44px;min-height:44px}
+  .navlinks{max-height:75vh;overflow:auto}
+  .quick-nav a,.quick-nav button{min-height:48px}
+}
+@media(min-width:761px) and (max-width:1100px){
+  .search-wrap input{width:min(24vw,240px)}
+}
+
+</style> </head><body><header><div class="container nav"><button class="menu-btn" id="menuBtn" aria-label="Open menu" > ☰ </button><a class="logo" href="#home"> NIGHT<span>FLIX</span></a><nav class="navlinks" id="navlinks"><a class="active" href="#home"> Home </a><a href="shorts.html"> Shorts </a><a href="#movies"> Movies & Series </a><a href="#genres"> Genres </a><a class="live-nav" href="live.html"><span class="live-nav-dot"></span> LIVE TV</a><a href="marvel.html"> Marvel Universe </a><a href="#about"> About </a><a class="request-link" href="movie-request.html"> Movie Request </a></nav><div class="nav-right"><div class="search-wrap"><input id="search" type="search" placeholder="Search movies & series..." aria-label="Search movies and web series" ><span class="search-icon"> ⌕ </span></div><button class="icon-btn" id="topSearch" title="Focus search" > ⌕ </button></div></div></header><main class="container" id="movies" >
+<section class="shorts-launch" id="home" aria-label="NIGHTFLIX Shorts">
+  <div class="shorts-launch-copy"><span class="shorts-eyebrow">DISCOVER IN SECONDS</span><h1>Movie <span>Shorts</span></h1><p>Watch quick scenes, discover something new, then open its movie page.</p></div>
+  <a class="shorts-launch-btn" href="shorts.html" aria-label="Open Movie Shorts"><span class="shorts-play">▶</span><span>Explore Shorts</span><span class="shorts-arrow">↗</span></a>
+</section>
+
+<div class="toolbar" id="genres" ><div class="chips" id="chips" ></div><select class="sort" id="sort" aria-label="Sort movies and series" ><option value="new"> Newest first </option><option value="old"> Oldest first </option><option value="az"> A → Z </option><option value="za"> Z → A </option></select></div><div class="section-head" id="movies-grid"><h2> Movies & Web Series </h2><span class="count" id="count" > 0 titles </span></div><div class="grid" id="grid" ></div><div class="empty" id="empty" > No movies or web series found. </div><div class="pagination" id="pagination" aria-label="Movie and series pages" ></div></main><footer id="about"><strong> NIGHTFLIX </strong><br> Movies & Web Series Collection. <br> Publish only content and links you have permission to use. <div class="social-links" aria-label="Social media links" ><a class="social-link" href="" aria-label="Instagram" title="Instagram" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.25-3.25a1.25 1.25 0 1 1-1.25 1.25Z"/></svg></a><a class="social-link" href="" aria-label="YouTube" title="YouTube" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5 6-3.5-6-3.5v7Z"/></svg></a><a class="social-link" href="" aria-label="Facebook" title="Facebook" ><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M13.5 22v-8h2.75l.5-3h-3.25V9.1c0-.87.29-1.6 1.72-1.6h1.83V4.82A24 24 0 0 0 14.8 4c-2.72 0-4.55 1.66-4.55 4.7V11H7.5v3h2.75v8h3.25Z"/></svg></a></div></footer><div class="toast" id="toast" ></div> <script>
 
 "use strict";
 
@@ -2794,4 +2840,56 @@ aclib.runPop({
 })();
 
 </script>
+
+<nav class="quick-nav" aria-label="Main quick navigation">
+  <a class="quick-active" href="#home" aria-label="Home"><span class="q-icon" aria-hidden="true">⌂</span><span>Home</span></a>
+  <button type="button" aria-label="Search" onclick="document.getElementById('search').focus();document.getElementById('search').scrollIntoView({behavior:'smooth',block:'center'});"><span class="q-icon" aria-hidden="true">⌕</span><span>Search</span></button>
+  <a href="shorts.html" aria-label="Shorts"><span class="q-icon" aria-hidden="true">▷</span><span>Shorts</span></a>
+  <a href="#movies-grid" aria-label="Movies"><span class="q-icon" aria-hidden="true">▣</span><span>Movies</span></a>
+  <a href="live.html" aria-label="Live TV"><span class="q-icon" aria-hidden="true">◉</span><span class="live-label"><span class="live-dot" aria-hidden="true"></span>Live TV</span></a>
+</nav>
+
+
+<script id="nf-device-accessibility">
+(() => {
+  const search = document.getElementById('search');
+  const searchWrap = document.querySelector('.search-wrap');
+  const searchBtn = document.getElementById('topSearch');
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('navlinks');
+
+  if (searchBtn && search && searchWrap) {
+    searchBtn.addEventListener('click', () => {
+      if (matchMedia('(max-width: 500px)').matches) {
+        searchWrap.classList.toggle('mobile-open');
+      }
+      search.focus();
+    });
+  }
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', () => {
+      const opened = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(opened));
+    });
+  }
+
+  // TV remotes commonly send arrows, Enter/OK, Backspace and Escape.
+  const focusables = () => [...document.querySelectorAll(
+    'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex="0"]'
+  )].filter(el => el.getClientRects().length && !el.closest('[hidden]'));
+  document.addEventListener('keydown', e => {
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
+      const items = focusables();
+      const current = document.activeElement;
+      const idx = items.indexOf(current);
+      if (idx >= 0) {
+        const delta = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
+        const next = items[(idx + delta + items.length) % items.length];
+        if (next) { e.preventDefault(); next.focus(); next.scrollIntoView({block:'nearest',inline:'nearest'}); }
+      }
+    }
+  });
+})();
+</script>
+
 </body></html>
