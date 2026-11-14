@@ -2843,7 +2843,7 @@ aclib.runPop({
 
 <nav class="quick-nav" aria-label="Main quick navigation">
   <a class="quick-active" href="#home" aria-label="Home"><span class="q-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-  <button type="button" aria-label="Search" onclick="document.getElementById('search').focus();document.getElementById('search').scrollIntoView({behavior:'smooth',block:'center'});"><span class="q-icon" aria-hidden="true">⌕</span><span>Search</span></button>
+  <button type="button" id="quickSearchBtn" aria-label="Search"><span class="q-icon" aria-hidden="true">⌕</span><span>Search</span></button>
   <a href="shorts.html" aria-label="Shorts"><span class="q-icon" aria-hidden="true">▷</span><span>Shorts</span></a>
   <a href="#movies-grid" aria-label="Movies"><span class="q-icon" aria-hidden="true">▣</span><span>Movies</span></a>
   <a href="live.html" aria-label="Live TV"><span class="q-icon" aria-hidden="true">◉</span><span class="live-label"><span class="live-dot" aria-hidden="true"></span>Live TV</span></a>
@@ -2857,15 +2857,17 @@ aclib.runPop({
   const searchBtn = document.getElementById('topSearch');
   const menuBtn = document.getElementById('menuBtn');
   const nav = document.getElementById('navlinks');
+  const quickNav = document.querySelector('.quick-nav');
+  const isSmall = () => window.matchMedia('(max-width: 760px)').matches;
 
-  if (searchBtn && search && searchWrap) {
-    searchBtn.addEventListener('click', () => {
-      if (matchMedia('(max-width: 500px)').matches) {
-        searchWrap.classList.toggle('mobile-open');
-      }
-      search.focus();
-    });
-  }
+  const openSearch = () => {
+    if (!search || !searchWrap) return;
+    if (isSmall()) searchWrap.classList.add('mobile-open');
+    search.focus({preventScroll:true});
+    search.scrollIntoView({behavior:'smooth', block:'center'});
+  };
+
+  if (searchBtn) searchBtn.addEventListener('click', openSearch);
   if (menuBtn && nav) {
     menuBtn.addEventListener('click', () => {
       const opened = nav.classList.toggle('open');
@@ -2873,22 +2875,40 @@ aclib.runPop({
     });
   }
 
-  // TV remotes commonly send arrows, Enter/OK, Backspace and Escape.
-  const focusables = () => [...document.querySelectorAll(
-    'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex="0"]'
-  )].filter(el => el.getClientRects().length && !el.closest('[hidden]'));
-  document.addEventListener('keydown', e => {
-    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
-      const items = focusables();
-      const current = document.activeElement;
-      const idx = items.indexOf(current);
-      if (idx >= 0) {
-        const delta = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
-        const next = items[(idx + delta + items.length) % items.length];
-        if (next) { e.preventDefault(); next.focus(); next.scrollIntoView({block:'nearest',inline:'nearest'}); }
-      }
+  if (quickNav) {
+    const searchAction = quickNav.querySelector('[aria-label="Search"]');
+    if (searchAction) {
+      searchAction.removeAttribute('onclick');
+      searchAction.addEventListener('click', openSearch);
+      searchAction.addEventListener('keydown', e => {
+        if (['Enter',' ','Select','OK','DPAD_CENTER'].includes(e.key)) {
+          e.preventDefault(); openSearch();
+        }
+      });
     }
-  });
+
+    const items = [...quickNav.querySelectorAll('a,button')];
+    items.forEach(el => {
+      el.tabIndex = 0;
+      el.addEventListener('keydown', e => {
+        if (['Enter',' ','Select','OK','DPAD_CENTER'].includes(e.key)) {
+          e.preventDefault(); el.click();
+        }
+      });
+      el.addEventListener('focus', () => el.scrollIntoView({block:'nearest',inline:'nearest'}));
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!quickNav.contains(document.activeElement)) return;
+      const i = items.indexOf(document.activeElement);
+      if (i < 0) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault(); items[(i + 1) % items.length].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault(); items[(i - 1 + items.length) % items.length].focus();
+      }
+    });
+  }
 })();
 </script>
 
